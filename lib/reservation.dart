@@ -36,54 +36,98 @@ class _ReservationPageState extends State<ReservationPage> {
             title: const Text("예약"),
             bottom: const TabBar(
                 tabs: [
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
-                  Tab(icon: Icon(Icons.done)),
+                  Tab(child: Text("17")),
+                  Tab(child: Text("18")),
+                  Tab(child: Text("19")),
+                  Tab(child: Text("20")),
+                  Tab(child: Text("21")),
+                  Tab(child: Text("22")),
+                  Tab(child: Text("23")),
                 ]
             ),
           ),
             body: TabBarView(
                 children: [
                   Center(
-                    child: Column(
+                    child: Row(
                       children: [
-                        Wrap(
-                            spacing: 5.0,
-                            children: SelectMap.map((String select) {
-                              //var name = SelectMap[select.name];
-                              return FilterChip(
-                                  label: Text(select),
-                                  selected: _filters.contains(select),
-                                  onSelected: (bool value){
-                                    setState(() {
-                                      if (value) {
-                                        if (!_filters.contains(select)) {
-                                          _filters.add(select);
-                                        }
-                                      } else {
-                                        _filters.removeWhere((String name) {
-                                          return name == select;
-                                        });
-                                      }
-                                    });
-                                  });
-                            }).toList()
+                        Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1,
+                                      color: Colors.black
+                                  )
+                              ),
+                              height: 100,
+                              width: 100,
+                              child: const Text("가"),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 100,
+                              width: 100,
+                              child: const Text("나"),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 100,
+                              width: 100,
+                              child: const Text("다"),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 100,
+                              width: 100,
+                              child: const Text("라"),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 100,
+                              width: 100,
+                              child: const Text("마"),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 10.0),
-                        Text('Looking for: ${_filters.join(', ')}'),
+                        Column(
+                          children: [
+                            Wrap(
+                                spacing: 5.0,
+                                children: SelectMap.map((String select) {
+                                  //var name = SelectMap[select.name];
+                                  return FilterChip(
+                                      label: Text(select),
+                                      selected: _filters.contains(select),
+                                      onSelected: (bool value){
+                                        setState(() {
+                                          if (value) {
+                                            if (!_filters.contains(select)) {
+                                              _filters.add(select);
+                                            }
+                                          } else {
+                                            _filters.removeWhere((String name) {
+                                              return name == select;
+                                            });
+                                          }
+                                        });
+                                      });
+                                }).toList()
+                            ),
+                            const SizedBox(height: 10.0),
+                            Text('Looking for: ${_filters.join(', ')}'),
+                          ],
+                        ),
                       ],
-                    ),
+                    )
                   ),
                   const Icon(Icons.done),
                   const Icon(Icons.done),
-                  Icon(Icons.done),
-                  Icon(Icons.done),
-                  Icon(Icons.done),
-                  Icon(Icons.done),
+                  const Icon(Icons.done),
+                  const Icon(Icons.done),
+                  const Icon(Icons.done),
+                  const Icon(Icons.done),
                 ]
             )
         ),
@@ -91,3 +135,7 @@ class _ReservationPageState extends State<ReservationPage> {
     );
   }
 }
+/*
+Widget generateCalender {
+  return
+}*/
