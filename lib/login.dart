@@ -64,11 +64,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     obscureText: true,
                   ),
+                  const SizedBox(height: 12.0),
                   OverflowBar(
                     alignment: MainAxisAlignment.end,
                     children: <Widget>[
+
                       ElevatedButton(
                         child: const Text('로그인'),
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(500, 60),
+                            textStyle: const TextStyle(fontSize: 20)
+                        ),
                         onPressed: () {
                           _usernameController.clear();
                           _passwordController.clear();
