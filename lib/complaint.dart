@@ -1,4 +1,4 @@
-//import 'package:contact/theme.dart';
+// import 'package:contact/theme.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,11 +14,11 @@ class MyComplaint extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(
           useMaterial3: true,
-          //colorScheme: lightColorScheme,
+          // colorScheme: lightColorScheme,
         ),
         home: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
                   Column(
@@ -26,6 +26,7 @@ class MyComplaint extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('민원 내용을 선택해주세요.'),
+                      SizedBox(height: 30),
                       GridView(
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,7 +56,7 @@ class MyComplaint extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: 60),
                       Text('상세 내용'),
                       SizedBox(height: 30),
                       TextField(
