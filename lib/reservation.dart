@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'complaint.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -31,6 +32,7 @@ class ReservationPage extends StatefulWidget{
 }
 
 class _ReservationPageState extends State<ReservationPage> {
+  int index = 0;
 
   @override
   void initState(){
@@ -38,6 +40,31 @@ class _ReservationPageState extends State<ReservationPage> {
   }
   void refresh() {
     setState(() {});
+  }
+
+  void TabMove(int index) {
+    switch(index) {
+      case 0 :
+        refresh();
+        break;
+      case 1 :
+        break;
+      case 2 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyComplaint())
+        );
+        break;
+      case 3 :
+        break;
+    }
+  }
+
+  void TabIndex(int Tabindex) {
+    setState(() {
+      index = Tabindex;
+    });
   }
 
   @override
@@ -73,10 +100,18 @@ class _ReservationPageState extends State<ReservationPage> {
                 children: getPage(),
             ),
             bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: index,
+              onTap: (int index) {
+                TabIndex(index);
+                TabMove(index);
+              },
+              unselectedItemColor: Colors.grey,
+              selectedItemColor: Colors.black,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.done),
-                  label: "예약",
+                    icon: Icon(Icons.done),
+                    label: "예약",
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.done),
@@ -86,6 +121,10 @@ class _ReservationPageState extends State<ReservationPage> {
                     icon: Icon(Icons.done),
                     label: "민원"
                 ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.done),
+                    label: "퇴실"
+                ),
               ],
             ),
         ),
@@ -93,6 +132,7 @@ class _ReservationPageState extends State<ReservationPage> {
     );
   }
 }
+
 List<Widget> getPage() {
   List<Widget> tiles = [];
   int i = 0;
@@ -217,6 +257,15 @@ class _getTimeState extends State<getTime> {
                 //var name = SelectMap[select.name];
                 return FilterChip(
                     label: Text(select),
+                    shape: const ContinuousRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 1.0,
+                        )
+                    ),
+                    backgroundColor: Colors.white,
+                    disabledColor: Colors.grey,
+                    selectedColor: Colors.cyanAccent,
                     selected: _filters.contains(select),
                     onSelected: (bool value){
                       setState(() {
