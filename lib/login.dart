@@ -32,9 +32,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/diamond.png'),
-                const SizedBox(height: 16.0),
-                const Text('대충 이미지'),
+                Image.asset('jiransoft_rgb_ko_hv.png'),
+                // const SizedBox(height: 16.0),
+                // const Text('대충 이미지'),
               ],
             ),
             const SizedBox(height: 120.0),
