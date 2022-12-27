@@ -111,7 +111,7 @@ class _MyComplaintState extends State<MyComplaint> {
             ),
           ),
           body: Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
                   Column(
@@ -119,15 +119,15 @@ class _MyComplaintState extends State<MyComplaint> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('민원 내용을 선택해주세요.'),
-                      SizedBox(height: 30),
+                      SizedBox(height: 25),
                       GridView.builder(
                         shrinkWrap: true,
                         itemCount: contents.length,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
                           childAspectRatio: 2, //item 의 가로 1, 세로 2 의 비율
-                          mainAxisSpacing: 30, //수평 Padding
-                          crossAxisSpacing: 30, //수직 Padding
+                          mainAxisSpacing: 20, //수평 Padding
+                          crossAxisSpacing: 20, //수직 Padding
                         ),
                         itemBuilder: (context, index) {
                           return ComplaintButton(
@@ -141,24 +141,25 @@ class _MyComplaintState extends State<MyComplaint> {
                           );
                         },
                       ),
-                      SizedBox(height: 60),
+                      SizedBox(height: 40),
                       Text('상세 내용'),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       TextField(
                         controller: textController,
                         decoration: const InputDecoration(
                           filled: true,
                           hintText: '내용을 입력해 주세요.',
                         ),
-                        maxLines: 10,
+                        maxLines: 8,
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 25),
                   ElevatedButton(
-
                     child: const Text('확인'),
                     style: ElevatedButton.styleFrom(
+                      // foregroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                      // backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
                       minimumSize: Size(150, 50),
                       textStyle: const TextStyle(fontSize: 18)
                     ),

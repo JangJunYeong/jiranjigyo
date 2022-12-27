@@ -8,7 +8,7 @@ const lightColorScheme = ColorScheme(
   onPrimaryContainer: Color(0xFF21005D),
   secondary: Color(0xFF625B71),
   onSecondary: Color(0xFFFFFFFF),
-  secondaryContainer: Color(0xFFE8DEF8),
+  secondaryContainer: Color(0xFFDFE0FF),
   onSecondaryContainer: Color(0xFF1D192B),
   tertiary: Color(0xFF7D5260),
   onTertiary: Color(0xFFFFFFFF),
