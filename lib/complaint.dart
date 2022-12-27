@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiranjigyo/reservation.dart';
 import 'package:jiranjigyo/theme.dart';
 
 
@@ -48,7 +49,41 @@ class MyComplaint extends StatefulWidget {
 }
 
 class _MyComplaintState extends State<MyComplaint> {
+  int index = 2;
   int? checkedIndex;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+  void refresh() {
+    setState(() {});
+  }
+
+  void TabMove(int index) {
+    switch(index) {
+      case 0 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ReservationPage())
+        );
+        break;
+      case 1 :
+        break;
+      case 2 :
+        refresh();
+        break;
+      case 3 :
+        break;
+    }
+  }
+
+  void TabIndex(int Tabindex) {
+    setState(() {
+      index = Tabindex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +98,19 @@ class _MyComplaintState extends State<MyComplaint> {
           colorScheme: lightColorScheme,
         ),
         home: Scaffold(
-            body: Padding(
+          appBar: AppBar(
+            title: Row(
+              children: [
+                IconButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+                const Text("민원 등록"),
+              ],
+            ),
+          ),
+          body: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
@@ -120,9 +167,38 @@ class _MyComplaintState extends State<MyComplaint> {
                     },
                   ),
                 ],
+
               ),
-            )
-        )
+            ),
+          bottomNavigationBar:  BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: index,
+            onTap: (int index) {
+              TabIndex(index);
+              TabMove(index);
+            },
+            unselectedItemColor: Colors.grey,
+            selectedItemColor: Colors.black,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.done),
+                label: "예약",
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.done),
+                  label: "예약확인"
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.done),
+                  label: "민원"
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.done),
+                  label: "퇴실"
+              ),
+            ],
+          ),
+        ),
     );
   }
 }
