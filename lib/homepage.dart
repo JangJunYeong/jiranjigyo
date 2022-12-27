@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        width: 100,
+                        width: MediaQuery.of(context).size.width * 0.25,
                         height: 100,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: const Text("대충 이미지"),
                       ),
                       Container(
-                        width: 205,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         height: 100,
                         padding: const EdgeInsets.all(15.0),
                         alignment: Alignment.centerLeft,
@@ -71,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         },
                       ),
-                      const SizedBox(
-                        width: 25,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.0625,
                         height: 50,
                       ),
                     ],
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   thickness: 1.0,
                 ),
                 Container(
-                  width: 360,
+                  width: MediaQuery.of(context).size.width * 0.9,
                   height: 30,
                   padding: const EdgeInsets.fromLTRB(15.0, 0 , 15.0, 0),
                   alignment: Alignment.centerLeft,
@@ -99,12 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                   ),
                   child: Row(
-                    children: const [
-                      Text("대충 공지"),
+                    children: [
+                      const Text("대충 공지"),
                       SizedBox(
-                        width: 230,
+                        width: MediaQuery.of(context).size.width * 0.575,
                       ),
-                      Text("더보기"),
+                      const Text("더보기"),
                     ],
                   )
                 ),
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 15,
                 ),
                 Container(
-                  width: 350,
+                  width: MediaQuery.of(context).size.width * 0.875,
                   height: 400,
                   padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
                   alignment: Alignment.topCenter,
@@ -132,17 +132,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("나의 예약 현황",
+                        children: [
+                          const Text("나의 예약 현황",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 30
                             ),
                           ),
                           SizedBox(
-                            width: 100,
+                            width: MediaQuery.of(context).size.width * 0.25,
                           ),
-                          Text("더보기",
+                          const Text("더보기",
                             style: TextStyle(
                               fontSize: 15
                             ),
@@ -186,12 +186,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                     ),
-                    const SizedBox(
-                      width: 50,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.125,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 60),
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
                         backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
@@ -216,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 60),
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
                         backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
@@ -231,12 +231,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 50,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.125,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 60),
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
                         backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
@@ -257,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 30,
                 ),
                 Container(
-                  width: 350,
+                  width: MediaQuery.of(context).size.width * 0.875,
                   height: 400,
                   padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
                   alignment: Alignment.topCenter,
@@ -271,17 +271,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("공지사항",
+                        children: [
+                          const Text("공지사항",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 30
                             ),
                           ),
                           SizedBox(
-                            width: 150,
+                            width: MediaQuery.of(context).size.width * 0.375,
                           ),
-                          Text("더보기",
+                          const Text("더보기",
                             style: TextStyle(
                                 fontSize: 15
                             ),
@@ -350,8 +350,8 @@ class MyTextInputState extends State<MyTextInput>{
                       widget.notifyParent();
                     },
                   ),
-                  const SizedBox(
-                    width: 15,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.0375,
                   ),
                   ElevatedButton(
                     child: const Icon(Icons.close),
