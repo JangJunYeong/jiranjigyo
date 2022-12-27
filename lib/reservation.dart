@@ -33,10 +33,16 @@ class ReservationPage extends StatefulWidget{
 
 class _ReservationPageState extends State<ReservationPage> {
   int index = 0;
+  int count = 0;
 
   @override
   void initState(){
     super.initState();
+  }
+  @override
+  void dispose() {
+    _filters.clear();
+    super.dispose();
   }
   void refresh() {
     setState(() {});
@@ -75,6 +81,7 @@ class _ReservationPageState extends State<ReservationPage> {
         child: Scaffold(
           appBar: AppBar(
             title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
                     onPressed: (){
@@ -142,15 +149,17 @@ List<Widget> getPage() {
     tiles.add(Center(
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: getTable(),
+          children: getTable(i-1),
       )
     ));
   }
   return tiles;
 }
 
-List<Widget> getTable() {
+List<Widget> getTable(int x) {
   List<Widget> tiles = [];
+  
+  final int nowday = x;
 
   for (var element in TableMap) {
     tiles.add(Row(
@@ -168,7 +177,7 @@ List<Widget> getTable() {
           width: 80,
           child: Text(element),
         ),
-        const getTime(),
+        getTime(nowday.toString(), element),
       ],
     ));
   }
@@ -228,7 +237,10 @@ List<Widget> getTable() {
 }
 
 class getTime extends StatefulWidget {
-  const getTime({Key? key}) : super(key: key);
+  const getTime(this.nowDay, this.nowTable, {Key? key}) : super(key: key);
+
+  final String nowDay;
+  final String nowTable;
 
   @override
   State<getTime> createState() => _getTimeState();
@@ -266,16 +278,16 @@ class _getTimeState extends State<getTime> {
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,
-                    selected: _filters.contains(select),
+                    selected: _filters.contains(widget.nowDay+widget.nowTable+select),
                     onSelected: (bool value){
                       setState(() {
                         if (value) {
-                          if (!_filters.contains(select)) {
-                            _filters.add(select);
+                          if (!_filters.contains(widget.nowDay+widget.nowTable+select)) {
+                            _filters.add(widget.nowDay+widget.nowTable+select);
                           }
                         } else {
                           _filters.removeWhere((String name) {
-                            return name == select;
+                            return name == widget.nowDay+widget.nowTable+select;
                           });
                         }
                       });

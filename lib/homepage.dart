@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'theme.dart';
+
 import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
@@ -169,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(150, 60),
+                          backgroundColor: lightColorScheme.secondaryContainer,
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -188,6 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(150, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -212,6 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(150, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -231,6 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(150, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
                       ),
                       onPressed: () {
                         Navigator.push(
