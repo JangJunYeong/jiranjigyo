@@ -159,7 +159,7 @@ class _MyComplaintState extends State<MyComplaint> {
                     const SizedBox(height: 25),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: lightColorScheme.secondaryContainer,
+                        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
                         minimumSize: const Size(150, 50),
                         textStyle: const TextStyle(fontSize: 18)
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/confirm.dart';
+import 'package:jiranjigyo/theme.dart';
 import 'homepage.dart';
 import 'login.dart';
 import 'reservation.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          useMaterial3: true,
+          colorScheme: lightColorScheme,
         ),
         initialRoute: '/',
         routes: {
