@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'complaint.dart';
+import 'confirm.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -54,6 +55,11 @@ class _ReservationPageState extends State<ReservationPage> {
         refresh();
         break;
       case 1 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ConfirmPage())
+        );
         break;
       case 2 :
         Navigator.pop(context);

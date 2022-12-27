@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
 
 import 'login.dart';
@@ -196,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const ReservationPage())
+                            MaterialPageRoute(builder: (context) => const ConfirmPage())
                         );
                       },
                       child: const Text("예약 확인",
