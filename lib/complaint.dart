@@ -159,7 +159,7 @@ class _MyComplaintState extends State<MyComplaint> {
 
                     child: const Text('확인'),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(120, 40),
+                      minimumSize: Size(150, 50),
                       textStyle: const TextStyle(fontSize: 18)
                     ),
                     onPressed: () {
