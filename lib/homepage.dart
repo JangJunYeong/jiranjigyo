@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(150, 60),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
                           backgroundColor: lightColorScheme.secondaryContainer,
                         ),
                         onPressed: () {
