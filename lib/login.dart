@@ -70,9 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
 
                       ElevatedButton(
-                        child: const Text('로그인'),
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(500, 60),
+                            minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
                             textStyle: const TextStyle(fontSize: 20)
                         ),
                         onPressed: () {
@@ -80,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                           _passwordController.clear();
                           Navigator.pop(context);
                         },
+                        child: const Text('로그인'),
                       ),
                     ],
                   ),
