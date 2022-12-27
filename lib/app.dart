@@ -5,6 +5,7 @@ import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
 import 'confirm.dart';
+import 'leave.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           '/reservation': (BuildContext context) => const ReservationPage(),
           '/complaint': (BuildContext context) => const MyComplaint(),
           '/confirm': (BuildContext context) => const ConfirmPage(),
+          '/leave': (BuildContext context) => const LeavePage(),
         }
     );
   }

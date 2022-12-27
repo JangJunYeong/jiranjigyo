@@ -5,6 +5,7 @@ import 'theme.dart';
 import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
+import 'leave.dart';
 
 var stepList = List.empty(growable: true);
 var index = 1;
@@ -242,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const ReservationPage())
+                            MaterialPageRoute(builder: (context) => const LeavePage())
                         );
                       },
                       child: const Text("퇴실",
