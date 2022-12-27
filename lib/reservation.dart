@@ -269,7 +269,7 @@ class _getTimeState extends State<getTime> {
       children: [
         SizedBox(
           height: 50,
-          width: 300,
+          width: MediaQuery.of(context).size.width * 0.75,
           child: ListView(
               scrollDirection: Axis.horizontal,
               children: TimeMap.map((String select) {
