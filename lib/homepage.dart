@@ -203,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -299,18 +299,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ]
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.done),
-            label: "예약",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.done),
-              label: "예약확인"
-          ),
-        ],
       ),
     );
   }
