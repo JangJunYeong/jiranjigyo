@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'complaint.dart';
+import 'confirm.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -23,6 +24,7 @@ Set<String> TableMap = {
   "마",
 };
 final List<String> _filters = <String>[];
+int count = 0;
 
 class ReservationPage extends StatefulWidget{
   const ReservationPage({Key? key}) : super(key: key);
@@ -33,7 +35,6 @@ class ReservationPage extends StatefulWidget{
 
 class _ReservationPageState extends State<ReservationPage> {
   int index = 0;
-  int count = 0;
 
   @override
   void initState(){
@@ -42,6 +43,7 @@ class _ReservationPageState extends State<ReservationPage> {
   @override
   void dispose() {
     _filters.clear();
+    count = 0;
     super.dispose();
   }
   void refresh() {
@@ -54,6 +56,11 @@ class _ReservationPageState extends State<ReservationPage> {
         refresh();
         break;
       case 1 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ConfirmPage())
+        );
         break;
       case 2 :
         Navigator.pop(context);
@@ -281,14 +288,25 @@ class _getTimeState extends State<getTime> {
                     selected: _filters.contains(widget.nowDay+widget.nowTable+select),
                     onSelected: (bool value){
                       setState(() {
-                        if (value) {
-                          if (!_filters.contains(widget.nowDay+widget.nowTable+select)) {
-                            _filters.add(widget.nowDay+widget.nowTable+select);
+                        if (count >= 4){
+                          if (!value) {
+                            count--;
+                            _filters.removeWhere((String name) {
+                              return name == widget.nowDay+widget.nowTable+select;
+                            });
                           }
                         } else {
-                          _filters.removeWhere((String name) {
-                            return name == widget.nowDay+widget.nowTable+select;
-                          });
+                          if (value) {
+                            if (!_filters.contains(widget.nowDay+widget.nowTable+select)) {
+                              _filters.add(widget.nowDay+widget.nowTable+select);
+                              count++;
+                            }
+                          } else {
+                            count--;
+                            _filters.removeWhere((String name) {
+                              return name == widget.nowDay+widget.nowTable+select;
+                            });
+                          }
                         }
                       });
                     });

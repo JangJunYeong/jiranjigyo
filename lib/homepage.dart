@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'confirm.dart';
+=======
+import 'package:jiranjigyo/confirm.dart';
+>>>>>>> 324ade92349d77217b6561db4ba38448a42b0b72
 import 'theme.dart';
 
 import 'login.dart';
@@ -118,11 +122,121 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+<<<<<<< HEAD
                     children: const [
                       Text(
                         "나의 예약 현황",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 30),
+=======
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        height: 100,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 1,
+                                color: Colors.black
+                            )
+                        ),
+                        child: const Text("대충 이미지"),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: 100,
+                        padding: const EdgeInsets.all(15.0),
+                        alignment: Alignment.centerLeft,
+                        child: const Text("로그인 전"),
+                      ),
+                      ElevatedButton(
+                        child: const Icon(Icons.login),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginPage())
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.0625,
+                        height: 50,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Divider(
+                  indent: 20,
+                  endIndent: 20,
+                  color: Colors.black,
+                  thickness: 1.0,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 30,
+                  padding: const EdgeInsets.fromLTRB(15.0, 0 , 15.0, 0),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1,
+                          color: Colors.black
+                      )
+                  ),
+                  child: Row(
+                    children: [
+                      const Text("대충 공지"),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.575,
+                      ),
+                      const Text("더보기"),
+                    ],
+                  )
+                ),
+                const Divider(
+                  indent: 20,
+                  endIndent: 20,
+                  color: Colors.black,
+                  thickness: 1.0,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.875,
+                  height: 400,
+                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                  alignment: Alignment.topCenter,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1,
+                          color: Colors.black
+                      )
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("나의 예약 현황",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 30
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.25,
+                          ),
+                          const Text("더보기",
+                            style: TextStyle(
+                              fontSize: 15
+                            ),
+                          ),
+                        ],
+>>>>>>> 324ade92349d77217b6561db4ba38448a42b0b72
                       ),
                       SizedBox(
                         width: 100,
@@ -140,6 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shrinkWrap: true,
                       children: getContent(),
                     ),
+<<<<<<< HEAD
                   ),
                   const SizedBox(
                     height: 10,
@@ -190,6 +305,122 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(
                       fontSize: 25,
                     ),
+=======
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.125,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ConfirmPage())
+                        );
+                      },
+                      child: const Text("예약 확인",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyComplaint())
+                        );
+                      },
+                      child: const Text("민원",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.125,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        backgroundColor: lightColorScheme.secondaryContainer,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ReservationPage())
+                        );
+                      },
+                      child: const Text("퇴실",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.875,
+                  height: 400,
+                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                  alignment: Alignment.topCenter,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1,
+                          color: Colors.black
+                      )
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("공지사항",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 30
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.375,
+                          ),
+                          const Text("더보기",
+                            style: TextStyle(
+                                fontSize: 15
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 300,
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          children: getContent(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+>>>>>>> 324ade92349d77217b6561db4ba38448a42b0b72
                   ),
                 ),
               ],
@@ -341,9 +572,36 @@ class MyTextInputState extends State<MyTextInput> {
                   widget.notifyParent();
                 },
               ),
+<<<<<<< HEAD
             ],
           )
         ]));
+=======
+              Row(
+                children: <Widget>[
+                  ElevatedButton(
+                    child: const Icon(Icons.done),
+                    onPressed: () {
+                      stepList.add([myTimeController.text, myTitleController.text]);
+                      widget.notifyParent();
+                    },
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.0375,
+                  ),
+                  ElevatedButton(
+                    child: const Icon(Icons.close),
+                    onPressed: () {
+                      stepList = List.empty(growable: true);
+                      widget.notifyParent();
+                    },
+                  ),
+                ],
+              )
+            ]
+        )
+    );
+>>>>>>> 324ade92349d77217b6561db4ba38448a42b0b72
   }
 }
 
