@@ -28,7 +28,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
     setState(() {});
   }
 
-  void TabMove(int index) {
+  void tabMove(int index) {
     switch (index) {
       case 0:
         if (widget.nowpage == 0) {
@@ -69,9 +69,9 @@ class _BottomTabBarState extends State<BottomTabBar> {
     }
   }
 
-  void TabIndex(int Tabindex) {
+  void tabIndex(int tabindex) {
     setState(() {
-      index = Tabindex;
+      index = tabindex;
     });
   }
 
@@ -81,8 +81,8 @@ class _BottomTabBarState extends State<BottomTabBar> {
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.nowpage,
       onTap: (int index) {
-        TabIndex(index);
-        TabMove(index);
+        tabIndex(index);
+        tabMove(index);
       },
       unselectedItemColor: Colors.grey,
       selectedItemColor: Colors.black,

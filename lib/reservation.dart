@@ -3,7 +3,7 @@ import 'theme.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 
-Set<String> TimeMap = {
+Set<String> timeMap = {
   "AM 9:00",
   "AM 10:00",
   "AM 11:00",
@@ -17,7 +17,7 @@ Set<String> TimeMap = {
   "PM 7:00",
   "PM 8:00",
 };
-Set<String> TableMap = {
+Set<String> tableMap = {
   "가",
   "나",
   "다",
@@ -93,7 +93,7 @@ List<Widget> getTable(int x) {
 
   final int nowday = x;
 
-  for (var element in TableMap) {
+  for (var element in tableMap) {
     tiles.add(Row(
       children: [
         Container(
@@ -109,7 +109,7 @@ List<Widget> getTable(int x) {
           width: 80,
           child: Text(element),
         ),
-        getTime(nowday.toString(), element),
+        GetTime(nowday.toString(), element),
       ],
     ));
   }
@@ -168,17 +168,17 @@ List<Widget> getTable(int x) {
   return tiles;
 }
 
-class getTime extends StatefulWidget {
-  const getTime(this.nowDay, this.nowTable, {Key? key}) : super(key: key);
+class GetTime extends StatefulWidget {
+  const GetTime(this.nowDay, this.nowTable, {Key? key}) : super(key: key);
 
   final String nowDay;
   final String nowTable;
 
   @override
-  State<getTime> createState() => _getTimeState();
+  State<GetTime> createState() => _GetTimeState();
 }
 
-class _getTimeState extends State<getTime> {
+class _GetTimeState extends State<GetTime> {
 
   @override
   void initState(){
@@ -197,7 +197,7 @@ class _getTimeState extends State<getTime> {
           width: MediaQuery.of(context).size.width * 0.75,
           child: ListView(
               scrollDirection: Axis.horizontal,
-              children: TimeMap.map((String select) {
+              children: timeMap.map((String select) {
                 //var name = SelectMap[select.name];
                 return FilterChip(
                     label: Text(select),
