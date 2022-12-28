@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/bottomtabbar.dart';
+import 'package:jiranjigyo/widget/appbar.dart';
 
 class ComplaintButton extends StatelessWidget {
   const ComplaintButton({
@@ -80,20 +81,7 @@ class _MyComplaintState extends State<MyComplaint> {
       home: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: Scaffold(
-          appBar: AppBar(
-            elevation: 4,
-            shadowColor: Color.fromARGB(255, 255, 255, 255),
-            title: Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("민원 등록"),
-              ],
-            ),
-          ),
+          appBar: AppBarWidget(AppBar(), "민원 등록"),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(

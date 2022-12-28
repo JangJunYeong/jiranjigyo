@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
 import './widget/bottomtabbar.dart';
+import './widget/appbar.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -60,30 +61,7 @@ class _ReservationPageState extends State<ReservationPage> {
       home: DefaultTabController(
         length: 7,
         child: Scaffold(
-          appBar: AppBar(
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("예약"),
-              ],
-            ),
-            bottom: const TabBar(
-                tabs: [
-                  Tab(child: Text("17", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("18", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("19", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("20", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("21", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("22", style: TextStyle(color: Colors.black),)),
-                  Tab(child: Text("23", style: TextStyle(color: Colors.black),)),
-                ]
-            ),
-          ),
+          appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
           body: TabBarView(
             children: getPage(),
           ),
