@@ -3,6 +3,8 @@ import 'package:jiranjigyo/complaint.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/reservation.dart';
 
+import 'confirm.dart';
+
 
 class CheckOutPage extends StatefulWidget{
   const CheckOutPage({Key? key}) : super(key: key);
@@ -33,6 +35,11 @@ class _CheckOutPageState extends State<CheckOutPage>{
         );
         break;
       case 1 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ConfirmPage())
+        );
         break;
       case 2 :
         Navigator.pop(context);
@@ -55,28 +62,27 @@ class _CheckOutPageState extends State<CheckOutPage>{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: lightColorScheme,
       ),
-      home: GestureDetector(
+      home: DefaultTabController(
+        length: 7,
         child: Scaffold(
           appBar: AppBar(
-            title: Row(
-              children: [
-                IconButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("반납 후 좌석 활영"),
-              ],
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
+              leading: IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back)),
+              title: (
+                  Text("반납 후 좌석 촬영")
+              ),
+              centerTitle:true,
+              actions: [
+                Icon(Icons.logout)
+              ]
           ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -106,9 +112,7 @@ class _CheckOutPageState extends State<CheckOutPage>{
               ),
             ],
           ),
-          ),
         ),
-      );
-  }
-  
-}
+      ),
+    );
+  }}
