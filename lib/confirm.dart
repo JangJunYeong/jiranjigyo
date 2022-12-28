@@ -1,31 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/model/student.dart';
+import './widget/bottomtabbar.dart';
 import 'reservation.dart';
 import 'complaint.dart';
 
 int index = 0;
-/*void TabMove(int index) {
-  switch (index) {
-    case 0:
-      refresh();
-      break;
-    case 1:
-      break;
-    case 2:
-      Navigator.pop(context);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const MyComplaint()));
-      break;
-    case 3:
-      break;
-  }
-}
-
-void TabIndex(int Tabindex) {
-  setState(() {
-    index = Tabindex;
-  });
-}*/
 
 class ConfirmPage extends StatelessWidget {
   const ConfirmPage({super.key});
@@ -50,25 +29,7 @@ class ConfirmPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: index,
-        onTap: (int index) {
-          /*TabIndex(index);
-          TabMove(index);*/
-        },
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.done),
-            label: "예약",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.done), label: "예약확인"),
-          BottomNavigationBarItem(icon: Icon(Icons.done), label: "민원"),
-          BottomNavigationBarItem(icon: Icon(Icons.done), label: "퇴실"),
-        ],
-      ),
+      bottomNavigationBar: const BottomTabBar(1),
     );
   }
 }
