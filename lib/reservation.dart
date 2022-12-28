@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'theme.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
+import 'detail.dart';
 
 Set<String> timeMap = {
   "AM 9:00",
@@ -63,7 +64,7 @@ class _ReservationPageState extends State<ReservationPage> {
         child: Scaffold(
           appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
           body: TabBarView(
-            children: getPage(),
+            children: getPage(context),
           ),
           bottomNavigationBar: const BottomTabBar(0),
         ),
@@ -72,7 +73,7 @@ class _ReservationPageState extends State<ReservationPage> {
   }
 }
 
-List<Widget> getPage() {
+List<Widget> getPage(BuildContext context) {
   List<Widget> tiles = [];
   int i = 0;
 
@@ -81,14 +82,14 @@ List<Widget> getPage() {
     tiles.add(Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: getTable(i-1),
+          children: getTable(i-1, context),
         )
     ));
   }
   return tiles;
 }
 
-List<Widget> getTable(int x) {
+List<Widget> getTable(int x, BuildContext context) {
   List<Widget> tiles = [];
 
   final int nowday = x;
@@ -163,7 +164,19 @@ List<Widget> getTable(int x) {
     ],
   ));
   tiles.add(const SizedBox(height: 10.0));
-  tiles.add(ElevatedButton(onPressed: (){}, child: const Text("다음으로", style: TextStyle(color: Colors.black),)));
+  tiles.add(ElevatedButton(
+      onPressed: (){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const DetailPage()));
+      },
+      child: const Text("다음으로",
+        style: TextStyle(
+            color: Colors.black
+        ),
+      )
+  ));
 
   return tiles;
 }

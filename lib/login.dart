@@ -30,15 +30,15 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 80.0),
+            const SizedBox(height: 60.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/jiransoft_rgb_ko_hv.png'),
+                Image.asset('assets/jiransoft_rgb_ko_hv.png', width: 260, height: 130),
                 // const SizedBox(height: 16.0),
                 // const Text('대충 이미지'),
               ],
             ),
-            const SizedBox(height: 120.0),
+            const SizedBox(height: 60.0),
             Container(
               padding: const EdgeInsets.all(15.0),
               decoration: BoxDecoration(
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: '학번',
                     ),
                   ),
-                  const SizedBox(height: 12.0),
+                  const SizedBox(height: 5.0),
                   TextField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: '이름',
                     ),
                   ),
-                  const SizedBox(height: 12.0),
+                  const SizedBox(height: 16.0),
                   OverflowBar(
                     alignment: MainAxisAlignment.end,
                     children: <Widget>[
