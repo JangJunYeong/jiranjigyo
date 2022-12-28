@@ -20,6 +20,8 @@ class ComplaintButton extends StatelessWidget {
       color: checked
           ? const Color(0xFFC4C6D6)
           : Theme.of(context).colorScheme.secondaryContainer,
+      elevation: 8,
+      shadowColor: Color.fromARGB(255, 255, 255, 255),
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
@@ -79,7 +81,8 @@ class _MyComplaintState extends State<MyComplaint> {
         onTap: FocusScope.of(context).unfocus,
         child: Scaffold(
           appBar: AppBar(
-            elevation: 1,
+            elevation: 4,
+            shadowColor: Color.fromARGB(255, 255, 255, 255),
             title: Row(
               children: [
                 IconButton(
@@ -139,6 +142,8 @@ class _MyComplaintState extends State<MyComplaint> {
                 const SizedBox(height: 25),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      elevation: 6,
+                      shadowColor: Color.fromARGB(255, 255, 255, 255),
                       backgroundColor:
                           Theme.of(context).colorScheme.secondaryContainer,
                       minimumSize: const Size(150, 50),
