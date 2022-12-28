@@ -7,7 +7,7 @@ var mancount = 0;
 
 final List<String> _filters = <String>[];
 
-class DetailPage extends StatefulWidget{
+class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
 
   @override
@@ -16,15 +16,17 @@ class DetailPage extends StatefulWidget{
 
 class _DetailPageState extends State<DetailPage> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   @override
   void dispose() {
     _filters.clear();
     mancount = 0;
     super.dispose();
   }
+
   void refresh() {
     setState(() {});
   }
@@ -32,64 +34,65 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 7,
-        child: Scaffold(
-          appBar: AppBarWidget(AppBar(), "예약 세부사항"),
-          bottomNavigationBar: const BottomTabBar(0),
-          body:
-          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(
-                height: 10,
-                ),
-                const Divider(
-                  indent: 20,
-                  endIndent: 20,
-                  color: Colors.black,
-                  thickness: 1.0,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.875,
-                  height: 400,
-                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                  alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black)),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 300,
-                        child: ListView(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          children: getContent(),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ]
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: MyTextInput(notifyParent: refresh),
-            ),
-          ]),
-        )
-      )
-    );
+        home: DefaultTabController(
+            length: 7,
+            child: Scaffold(
+              appBar: AppBarWidget(AppBar(), "예약 세부사항"),
+              bottomNavigationBar: const BottomTabBar(0),
+              body: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: [
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Divider(
+                            indent: 20,
+                            endIndent: 20,
+                            color: Colors.black,
+                            thickness: 1.0,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.875,
+                            height: 400,
+                            padding:
+                                const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 1, color: Colors.black)),
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 300,
+                                  child: ListView(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    children: getContent(),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ]),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: MyTextInput(notifyParent: refresh),
+                    ),
+                  ]),
+            )));
   }
 }
 
@@ -112,39 +115,84 @@ class MyTextInputState extends State<MyTextInput> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text('제목'),
-              TextField(
-                controller: myTitleController,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text("시간"),
-              TextField(
-                controller: myTimeController,
-              ),
-              Row(
-                children: <Widget>[
-                  ElevatedButton(
-                    child: const Icon(Icons.done),
-                    onPressed: () {
-                      stepList.add([myTimeController.text, myTitleController.text]);
-                      widget.notifyParent();
+          const Text('제목'),
+          TextField(
+            controller: myTitleController,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text("시간"),
+          TextField(
+            controller: myTimeController,
+          ),
+          Row(
+            children: <Widget>[
+              ElevatedButton(
+                child: const Icon(Icons.done),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            '주의사항'),
+                        content: const Text(
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 90, 89, 89),
+                                fontSize: 15),
+                            '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Icon(Icons.check),
+                                    content: const Text(
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 20),
+                                        '예약이 완료되었습니다.'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'OK'),
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text(
+                                style: TextStyle(color: Colors.black), 'OK'),
+                          ),
+                        ],
+                      );
                     },
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.0375,
-                  ),
-                  ElevatedButton(
-                    child: const Icon(Icons.close),
-                    onPressed: () {
-                      stepList = List.empty(growable: true);
-                      widget.notifyParent();
-                    },
-                  ),
-                ],
-              )
-            ]));
+                  );
+                },
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.0375,
+              ),
+              ElevatedButton(
+                child: const Icon(Icons.close),
+                onPressed: () {
+                  stepList = List.empty(growable: true);
+                  widget.notifyParent();
+                },
+              ),
+            ],
+          )
+        ]));
   }
 }
 
@@ -195,4 +243,3 @@ class StepTile extends StatelessWidget {
     );
   }
 }
-
