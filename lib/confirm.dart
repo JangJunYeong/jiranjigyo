@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/model/student.dart';
 import './widget/bottomtabbar.dart';
-import 'reservation.dart';
-import 'complaint.dart';
+import 'package:jiranjigyo/widget/appbar.dart';
 
 int index = 0;
 
@@ -12,17 +11,13 @@ class ConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 4,
-        shadowColor: Color.fromARGB(255, 255, 255, 255),
-        title: const Text('예약확인'),
-      ),
+      appBar: AppBarWidget(AppBar(), "예약확인"),
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: Align(
           alignment: Alignment.topCenter,
           child: DetailCard(
-            title: '세부사항                                  +',
+            title: '2022.12.28(목)',
             student: Student(id: '201801992', name: '김승민'),
             tableIndex: 3,
             time: DateTime.now(),
@@ -77,24 +72,97 @@ class _DetailCardState extends State<DetailCard> {
             elevation: 0,
             color: Theme.of(context).colorScheme.secondaryContainer,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+              padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                          style: TextStyle(fontSize: 20), '   ' + widget.title),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
+                  ListTile(
+                    title: Text(
+                      style: TextStyle(fontSize: 20),
+                      'time->time',
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage("assets/table.png"),
+                      maxRadius: 25,
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            style: TextStyle(fontSize: 17),
+                            '예약자 이름:' + widget.student.name),
+                        if (opened)
+                          Column(
+                            children: [
+                              Text(
+                                  style: TextStyle(fontSize: 17),
+                                  '테이블: ${widget.tableIndex}'),
+                              Text(
+                                  style: TextStyle(fontSize: 17),
+                                  '조원:' + widget.students.toString()),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      ElevatedButton(
+                        child: const Text(
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 56, 55, 55)),
+                            '예약 수정'),
+                        onPressed: () {/* ... */},
+                      ),
+                      ElevatedButton(
+                        child: const Text(
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 56, 55, 55)),
+                            '예약 취소'),
+                        onPressed: () {/* ... */},
+                      ),
+                      ElevatedButton(
+                        child: const Text(
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 56, 55, 55)),
+                            '일정 공유'),
+                        onPressed: () {/* ... */},
+                      ),
+                    ],
+                  ),
+                ],
+                /*children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(style: TextStyle(fontSize: 25), widget.title),
+                      
+                      Text(style: TextStyle(fontSize: 20), widget.title),
                       Text(
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 17),
                           '---------------------------------------------------------------'),
                       const SizedBox(height: 5.0),
                       Text(
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 17),
                           '학번: ${widget.student.id}'),
                       Text(
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 17),
                           '이름: ${widget.student.name}'),
                     ],
                   ),
@@ -103,14 +171,14 @@ class _DetailCardState extends State<DetailCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 17),
                             '테이블: ${widget.tableIndex}'),
                         Text(
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 17),
                             '시간: ${widget.time}'),
                       ],
                     ),
-                ],
+                ],*/
               ),
             ),
           ),
