@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-      ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
+          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -157,11 +157,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                      )
-                    ),
+                        borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -183,11 +181,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                    )
-                    ),
+                        borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -214,11 +210,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                    )
-                    ),
+                        borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -240,11 +234,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                    )
-                    ),
+                        borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
+                        Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -332,39 +324,39 @@ class MyTextInputState extends State<MyTextInput> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text('제목'),
-              TextField(
-                controller: myTitleController,
+          const Text('제목'),
+          TextField(
+            controller: myTitleController,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text("시간"),
+          TextField(
+            controller: myTimeController,
+          ),
+          Row(
+            children: <Widget>[
+              ElevatedButton(
+                child: const Icon(Icons.done),
+                onPressed: () {
+                  stepList.add([myTimeController.text, myTitleController.text]);
+                  widget.notifyParent();
+                },
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.0375,
               ),
-              const Text("시간"),
-              TextField(
-                controller: myTimeController,
+              ElevatedButton(
+                child: const Icon(Icons.close),
+                onPressed: () {
+                  stepList = List.empty(growable: true);
+                  widget.notifyParent();
+                },
               ),
-              Row(
-                children: <Widget>[
-                  ElevatedButton(
-                    child: const Icon(Icons.done),
-                    onPressed: () {
-                      stepList.add([myTimeController.text, myTitleController.text]);
-                      widget.notifyParent();
-                    },
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.0375,
-                  ),
-                  ElevatedButton(
-                    child: const Icon(Icons.close),
-                    onPressed: () {
-                      stepList = List.empty(growable: true);
-                      widget.notifyParent();
-                    },
-                  ),
-                ],
-              )
-            ]));
+            ],
+          )
+        ]));
   }
 }
 
