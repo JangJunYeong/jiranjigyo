@@ -14,7 +14,6 @@ class CheckOutPage extends StatefulWidget {
   State<CheckOutPage> createState() => _CheckOutPageState();
 }
 
-
 class _CheckOutPageState extends State<CheckOutPage> {
   int index = 3;
   int? checkedIndex;
@@ -37,6 +36,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
       ),
       home: Scaffold(
         appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
+
         body: const CameraExample(),
         bottomNavigationBar: const BottomTabBar(0),
       ),
