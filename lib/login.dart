@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: 'Portal ID',
+                      labelText: '학번',
                     ),
                   ),
                   const SizedBox(height: 12.0),
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: 'Portal Password',
+                      labelText: '이름',
                     ),
                     obscureText: true,
                   ),
@@ -90,15 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ],
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            const Text("*충남대학교 포털 아이디로 \n접속하실 수 있습니다.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey
               ),
             ),
           ],
