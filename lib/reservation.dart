@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'complaint.dart';
-import 'confirm.dart';
-import 'checkout.dart';
+import './widget/bottomtabbar.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -51,41 +49,6 @@ class _ReservationPageState extends State<ReservationPage> {
     setState(() {});
   }
 
-  void TabMove(int index) {
-    switch(index) {
-      case 0 :
-        refresh();
-        break;
-      case 1 :
-        Navigator.pop(context);
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ConfirmPage())
-        );
-        break;
-      case 2 :
-        Navigator.pop(context);
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyComplaint())
-        );
-        break;
-      case 3 :
-        Navigator.pop(context);
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const CheckOutPage())
-        );
-        break;
-    }
-  }
-
-  void TabIndex(int Tabindex) {
-    setState(() {
-      index = Tabindex;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -119,34 +82,7 @@ class _ReservationPageState extends State<ReservationPage> {
             body: TabBarView(
                 children: getPage(),
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: index,
-              onTap: (int index) {
-                TabIndex(index);
-                TabMove(index);
-              },
-              unselectedItemColor: Colors.grey,
-              selectedItemColor: Colors.black,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.done),
-                    label: "예약",
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.done),
-                    label: "예약확인"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.done),
-                    label: "민원"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.done),
-                    label: "퇴실"
-                ),
-              ],
-            ),
+            bottomNavigationBar: const BottomTabBar(0),
         ),
       ),
     );
