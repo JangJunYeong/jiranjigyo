@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jiranjigyo/reservation.dart';
 import 'package:jiranjigyo/theme.dart';
-import 'package:jiranjigyo/confirm.dart';
-import 'package:jiranjigyo/checkout.dart';
+import 'package:jiranjigyo/widget/bottomtabbar.dart';
 
 class ComplaintButton extends StatelessWidget {
   const ComplaintButton({
@@ -60,35 +58,6 @@ class _MyComplaintState extends State<MyComplaint> {
 
   void refresh() {
     setState(() {});
-  }
-
-  void TabMove(int index) {
-    switch (index) {
-      case 0:
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ReservationPage()));
-        break;
-      case 1:
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ConfirmPage()));
-        break;
-      case 2:
-        refresh();
-        break;
-      case 3:
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const CheckOutPage()));
-        break;
-    }
-  }
-
-  void TabIndex(int Tabindex) {
-    setState(() {
-      index = Tabindex;
-    });
   }
 
   @override
@@ -183,25 +152,7 @@ class _MyComplaintState extends State<MyComplaint> {
               ],
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: index,
-            onTap: (int index) {
-              TabIndex(index);
-              TabMove(index);
-            },
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.black,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.done),
-                label: "예약",
-              ),
-              BottomNavigationBarItem(icon: Icon(Icons.done), label: "예약확인"),
-              BottomNavigationBarItem(icon: Icon(Icons.done), label: "민원"),
-              BottomNavigationBarItem(icon: Icon(Icons.done), label: "퇴실"),
-            ],
-          ),
+          bottomNavigationBar: const BottomTabBar(2),
         ),
       ),
     );
