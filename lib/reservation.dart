@@ -97,9 +97,16 @@ List<Widget> getPage() {
     i++;
     tiles.add(Center(
         child: Column(
+<<<<<<< HEAD
       crossAxisAlignment: CrossAxisAlignment.center,
       children: getTable(i - 1),
     )));
+=======
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: getTable(i-1),
+        )
+    ));
+>>>>>>> 400e1cdb4506cd8f6710c0322e77397ceccfa786
   }
   return tiles;
 }
