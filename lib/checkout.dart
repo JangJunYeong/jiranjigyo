@@ -3,6 +3,7 @@ import 'package:jiranjigyo/camera.dart';
 import 'package:jiranjigyo/complaint.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/reservation.dart';
+import './widget/bottomtabbar.dart';
 
 import 'confirm.dart';
 
@@ -68,6 +69,24 @@ class _CheckOutPageState extends State<CheckOutPage>{
         useMaterial3: true,
         colorScheme: lightColorScheme,
       ),
-      home: CameraExample(),
+      home: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back)),
+            title: (
+                Text("반납 후 좌석 촬영")
+            ),
+              centerTitle:true,
+              actions: [
+                Icon(Icons.logout)
+              ]
+          ),
+          body: CameraExample(),
+          bottomNavigationBar: const BottomTabBar(3),
+        )
     );
-  }}
+  }
+}
