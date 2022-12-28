@@ -33,14 +33,21 @@ class ConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: DetailCard(
-          title: '세부사항',
-          student: Student(id: '201801992', name: '김승민'),
-          tableIndex: 3,
-          time: DateTime.now(),
+      appBar: AppBar(
+        elevation: 4,
+        shadowColor: Color.fromARGB(255, 255, 255, 255),
+        title: const Text('예약확인'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: DetailCard(
+            title: '세부사항',
+            student: Student(id: '201801992', name: '김승민'),
+            tableIndex: 3,
+            time: DateTime.now(),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -92,7 +99,7 @@ class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xFFC4C6D6),
+      color: Theme.of(context).colorScheme.secondaryContainer,
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         onTap: () {
@@ -105,7 +112,7 @@ class _DetailCardState extends State<DetailCard> {
           width: 370,
           child: Card(
             elevation: 0,
-            color: const Color(0xFFC4C6D6),
+            color: Theme.of(context).colorScheme.secondaryContainer,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
               child: Column(
