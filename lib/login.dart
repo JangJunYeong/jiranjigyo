@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -62,7 +63,6 @@ class _LoginPageState extends State<LoginPage> {
                       filled: true,
                       labelText: '이름',
                     ),
-                    obscureText: true,
                   ),
                   const SizedBox(height: 12.0),
                   OverflowBar(
