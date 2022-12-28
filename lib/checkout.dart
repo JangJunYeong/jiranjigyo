@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jiranjigyo/camera.dart';
 import 'package:jiranjigyo/theme.dart';
 import './widget/bottomtabbar.dart';
+import './widget/appbar.dart';
 
 import 'confirm.dart';
+import 'widget/bottomtabbar.dart';
 
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage({Key? key}) : super(key: key);
@@ -12,28 +14,31 @@ class CheckOutPage extends StatefulWidget {
   State<CheckOutPage> createState() => _CheckOutPageState();
 }
 
-class _CheckOutPageState extends State<CheckOutPage> {
+
+class _CheckOutPageState extends State<CheckOutPage>{
+  int index = 3;
+  int? checkedIndex;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+  void refresh() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: lightColorScheme,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
+      ),
+      home: Scaffold(
+        appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
+        body:  CameraExample(),
+        bottomNavigationBar: const BottomTabBar(0),
         ),
-        home: Scaffold(
-          appBar: AppBar(
-              elevation: 4,
-              shadowColor: Color.fromARGB(255, 255, 255, 255),
-              leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back)),
-              title: (Text("반납 후 좌석 촬영")),
-              centerTitle: true,
-              actions: [Icon(Icons.logout)]),
-          body: CameraExample(),
-          bottomNavigationBar: const BottomTabBar(3),
-        ));
+    );
   }
-}
+
