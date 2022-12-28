@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'theme.dart';
 import './widget/bottomtabbar.dart';
+import './widget/appbar.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -25,7 +27,7 @@ Set<String> TableMap = {
 final List<String> _filters = <String>[];
 int count = 0;
 
-class ReservationPage extends StatefulWidget {
+class ReservationPage extends StatefulWidget{
   const ReservationPage({Key? key}) : super(key: key);
 
   @override
@@ -36,17 +38,15 @@ class _ReservationPageState extends State<ReservationPage> {
   int index = 0;
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
   }
-
   @override
   void dispose() {
     _filters.clear();
     count = 0;
     super.dispose();
   }
-
   void refresh() {
     setState(() {});
   }
@@ -54,31 +54,14 @@ class _ReservationPageState extends State<ReservationPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
+      ),
       home: DefaultTabController(
         length: 7,
         child: Scaffold(
-          appBar: AppBar(
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("예약"),
-              ],
-            ),
-            bottom: const TabBar(tabs: [
-              Tab(child: Text("17")),
-              Tab(child: Text("18")),
-              Tab(child: Text("19")),
-              Tab(child: Text("20")),
-              Tab(child: Text("21")),
-              Tab(child: Text("22")),
-              Tab(child: Text("23")),
-            ]),
-          ),
+          appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
           body: TabBarView(
             children: getPage(),
           ),
@@ -97,9 +80,10 @@ List<Widget> getPage() {
     i++;
     tiles.add(Center(
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: getTable(i - 1),
-    )));
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: getTable(i-1),
+        )
+    ));
   }
   return tiles;
 }
@@ -115,8 +99,12 @@ List<Widget> getTable(int x) {
         Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10.0),
-          decoration:
-              BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
+          decoration: BoxDecoration(
+              border: Border.all(
+                  width: 1,
+                  color: Colors.black
+              )
+          ),
           height: 80,
           width: 80,
           child: Text(element),
@@ -127,10 +115,7 @@ List<Widget> getTable(int x) {
   }
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(const Text('*하루 최대 이용 시간은 4시간 입니다.'));
-  tiles.add(const Text(
-    '*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.',
-    textAlign: TextAlign.center,
-  ));
+  tiles.add(const Text('*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.', textAlign: TextAlign.center,));
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +125,11 @@ List<Widget> getTable(int x) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.cyanAccent,
-            border: Border.all(width: 1, color: Colors.black)),
+            border: Border.all(
+                width: 1,
+                color: Colors.black
+            )
+        ),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 중"),
@@ -150,7 +139,11 @@ List<Widget> getTable(int x) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.grey,
-            border: Border.all(width: 1, color: Colors.black)),
+            border: Border.all(
+                width: 1,
+                color: Colors.black
+            )
+        ),
       ),
       const SizedBox(width: 5.0),
       const Text("시용 불가"),
@@ -158,15 +151,19 @@ List<Widget> getTable(int x) {
       Container(
         height: 20,
         width: 20,
-        decoration:
-            BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 1,
+                color: Colors.black
+            )
+        ),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 가능"),
     ],
   ));
   tiles.add(const SizedBox(height: 10.0));
-  tiles.add(ElevatedButton(onPressed: () {}, child: const Text("다음으로")));
+  tiles.add(ElevatedButton(onPressed: (){}, child: const Text("다음으로", style: TextStyle(color: Colors.black),)));
 
   return tiles;
 }
@@ -182,11 +179,11 @@ class getTime extends StatefulWidget {
 }
 
 class _getTimeState extends State<getTime> {
+
   @override
-  void initState() {
+  void initState(){
     super.initState();
   }
-
   void refresh() {
     setState(() {});
   }
@@ -206,43 +203,40 @@ class _getTimeState extends State<getTime> {
                     label: Text(select),
                     shape: const ContinuousRectangleBorder(
                         side: BorderSide(
-                      color: Colors.black,
-                      width: 1.0,
-                    )),
+                          color: Colors.black,
+                          width: 1.0,
+                        )
+                    ),
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,
-                    selected: _filters
-                        .contains(widget.nowDay + widget.nowTable + select),
-                    onSelected: (bool value) {
+                    selected: _filters.contains(widget.nowDay+widget.nowTable+select),
+                    onSelected: (bool value){
                       setState(() {
-                        if (count >= 4) {
+                        if (count >= 4){
                           if (!value) {
                             count--;
                             _filters.removeWhere((String name) {
-                              return name ==
-                                  widget.nowDay + widget.nowTable + select;
+                              return name == widget.nowDay+widget.nowTable+select;
                             });
                           }
                         } else {
                           if (value) {
-                            if (!_filters.contains(
-                                widget.nowDay + widget.nowTable + select)) {
-                              _filters.add(
-                                  widget.nowDay + widget.nowTable + select);
+                            if (!_filters.contains(widget.nowDay+widget.nowTable+select)) {
+                              _filters.add(widget.nowDay+widget.nowTable+select);
                               count++;
                             }
                           } else {
                             count--;
                             _filters.removeWhere((String name) {
-                              return name ==
-                                  widget.nowDay + widget.nowTable + select;
+                              return name == widget.nowDay+widget.nowTable+select;
                             });
                           }
                         }
                       });
                     });
-              }).toList()),
+              }).toList()
+          ),
         ),
       ],
     );

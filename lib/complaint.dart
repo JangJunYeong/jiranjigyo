@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/bottomtabbar.dart';
+import 'package:jiranjigyo/widget/appbar.dart';
 
 class ComplaintButton extends StatelessWidget {
   const ComplaintButton({
@@ -20,6 +21,8 @@ class ComplaintButton extends StatelessWidget {
       color: checked
           ? const Color(0xFFC4C6D6)
           : Theme.of(context).colorScheme.secondaryContainer,
+      elevation: 8,
+      shadowColor: Color.fromARGB(255, 255, 255, 255),
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
@@ -78,19 +81,7 @@ class _MyComplaintState extends State<MyComplaint> {
       home: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: Scaffold(
-          appBar: AppBar(
-            elevation: 1,
-            title: Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("민원 등록"),
-              ],
-            ),
-          ),
+          appBar: AppBarWidget(AppBar(), "민원 등록"),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -139,6 +130,8 @@ class _MyComplaintState extends State<MyComplaint> {
                 const SizedBox(height: 25),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      elevation: 6,
+                      shadowColor: Color.fromARGB(255, 255, 255, 255),
                       backgroundColor:
                           Theme.of(context).colorScheme.secondaryContainer,
                       minimumSize: const Size(150, 50),
