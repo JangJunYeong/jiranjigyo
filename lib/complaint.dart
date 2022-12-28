@@ -22,7 +22,7 @@ class ComplaintButton extends StatelessWidget {
           ? const Color(0xFFC4C6D6)
           : Theme.of(context).colorScheme.secondaryContainer,
       elevation: 8,
-      shadowColor: Color.fromARGB(255, 255, 255, 255),
+      shadowColor: const Color.fromARGB(255, 255, 255, 255),
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
@@ -131,7 +131,7 @@ class _MyComplaintState extends State<MyComplaint> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       elevation: 6,
-                      shadowColor: Color.fromARGB(255, 255, 255, 255),
+                      shadowColor: const Color.fromARGB(255, 255, 255, 255),
                       backgroundColor:
                           Theme.of(context).colorScheme.secondaryContainer,
                       minimumSize: const Size(150, 50),
