@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
+import 'package:jiranjigyo/widget/appbar.dart';
 
 final List<String> _filters = <String>[];
 int count = 0;
@@ -34,20 +35,7 @@ class _DetailPageState extends State<DetailPage> {
       home: DefaultTabController(
         length: 7,
         child: Scaffold(
-          appBar: AppBar(
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text("예약 세부사항"),
-              ],
-            ),
-            centerTitle: true,
-          ),
+          appBar: AppBarWidget(AppBar(), "예약 세부사항"),
           bottomNavigationBar: const BottomTabBar(0),
         ),
       ),
