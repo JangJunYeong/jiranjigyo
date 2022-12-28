@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
-import 'detail.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -63,7 +62,7 @@ class _ReservationPageState extends State<ReservationPage> {
                 IconButton(
                     onPressed: (){
                       Navigator.pop(context);
-                      },
+                    },
                     icon: const Icon(Icons.arrow_back)),
                 const Text("예약"),
               ],
@@ -80,10 +79,10 @@ class _ReservationPageState extends State<ReservationPage> {
                 ]
             ),
           ),
-            body: TabBarView(
-                children: getPage(),
-            ),
-            bottomNavigationBar: const BottomTabBar(0),
+          body: TabBarView(
+            children: getPage(),
+          ),
+          bottomNavigationBar: const BottomTabBar(0),
         ),
       ),
     );
@@ -97,10 +96,10 @@ List<Widget> getPage() {
   while (i < 7) {
     i++;
     tiles.add(Center(
-      child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: getTable(i-1),
-      )
+        )
     ));
   }
   return tiles;
@@ -108,7 +107,7 @@ List<Widget> getPage() {
 
 List<Widget> getTable(int x) {
   List<Widget> tiles = [];
-  
+
   final int nowday = x;
 
   for (var element in TableMap) {
@@ -181,16 +180,7 @@ List<Widget> getTable(int x) {
     ],
   ));
   tiles.add(const SizedBox(height: 10.0));
-  tiles.add(
-      ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-                MaterialPageRoute(
-                    builder: (context) => const DetailPage()));
-          },
-          child: const Text("다음으로")
-      )
-  );
+  tiles.add(ElevatedButton(onPressed: (){}, child: const Text("다음으로")));
 
   return tiles;
 }
