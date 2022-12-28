@@ -81,6 +81,7 @@ class _MyComplaintState extends State<MyComplaint> {
       home: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBarWidget(AppBar(), "민원 등록"),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -137,7 +138,23 @@ class _MyComplaintState extends State<MyComplaint> {
                       minimumSize: const Size(150, 50),
                       textStyle: const TextStyle(fontSize: 18)),
                   onPressed: () {
-                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Icon(Icons.check),
+                          content: const Text('민원이 접수되었습니다.'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text(
+                                  style: TextStyle(color: Colors.black), 'OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                   child:
                       const Text('확인', style: TextStyle(color: Colors.black)),
@@ -151,3 +168,27 @@ class _MyComplaintState extends State<MyComplaint> {
     );
   }
 }
+
+/*class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => (
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Icon(Icons.check),
+          content: const Text('민원이 접수되었습니다.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
+    );
+  }
+}*/
