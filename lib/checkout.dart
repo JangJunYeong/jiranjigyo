@@ -29,17 +29,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: lightColorScheme,
-      ),
-      home: Scaffold(
-        appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
-
-        body: const CameraExample(),
-        bottomNavigationBar: const BottomTabBar(0),
-      ),
+    return Scaffold(
+      appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
+      body: const CameraExample(),
+      bottomNavigationBar: const BottomTabBar(0),
     );
   }
 }

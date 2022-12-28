@@ -73,80 +73,74 @@ class _MyComplaintState extends State<MyComplaint> {
       '분실 신고',
     ];
 
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: lightColorScheme,
-      ),
-      home: GestureDetector(
-        onTap: FocusScope.of(context).unfocus,
-        child: Scaffold(
-          appBar: AppBarWidget(AppBar(), "민원 등록"),
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('민원 내용을 선택해주세요.'),
-                    const SizedBox(height: 25),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: contents.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
-                        childAspectRatio: 2, //item 의 가로 1, 세로 2 의 비율
-                        mainAxisSpacing: 20, //수평 Padding
-                        crossAxisSpacing: 20, //수직 Padding
-                      ),
-                      itemBuilder: (context, index) {
-                        return ComplaintButton(
-                          text: contents[index],
-                          checked: checkedIndex == index,
-                          onPressed: () {
-                            setState(() {
-                              checkedIndex = index;
-                            });
-                          },
-                        );
-                      },
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        appBar: AppBarWidget(AppBar(), "민원 등록"),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('민원 내용을 선택해주세요.'),
+                  const SizedBox(height: 25),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: contents.length,
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
+                      childAspectRatio: 2, //item 의 가로 1, 세로 2 의 비율
+                      mainAxisSpacing: 20, //수평 Padding
+                      crossAxisSpacing: 20, //수직 Padding
                     ),
-                    const SizedBox(height: 30),
-                    const Text('상세 내용'),
-                    const SizedBox(height: 20),
-                    TextField(
-                      controller: textController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        hintText: '내용을 입력해 주세요.',
-                      ),
-                      maxLines: 8,
+                    itemBuilder: (context, index) {
+                      return ComplaintButton(
+                        text: contents[index],
+                        checked: checkedIndex == index,
+                        onPressed: () {
+                          setState(() {
+                            checkedIndex = index;
+                          });
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  const Text('상세 내용'),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: textController,
+                    decoration: const InputDecoration(
+                      filled: true,
+                      hintText: '내용을 입력해 주세요.',
                     ),
-                  ],
-                ),
-                const SizedBox(height: 25),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 6,
-                      shadowColor: const Color.fromARGB(255, 255, 255, 255),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.secondaryContainer,
-                      minimumSize: const Size(150, 50),
-                      textStyle: const TextStyle(fontSize: 18)),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child:
-                      const Text('확인', style: TextStyle(color: Colors.black)),
-                ),
-              ],
-            ),
+                    maxLines: 8,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 25),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 6,
+                    shadowColor: const Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor:
+                    Theme.of(context).colorScheme.secondaryContainer,
+                    minimumSize: const Size(150, 50),
+                    textStyle: const TextStyle(fontSize: 18)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child:
+                const Text('확인', style: TextStyle(color: Colors.black)),
+              ),
+            ],
           ),
-          bottomNavigationBar: const BottomTabBar(2),
         ),
+        bottomNavigationBar: const BottomTabBar(2),
       ),
     );
   }

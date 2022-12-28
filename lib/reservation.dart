@@ -54,20 +54,14 @@ class _ReservationPageState extends State<ReservationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: lightColorScheme,
-      ),
-      home: DefaultTabController(
-        length: 7,
-        child: Scaffold(
-          appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
-          body: TabBarView(
-            children: getPage(context),
-          ),
-          bottomNavigationBar: const BottomTabBar(0),
+    return DefaultTabController(
+      length: 7,
+      child: Scaffold(
+        appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
+        body: TabBarView(
+          children: getPage(context),
         ),
+        bottomNavigationBar: const BottomTabBar(0),
       ),
     );
   }
