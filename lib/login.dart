@@ -29,15 +29,15 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 80.0),
+            const SizedBox(height: 60.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/jiransoft_rgb_ko_hv.png'),
+                Image.asset('assets/jiransoft_rgb_ko_hv.png', width: 260, height: 130),
                 // const SizedBox(height: 16.0),
                 // const Text('대충 이미지'),
               ],
             ),
-            const SizedBox(height: 120.0),
+            const SizedBox(height: 60.0),
             Container(
               padding: const EdgeInsets.all(15.0),
               decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: 'Portal ID',
                     ),
                   ),
-                  const SizedBox(height: 12.0),
+                  const SizedBox(height: 5.0),
                   TextField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     obscureText: true,
                   ),
-                  const SizedBox(height: 12.0),
+                  const SizedBox(height: 16.0),
                   OverflowBar(
                     alignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 100,
             ),
             const Text("*충남대학교 포털 아이디로 \n접속하실 수 있습니다.",
               textAlign: TextAlign.center,
