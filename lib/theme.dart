@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
-    primary: Color(0xFF6750A4),
+    primary: Color(0xFFFFFFFF),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFEADDFF),
+    primaryContainer: Color(0xFF9AA4FF),
     onPrimaryContainer: Color(0xFF21005D),
     secondary: Color(0xFF625B71),
     onSecondary: Color(0xFFFFFFFF),
@@ -27,7 +27,7 @@ const lightColorScheme = ColorScheme(
   onSurfaceVariant: Color(0xFF49454F),
   inverseSurface: Color(0xFF313033),
   onInverseSurface: Color(0xFFF4EFF4),
-  inversePrimary: Color(0xFFD0BCFF),
+  inversePrimary: Color(0xFFFFFFFF),
   shadow: Color(0xFF000000),
   surfaceTint: Color(0xFF6750A4),
 );

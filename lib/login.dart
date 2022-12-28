@@ -71,9 +71,15 @@ class _LoginPageState extends State<LoginPage> {
 
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
-                            textStyle: const TextStyle(fontSize: 20)
-                        ),
+                          shape: (RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)
+                            )
+                          ),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
+                          textStyle: const TextStyle(fontSize: 20),
+                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                            
+    ),
                         onPressed: () {
                           _usernameController.clear();
                           _passwordController.clear();
