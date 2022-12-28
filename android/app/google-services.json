@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "317622863603",
+    "project_id": "jiranjigyo-d8ce8",
+    "storage_bucket": "jiranjigyo-d8ce8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317622863603:android:c97ac0a1d79fbebd4b5986",
+        "android_client_info": {
+          "package_name": "com.example.jiranjigyo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317622863603-8uea15ekf1c00832vgpnuc22hk1jl0vd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwSDdCsfHIs7Ry64Gvb4wEdH9XH3tq31M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317622863603-8uea15ekf1c00832vgpnuc22hk1jl0vd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
