@@ -6,7 +6,6 @@ import 'theme.dart';
 import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
-import 'leave.dart';
 
 var stepList = List.empty(growable: true);
 var index = 1;
@@ -32,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
+      ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -160,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: (RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.375, 60),
+                    Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -179,116 +178,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.125,
                 ),
-<<<<<<< HEAD
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(150, 60),
-                          backgroundColor: lightColorScheme.secondaryContainer,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ReservationPage())
-                          );
-                        },
-                        child: const Text("예약",
-                          style: TextStyle(
-                            fontSize: 25,
-                          ),
-                        ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.125,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
-                        backgroundColor: lightColorScheme.secondaryContainer,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ConfirmPage())
-                        );
-                      },
-                      child: const Text("예약 확인",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
-                        backgroundColor: lightColorScheme.secondaryContainer,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const MyComplaint())
-                        );
-                      },
-                      child: const Text("민원",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.125,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(MediaQuery.of(context).size.width * 0.375, 60),
-                        backgroundColor: lightColorScheme.secondaryContainer,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const LeavePage())
-                        );
-                      },
-                      child: const Text("퇴실",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.875,
-                  height: 400,
-                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                  alignment: Alignment.topCenter,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1,
-                          color: Colors.black
-                      )
-=======
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: (RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.375, 60),
+                    Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
->>>>>>> upstream/main
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -316,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: (RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.375, 60),
+                    Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -340,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: (RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0))),
                     minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.375, 60),
+                    Size(MediaQuery.of(context).size.width * 0.375, 60),
                     backgroundColor: lightColorScheme.primaryContainer,
                   ),
                   onPressed: () {
@@ -428,39 +324,39 @@ class MyTextInputState extends State<MyTextInput> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          const Text('제목'),
-          TextField(
-            controller: myTitleController,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text("시간"),
-          TextField(
-            controller: myTimeController,
-          ),
-          Row(
-            children: <Widget>[
-              ElevatedButton(
-                child: const Icon(Icons.done),
-                onPressed: () {
-                  stepList.add([myTimeController.text, myTitleController.text]);
-                  widget.notifyParent();
-                },
+              const Text('제목'),
+              TextField(
+                controller: myTitleController,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.0375,
+              const SizedBox(
+                height: 10,
               ),
-              ElevatedButton(
-                child: const Icon(Icons.close),
-                onPressed: () {
-                  stepList = List.empty(growable: true);
-                  widget.notifyParent();
-                },
+              const Text("시간"),
+              TextField(
+                controller: myTimeController,
               ),
-            ],
-          )
-        ]));
+              Row(
+                children: <Widget>[
+                  ElevatedButton(
+                    child: const Icon(Icons.done),
+                    onPressed: () {
+                      stepList.add([myTimeController.text, myTitleController.text]);
+                      widget.notifyParent();
+                    },
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.0375,
+                  ),
+                  ElevatedButton(
+                    child: const Icon(Icons.close),
+                    onPressed: () {
+                      stepList = List.empty(growable: true);
+                      widget.notifyParent();
+                    },
+                  ),
+                ],
+              )
+            ]));
   }
 }
 

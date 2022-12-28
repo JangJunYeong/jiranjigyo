@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/reservation.dart';
 import 'package:jiranjigyo/theme.dart';
+import 'package:jiranjigyo/confirm.dart';
+import 'package:jiranjigyo/checkout.dart';
 
 class ComplaintButton extends StatelessWidget {
   const ComplaintButton({
@@ -68,11 +70,17 @@ class _MyComplaintState extends State<MyComplaint> {
             MaterialPageRoute(builder: (context) => const ReservationPage()));
         break;
       case 1:
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ConfirmPage()));
         break;
       case 2:
         refresh();
         break;
       case 3:
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const CheckOutPage()));
         break;
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'complaint.dart';
 import 'confirm.dart';
+import 'checkout.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -70,6 +71,11 @@ class _ReservationPageState extends State<ReservationPage> {
         );
         break;
       case 3 :
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CheckOutPage())
+        );
         break;
     }
   }
