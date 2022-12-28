@@ -88,12 +88,10 @@ class _BottomTabBarState extends State<BottomTabBar> {
       selectedItemColor: Colors.black,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.done),
-          label: "예약",
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.done), label: "예약확인"),
-        BottomNavigationBarItem(icon: Icon(Icons.done), label: "민원"),
-        BottomNavigationBarItem(icon: Icon(Icons.done), label: "퇴실"),
+          icon: Icon(Icons.book), label: "예약",),
+        BottomNavigationBarItem(icon: Icon(Icons.checklist), label: "예약확인"),
+        BottomNavigationBarItem(icon: Icon(Icons.report), label: "민원"),
+        BottomNavigationBarItem(icon: Icon(Icons.exit_to_app), label: "퇴실"),
       ],
     );
   }
