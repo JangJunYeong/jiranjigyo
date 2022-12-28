@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiranjigyo/camera.dart';
 import 'package:jiranjigyo/complaint.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/reservation.dart';
@@ -67,52 +68,6 @@ class _CheckOutPageState extends State<CheckOutPage>{
         useMaterial3: true,
         colorScheme: lightColorScheme,
       ),
-      home: DefaultTabController(
-        length: 7,
-        child: Scaffold(
-          appBar: AppBar(
-              leading: IconButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back)),
-              title: (
-                  Text("반납 후 좌석 촬영")
-              ),
-              centerTitle:true,
-              actions: [
-                Icon(Icons.logout)
-              ]
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: index,
-            onTap: (int index) {
-              TabIndex(index);
-              TabMove(index);
-            },
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.black,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.done),
-                label: "예약",
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.done),
-                  label: "예약확인"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.done),
-                  label: "민원"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.done),
-                  label: "퇴실"
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: CameraExample(),
     );
   }}
