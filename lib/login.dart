@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: 'Portal ID',
+                      labelText: '학번',
                     ),
                   ),
                   const SizedBox(height: 5.0),
@@ -60,9 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: 'Portal Password',
+                      labelText: '이름',
                     ),
-                    obscureText: true,
                   ),
                   const SizedBox(height: 16.0),
                   OverflowBar(
@@ -90,15 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ],
-              ),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            const Text("*충남대학교 포털 아이디로 \n접속하실 수 있습니다.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey
               ),
             ),
           ],

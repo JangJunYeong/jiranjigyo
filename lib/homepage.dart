@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
             Card(
+              elevation: 5,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text("로그인 전"),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFE2B9FF), elevation: 5),
                     child: const Icon(Icons.login),
                     onPressed: () {
                       Navigator.push(
