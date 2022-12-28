@@ -39,11 +39,11 @@ class ConfirmPage extends StatelessWidget {
         title: const Text('예약확인'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(18),
         child: Align(
           alignment: Alignment.topCenter,
           child: DetailCard(
-            title: '세부사항',
+            title: '세부사항                                  +',
             student: Student(id: '201801992', name: '김승민'),
             tableIndex: 3,
             time: DateTime.now(),
@@ -99,6 +99,8 @@ class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      shadowColor: Colors.grey,
+      elevation: 4,
       color: Theme.of(context).colorScheme.secondaryContainer,
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
@@ -125,7 +127,7 @@ class _DetailCardState extends State<DetailCard> {
                       Text(style: TextStyle(fontSize: 25), widget.title),
                       Text(
                           style: TextStyle(fontSize: 18),
-                          '-------------------------------------'),
+                          '---------------------------------------------------------------'),
                       const SizedBox(height: 5.0),
                       Text(
                           style: TextStyle(fontSize: 18),
