@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
-  const AppBarWidget(this.appBar, this.pagename, {Key? key, this.hasTab = false}) : super(key: key);
+  AppBarWidget(this.appBar, this.pagename, {Key? key, this.hasTab = false}) : super(key: key);
 
   final String pagename;
   final AppBar appBar;
   final bool hasTab;
 
+  final DateTime nowday = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
-    if (pagename == "예약"){
+    if (hasTab == true){
       return AppBar(
           elevation: 4,
           shadowColor: const Color.fromARGB(255, 255, 255, 255),
@@ -19,18 +21,18 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back)),
-          title: (Text(pagename)),
+          title: (Text("$pagename (${nowday.year}년 ${nowday.month}월)")),
           centerTitle: true,
           actions: const [Icon(Icons.logout)],
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(child: Text("17", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("18", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("19", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("20", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("21", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("22", style: TextStyle(color: Colors.black),)),
-              Tab(child: Text("23", style: TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+1), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+2), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+3), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+4), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+5), style: const TextStyle(color: Colors.black),)),
+              Tab(child: Text(dayCal(nowday.day+6), style: const TextStyle(color: Colors.black),)),
             ]
         ),
       );
@@ -51,4 +53,26 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height + (hasTab ? 30 : 0));
+
+  dayCal(int inputday) {
+    int day = inputday;
+
+    if (nowday.month == 2) {
+      day = inputday - 28;
+    } else if (nowday.month < 8) {
+      if (nowday.month%2 == 0 && inputday > 30) {
+        day = inputday - 30;
+      } else if (inputday > 31) {
+        day = inputday - 31;
+      }
+    } else {
+      if (nowday.month%2 == 1 && inputday > 30) {
+        day = inputday - 30;
+      } else if (inputday > 31) {
+        day = inputday - 31;
+      }
+    }
+
+    return day.toString();
+  }
 }
