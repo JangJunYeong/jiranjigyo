@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
+import 'detail.dart';
 
 Set<String> TimeMap = {
   "AM 9:00",
@@ -180,7 +181,16 @@ List<Widget> getTable(int x) {
     ],
   ));
   tiles.add(const SizedBox(height: 10.0));
-  tiles.add(ElevatedButton(onPressed: (){}, child: const Text("다음으로")));
+  tiles.add(
+      ElevatedButton(
+          onPressed: (){
+            Navigator.push(
+                MaterialPageRoute(
+                    builder: (context) => const DetailPage()));
+          },
+          child: const Text("다음으로")
+      )
+  );
 
   return tiles;
 }
