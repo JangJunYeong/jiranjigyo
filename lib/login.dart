@@ -70,16 +70,22 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
 
                       ElevatedButton(
-                        child: const Text('로그인'),
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(500, 60),
-                            textStyle: const TextStyle(fontSize: 20)
-                        ),
+                          shape: (RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)
+                            )
+                          ),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
+                          textStyle: const TextStyle(fontSize: 20),
+                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                            
+    ),
                         onPressed: () {
                           _usernameController.clear();
                           _passwordController.clear();
                           Navigator.pop(context);
                         },
+                        child: const Text('로그인'),
                       ),
                     ],
                   ),

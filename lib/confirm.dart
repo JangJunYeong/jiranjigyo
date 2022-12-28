@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/model/student.dart';
-import 'package:jiranjigyo/theme.dart';
+import 'reservation.dart';
+import 'complaint.dart';
+
+int index = 0;
+/*void TabMove(int index) {
+  switch (index) {
+    case 0:
+      refresh();
+      break;
+    case 1:
+      break;
+    case 2:
+      Navigator.pop(context);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MyComplaint()));
+      break;
+    case 3:
+      break;
+  }
+}
+
+void TabIndex(int Tabindex) {
+  setState(() {
+    index = Tabindex;
+  });
+}*/
 
 class ConfirmPage extends StatelessWidget {
   const ConfirmPage({super.key});
@@ -8,14 +33,41 @@ class ConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: DetailCard(
-          title: '세부사항',
-          student: Student(id: '201801992', name: '김승민'),
-          tableIndex: 3,
-          time: DateTime.now(),
+      appBar: AppBar(
+        elevation: 4,
+        shadowColor: Color.fromARGB(255, 255, 255, 255),
+        title: const Text('예약확인'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: DetailCard(
+            title: '세부사항                                  +',
+            student: Student(id: '201801992', name: '김승민'),
+            tableIndex: 3,
+            time: DateTime.now(),
+          ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: index,
+        onTap: (int index) {
+          /*TabIndex(index);
+          TabMove(index);*/
+        },
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.done),
+            label: "예약",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.done), label: "예약확인"),
+          BottomNavigationBarItem(icon: Icon(Icons.done), label: "민원"),
+          BottomNavigationBarItem(icon: Icon(Icons.done), label: "퇴실"),
+        ],
       ),
     );
   }
@@ -47,7 +99,9 @@ class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.primary,
+      shadowColor: Colors.grey,
+      elevation: 4,
+      color: Theme.of(context).colorScheme.secondaryContainer,
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         onTap: () {
@@ -56,30 +110,47 @@ class _DetailCardState extends State<DetailCard> {
           });
         },
         borderRadius: BorderRadius.circular(10.0),
-        child: Card(
-          elevation: 0,
-          color: Colors.transparent,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Column(
-                  children: [
-                    Text(widget.title),
-                    const SizedBox(height: 15.0),
-                    Text('학번: ${widget.student.id}'),
-                    Text('이름: ${widget.student.name}'),
-                  ],
-                ),
-                if (opened)
+        child: Container(
+          width: 370,
+          child: Card(
+            elevation: 0,
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('테이블: ${widget.tableIndex}'),
-                      Text('시간: ${widget.time}'),
+                      Text(style: TextStyle(fontSize: 25), widget.title),
+                      Text(
+                          style: TextStyle(fontSize: 18),
+                          '---------------------------------------------------------------'),
+                      const SizedBox(height: 5.0),
+                      Text(
+                          style: TextStyle(fontSize: 18),
+                          '학번: ${widget.student.id}'),
+                      Text(
+                          style: TextStyle(fontSize: 18),
+                          '이름: ${widget.student.name}'),
                     ],
                   ),
-              ],
+                  if (opened)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            style: TextStyle(fontSize: 18),
+                            '테이블: ${widget.tableIndex}'),
+                        Text(
+                            style: TextStyle(fontSize: 18),
+                            '시간: ${widget.time}'),
+                      ],
+                    ),
+                ],
+              ),
             ),
           ),
         ),
