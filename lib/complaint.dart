@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
 

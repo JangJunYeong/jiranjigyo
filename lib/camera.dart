@@ -55,11 +55,9 @@ class _CameraExampleState extends State<CameraExample> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 25.0),
+            // SizedBox(height: 25.0),
             showImage(),
-            SizedBox(
-              height: 50.0,
-            ),
+            SizedBox(height: 50.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -81,7 +79,24 @@ class _CameraExampleState extends State<CameraExample> {
                   },
                 ),
               ],
-            )
+            ),
+            SizedBox(height: 50.0,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: (RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0))),
+                  elevation: 6,
+                  shadowColor: const Color.fromARGB(255, 255, 255, 255),
+                  backgroundColor:
+                  Theme.of(context).colorScheme.secondaryContainer,
+                  minimumSize: const Size(400, 60),
+                  textStyle: const TextStyle(fontSize: 25)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child:
+              const Text('제출하기', style: TextStyle(color: Colors.black)),
+            ),
           ],
         ));
   }
