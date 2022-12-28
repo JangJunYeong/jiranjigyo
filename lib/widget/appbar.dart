@@ -16,11 +16,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       return AppBar(
         elevation: 4,
         shadowColor: const Color.fromARGB(255, 255, 255, 255),
-        // leading: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: const Icon(Icons.arrow_back)),
         title: (Text("$pagename (${nowday.year}년 ${nowday.month}월)")),
         centerTitle: true,
         actions: const [Icon(Icons.logout)],
@@ -66,11 +61,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       return AppBar(
           elevation: 4,
           shadowColor: const Color.fromARGB(255, 255, 255, 255),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back)),
           title: (Text(pagename)),
           centerTitle: true,
           actions: const [Icon(Icons.logout)]);
