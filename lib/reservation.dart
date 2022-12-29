@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
@@ -159,6 +160,9 @@ List<Widget> getTable(int x, BuildContext context) {
   tiles.add(const SizedBox(height: 10.0));
   tiles.add(ElevatedButton(
       onPressed: (){
+        FirebaseFirestore.instance.collection('reservations').add({
+          'name':
+        });
         Navigator.push(
             context,
             MaterialPageRoute(
