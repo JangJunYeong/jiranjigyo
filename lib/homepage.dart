@@ -6,6 +6,7 @@ import 'package:jiranjigyo/model/student.dart';
 import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 var stepList = List.empty(growable: true);
 var index = 1;
@@ -109,10 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                    ElevatedButton(
-                        onPressed: () => {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                    TextButton(
+                        onPressed: () => {
+                        launchUrl(
+                          Uri.parse('https://computer.cnu.ac.kr/computer/index.do')
+                        )
+                        },
                         child: Text("더보기")
                     )
                   ],
