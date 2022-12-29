@@ -1,7 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
+
+//dart firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterfire_ui/auth.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -55,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: '학번',
+                      labelText: '학교 이메일',
                     ),
                   ),
                   const SizedBox(height: 5.0),
@@ -63,8 +70,9 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     decoration: const InputDecoration(
                       filled: true,
-                      labelText: '이름',
+                      labelText: '비밀번호',
                     ),
+                    obscureText: true,
                   ),
                   const SizedBox(height: 16.0),
                   OverflowBar(
@@ -82,10 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                             
     ),
-                        onPressed: () {
+                        onPressed: () async {
+                          UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: _usernameController.text,
+                            password: _passwordController.text,
+                          );
+
+                          // FirebaseFirestore.instance.collection('users').add({
+                          //   'name': userCredential.user!.displayName,
+                          //   'email': _usernameController.text,
+                          // });
+                          //
+                          // var data = await FirebaseFirestore.instance.collection('users').doc('202002564').get();
+                          // var json = data.data();
+                          // json!['email'];
+
                           _usernameController.clear();
                           _passwordController.clear();
                           Navigator.pop(context);
+
                         },
                         child: const Text('로그인'),
                       ),
