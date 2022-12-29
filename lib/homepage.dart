@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     IconButton(
-                        padding: new EdgeInsets.all(0.0),
+                        padding: const EdgeInsets.all(0.0),
                         onPressed: () => {
                       launchUrl(
                         Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
@@ -111,11 +111,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       TextButton(
                           onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ConfirmPage(getNumber(), getName())),
-                            )
+                            if (getName() == null) {
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('로그인을 해주세요'),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                          child: const Text('ok'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }
+                              )
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConfirmPage(getNumber(), getName())),
+                              )
+                            }
                           },
                           child: const Text("더보기"))
                     ],

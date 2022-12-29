@@ -4,7 +4,6 @@ import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 
 import 'confirm.dart';
-import 'widget/bottomtabbar.dart';
 
 class QRcertifyPage extends StatefulWidget {
   const QRcertifyPage({Key? key}) : super(key: key);

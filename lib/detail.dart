@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
 
-var member = 1;
+var member = 0;
 var stepList = List.empty(growable: true);
 
 final List<String> _filters = <String>[];
@@ -62,16 +62,20 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (member < 5) controllers.add(TextEditingController());
-                      member++;
+                      if (member < 5) {
+                        controllers.add(TextEditingController());
+                        member++;
+                      }
                       setState(() {});
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.remove),
                     onPressed: () {
-                      controllers.removeLast();
-                      member--;
+                      if (member > 0) {
+                        controllers.removeLast();
+                        member--;
+                      }
                       setState(() {});
                     },
                   ),
@@ -113,68 +117,88 @@ class _DetailPageState extends State<DetailPage> {
                           minimumSize: const Size(150, 50),
                           textStyle: const TextStyle(fontSize: 18)),
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text(
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  '주의사항'),
-                              content: const Text(
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 90, 89, 89),
-                                      fontSize: 15),
-                                  '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, 'OK');
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: const Icon(Icons.check),
-                                          content: const Text(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20),
-                                              '  예약이 완료되었습니다.'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context, 'OK');
-                                                Navigator.pop(context);
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text(
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                  'OK'),
-                                            ),
-                                          ],
-                                        );
+                        if (member == 0){
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('1명은 예약할 수 없습니다.'),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                      child: const Text('ok'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
                                       },
-                                    );
-                                  },
-                                  child: const Text(
-                                      style: TextStyle(color: Colors.black),
-                                      'OK'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, 'CANCLE');
-                                  },
-                                  child: const Text(
-                                      style: TextStyle(color: Colors.black),
-                                      'CANCLE'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                                    ),
+                                  ],
+                                );
+                              }
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text(
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 20),
+                                    '주의사항'),
+                                content: const Text(
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 90, 89, 89),
+                                        fontSize: 15),
+                                    '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, 'OK');
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Icon(Icons.check),
+                                            content: const Text(
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20),
+                                                '  예약이 완료되었습니다.'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context, 'OK');
+                                                  Navigator.pop(context);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text(
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                    'OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: const Text(
+                                        style: TextStyle(color: Colors.black),
+                                        'OK'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, 'CANCLE');
+                                    },
+                                    child: const Text(
+                                        style: TextStyle(color: Colors.black),
+                                        'CANCLE'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       child: const Text('확인',
                           style: TextStyle(color: Colors.black)),
