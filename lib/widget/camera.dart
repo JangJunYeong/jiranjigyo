@@ -70,15 +70,6 @@ class _CameraExampleState extends State<CameraExample> {
                   },
                   child: const Icon(Icons.add_a_photo),
                 ),
-
-                // 갤러리에서 이미지를 가져오는 버튼
-                FloatingActionButton(
-                  tooltip: 'pick Iamge',
-                  onPressed: () {
-                    getImage(ImageSource.gallery);
-                  },
-                  child: const Icon(Icons.wallpaper),
-                ),
               ],
             ),
             const SizedBox(
@@ -108,6 +99,7 @@ class _CameraExampleState extends State<CameraExample> {
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context, 'OK');
+                            Navigator.pop(context);
                           },
                           child: const Text(
                               style: TextStyle(color: Colors.black), 'OK'),
