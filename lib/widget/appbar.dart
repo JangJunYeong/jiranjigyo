@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiranjigyo/login.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppBarWidget(this.appBar, this.pagename, {Key? key, this.hasTab = false})
@@ -18,7 +19,19 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         shadowColor: const Color.fromARGB(255, 255, 255, 255),
         title: (Text("$pagename (${nowday.year}년 ${nowday.month}월)")),
         centerTitle: true,
-        actions: const [Icon(Icons.logout)],
+        actions: [
+          IconButton(
+            icon:Icon(Icons.logout),
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => LoginPage()
+                ),
+              )
+            },
+          )
+        ],
         bottom: TabBar(tabs: [
           Tab(
               child: Text(
@@ -63,7 +76,20 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           shadowColor: const Color.fromARGB(255, 255, 255, 255),
           title: (Text(pagename)),
           centerTitle: true,
-          actions: const [Icon(Icons.logout)]);
+          actions: [
+            IconButton(
+              icon:Icon(Icons.logout),
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage()
+                  ),
+                )
+              },
+            )
+          ]
+      );
     }
   }
 
