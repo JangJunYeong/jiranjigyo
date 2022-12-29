@@ -44,16 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    width: 10,
+                  const SizedBox(
+                    width:10,
                   ),
-                  SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: CircleAvatar(
-                        backgroundImage: const NetworkImage(
-                            "data:image/jpeg;base64,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"),
-                      )),
+                  const SizedBox(
+                      height:70,
+                      width:70,
+                      child:CircleAvatar(
+                        backgroundImage: AssetImage("profile.png"),
+                      )
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 100,
