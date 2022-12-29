@@ -160,9 +160,6 @@ List<Widget> getTable(int x, BuildContext context) {
   tiles.add(const SizedBox(height: 10.0));
   tiles.add(ElevatedButton(
       onPressed: (){
-        FirebaseFirestore.instance.collection('reservations').add({
-          'name':
-        });
         Navigator.push(
             context,
             MaterialPageRoute(
