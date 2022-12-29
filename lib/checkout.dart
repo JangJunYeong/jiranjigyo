@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/camera.dart';
-import 'package:jiranjigyo/theme.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 
@@ -13,6 +12,7 @@ class CheckOutPage extends StatefulWidget {
   @override
   State<CheckOutPage> createState() => _CheckOutPageState();
 }
+
 class _CheckOutPageState extends State<CheckOutPage> {
   int index = 3;
   int? checkedIndex;
@@ -28,20 +28,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: lightColorScheme,
-      ),
-      home: Scaffold(
-        appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
-        body: const CameraExample(),
-
-        bottomNavigationBar: const BottomTabBar(0),
-      ),
+    return Scaffold(
+      appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
+      body: const CameraExample(),
+      bottomNavigationBar: const BottomTabBar(0),
     );
   }
 }
-
-
-

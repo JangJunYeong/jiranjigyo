@@ -33,66 +33,54 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: DefaultTabController(
-            length: 7,
-            child: Scaffold(
-              appBar: AppBarWidget(AppBar(), "예약 세부사항"),
-              bottomNavigationBar: const BottomTabBar(0),
-              body: ListView(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children: [
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Divider(
-                            indent: 20,
-                            endIndent: 20,
-                            color: Colors.black,
-                            thickness: 1.0,
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.875,
-                            height: 400,
-                            padding:
-                                const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                            alignment: Alignment.topCenter,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 1, color: Colors.black)),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 300,
-                                  child: ListView(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    children: getContent(),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ]),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      child: MyTextInput(notifyParent: refresh),
-                    ),
-                  ]),
-            )));
+    return Scaffold(
+      appBar: AppBarWidget(AppBar(), "예약 세부사항"),
+      bottomNavigationBar: const BottomTabBar(0),
+      body:
+          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+            thickness: 1.0,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.875,
+            height: 400,
+            padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+            alignment: Alignment.topCenter,
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.black)),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 390,
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    children: getContent(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+        ]),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.7,
+          child: MyTextInput(notifyParent: refresh),
+        ),
+      ]),
+    );
   }
 }
 
