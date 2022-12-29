@@ -52,7 +52,7 @@ class MyComplaint extends StatefulWidget {
 class _MyComplaintState extends State<MyComplaint> {
   int index = 2;
   int? checkedIndex;
-
+  final textController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -64,7 +64,6 @@ class _MyComplaintState extends State<MyComplaint> {
 
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
     List<String> contents = [
       '질문과 답변',
       '고장 신고',

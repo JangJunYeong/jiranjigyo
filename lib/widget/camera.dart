@@ -106,7 +106,9 @@ class _CameraExampleState extends State<CameraExample> {
                           '제출이 완료되었습니다.'),
                       actions: <Widget>[
                         TextButton(
-                          onPressed: () => Navigator.pop(context, 'OK'),
+                          onPressed: () {
+                            Navigator.pop(context, 'OK');
+                          },
                           child: const Text(
                               style: TextStyle(color: Colors.black), 'OK'),
                         ),

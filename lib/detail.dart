@@ -135,6 +135,7 @@ class MyTextInputState extends State<MyTextInput> {
                         actions: <Widget>[
                           TextButton(
                             onPressed: () {
+                              Navigator.pop(context, 'OK');
                               showDialog(
                                 context: context,
                                 barrierDismissible: false,
@@ -147,8 +148,9 @@ class MyTextInputState extends State<MyTextInput> {
                                         '예약이 완료되었습니다.'),
                                     actions: <Widget>[
                                       TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'OK'),
+                                        onPressed: () {
+                                          Navigator.pop(context, 'OK');
+                                        },
                                         child: const Text(
                                             style:
                                                 TextStyle(color: Colors.black),
