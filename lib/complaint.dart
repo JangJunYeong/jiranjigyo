@@ -75,6 +75,7 @@ class _MyComplaintState extends State<MyComplaint> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(AppBar(), "민원 등록"),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -90,7 +91,7 @@ class _MyComplaintState extends State<MyComplaint> {
                     shrinkWrap: true,
                     itemCount: contents.length,
                     gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
                       childAspectRatio: 2, //item 의 가로 1, 세로 2 의 비율
                       mainAxisSpacing: 20, //수평 Padding
@@ -127,14 +128,34 @@ class _MyComplaintState extends State<MyComplaint> {
                     elevation: 6,
                     shadowColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor:
-                    Theme.of(context).colorScheme.secondaryContainer,
+                        Theme.of(context).colorScheme.secondaryContainer,
                     minimumSize: const Size(150, 50),
                     textStyle: const TextStyle(fontSize: 18)),
                 onPressed: () {
-                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Icon(Icons.check),
+                        content: const Text(
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            '제출이 완료되었습니다.'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, 'OK');
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                                style: TextStyle(color: Colors.black), 'OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
-                child:
-                const Text('확인', style: TextStyle(color: Colors.black)),
+                child: const Text('확인', style: TextStyle(color: Colors.black)),
               ),
             ],
           ),
