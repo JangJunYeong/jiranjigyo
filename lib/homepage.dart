@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 70,
                       width: 70,
                       child: CircleAvatar(
-                        backgroundImage: AssetImage("profile.png"),
+                        backgroundImage: AssetImage("assets/profile.png"),
+                        maxRadius: 25,
                       )),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
