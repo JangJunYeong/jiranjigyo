@@ -21,13 +21,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon:Icon(Icons.logout),
+            icon:const Icon(Icons.logout),
             onPressed: () => {
               Navigator.pop(context),
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => LoginPage()
+                    builder: (context) => const LoginPage()
                 ),
               )
             },
@@ -79,13 +79,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              icon:Icon(Icons.logout),
+              icon:const Icon(Icons.logout),
               onPressed: () => {
                 Navigator.pop(context),
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage()
+                    builder: (context) => const LoginPage()
                   ),
                 )
               },

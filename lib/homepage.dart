@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
-import 'package:jiranjigyo/model/student.dart';
-import 'login.dart';
+import 'widget/loginCard.dart';
+
 import 'reservation.dart';
 import 'complaint.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,48 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 10,
             ),
-            Card(
-              elevation: 5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage("assets/profile.png"),
-                        maxRadius: 25,
-                      )),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: 100,
-                    padding: const EdgeInsets.all(15.0),
-                    alignment: Alignment.centerLeft,
-                    child: const Text("로그인 후 이용 가능"),
 
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
-                    child: const Icon(Icons.login),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
-                    },
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.0625,
-                    height: 50,
-                  ),
-                ],
-              ),
-            ),
+            const LoginCard(),
+
             const SizedBox(
               height: 15,
             ),
@@ -171,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ListTile(
-                            title: Text(
+                            title: const Text(
                               style: TextStyle(fontSize: 20),
                               '12월28일(목)',
                             ),
@@ -179,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                     style: TextStyle(fontSize: 17),
                                     '14:00~16:00'),
                                 ElevatedButton(
