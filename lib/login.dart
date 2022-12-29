@@ -97,9 +97,14 @@ class _LoginPageState extends State<LoginPage> {
                             password: _passwordController.text,
                           );
 
+                          if (userCredential.user == null) return;
+                          var data = await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).get();
+                          var json = data.data();
+                          if (json == null) return;
+
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(userCredential.user == null ? '로그인 실패' : '로그인 성공')),
+                            SnackBar(content: Text('로그인 성공')),
                           );
                           // FirebaseFirestore.instance.collection('users').add({
                           //   'name': userCredential.user!.displayName,
@@ -112,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           _usernameController.clear();
                           _passwordController.clear();
-                          Navigator.pop(context);
+                          Navigator.pop(context, json['name']);
 
                         },
                         child: const Text('로그인'),

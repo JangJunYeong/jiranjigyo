@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
+import 'widget/loginCard.dart';
 
-import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
 
@@ -18,6 +18,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String userName = "guest1";
+  bool loginCheck = true;
+
   @override
   void initState() {
     super.initState();
@@ -38,47 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 10,
             ),
-            Card(
-              elevation: 5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage("assets/profile.png"),
-                        maxRadius: 25,
-                      )),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: 100,
-                    padding: const EdgeInsets.all(15.0),
-                    alignment: Alignment.centerLeft,
-                    child: const Text("로그인 전"),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
-                    child: const Icon(Icons.login),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
-                    },
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.0625,
-                    height: 50,
-                  ),
-                ],
-              ),
-            ),
+            const LoginCard(),
             const SizedBox(
               height: 15,
             ),
