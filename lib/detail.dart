@@ -61,15 +61,12 @@ class _DetailPageState extends State<DetailPage> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: 300,
+                      height: 390,
                       child: ListView(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         children: getContent(),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                   ],
                 ),

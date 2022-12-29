@@ -91,14 +91,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.black)),
+                    color: lightColorScheme.primaryContainer, // 배경 색
+                    border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)) // 곡률
+                ),
                 child: Row(
                   children: [
-                    const Text("대충 공지"),
+                    const Text("대충 공지",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                    const Text("더보기"),
+                    const Text("더보기",
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
+                    ),
                   ],
                 )),
             const Divider(
@@ -117,7 +128,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black)),
+                  color: lightColorScheme.secondaryContainer, // 배경 색
+                  border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)) // 곡률
+                  ),
               child: Column(
                 children: <Widget>[
                   Row(

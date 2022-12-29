@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:jiranjigyo/theme.dart';
+import 'package:jiranjigyo/widget/appbar.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -23,9 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     final _usernameController = TextEditingController();
     final _passwordController = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("로그인"),
-      ),
+      appBar: AppBarWidget(AppBar(), "로그인"),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -44,8 +44,10 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                   border: Border.all(
                       width: 1,
-                      color: Colors.grey
-                  )
+                      //color: lightColorScheme.outline
+                        color: Colors.transparent // 감싸는 사각형 투명색
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))
               ),
               child: Column(
                 children: [

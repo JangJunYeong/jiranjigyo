@@ -19,7 +19,7 @@ const lightColorScheme = ColorScheme(
     errorContainer: Color(0xFFF9DEDC),
     onErrorContainer: Color(0xFF410E0B),
     outline: Color(0xFF79747E),
-    background: Color(0xFFFFFBFE),
+    background: Color(0xFFFFFFFF),
     onBackground: Color(0xFF1C1B1F),
   surface: Color(0xFFFFFBFE),
   onSurface: Color(0xFF1C1B1F),
