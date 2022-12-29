@@ -67,14 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     "대충 공지",
                     style: TextStyle(color: Colors.white),
                   ),
-                  TextButton(
-                      onPressed: () => {
-                            launchUrl(
-                              Uri.parse(
-                                  'https://computer.cnu.ac.kr/computer/index.do'),
-                            )
-                          },
-                      child: Text(style: TextStyle(fontSize: 10), "더보기"))
+                  IconButton(onPressed: () => {
+                    launchUrl(
+                      Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
+                    )
+                  }, icon: Icon(Icons.add))
                 ],
               )),
           const Divider(
