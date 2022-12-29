@@ -294,6 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
                   borderRadius:
                       const BorderRadius.all(Radius.circular(8.0)) // 곡률
+
                   ),
               child: Column(
                 children: <Widget>[
