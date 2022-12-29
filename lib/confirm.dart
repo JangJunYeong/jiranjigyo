@@ -176,14 +176,61 @@ class _DetailCardState extends State<DetailCard> {
                               }
                           );
                         }
-
-                      ),
+                        ),
                       ElevatedButton(
                         child: const Text(
                             style: TextStyle(
                                 color: Color.fromARGB(255, 56, 55, 55)),
                             '일정 공유'),
-                        onPressed: () {/* ... */},
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('팝업 메시지'),
+                                content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: <Widget>[
+                                      Text('Alert Dialog 테스트'),
+                                      Text('ok 버튼 클릭하세요'),
+                                    ],
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  Row(
+                                    children: [
+                                      ElevatedButton(
+                                        child: Icon(Icons.edit),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                              ),
+                                        ElevatedButton(
+                                          child: Icon(Icons.edit),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Icon(Icons.edit),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Icon(Icons.edit),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                    ],
+                                  ),
+
+                                ],
+                              );
+                            }
+                        );},
                       ),
                     ],
                   ),
