@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
-
+import 'package:jiranjigyo/model/student.dart';
 import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 100,
                     padding: const EdgeInsets.all(15.0),
                     alignment: Alignment.centerLeft,
-                    child: const Text("로그인 전"),
+                    child: const Text("로그인을 해주세요."),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -149,11 +149,55 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.25,
                       ),
-                      const Text(
+                      Text(
                         "더보기",
                         style: TextStyle(fontSize: 15),
                       ),
                     ],
+                  ),
+                  Card(
+                    elevation: 3,
+                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: 20),
+                              '12월28일(목)(day)',
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(style: TextStyle(fontSize: 17), ''),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              ElevatedButton(
+                                child: const Text(
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 56, 55, 55)),
+                                    '예약 수정'),
+                                onPressed: () {/* ... */},
+                              ),
+                              ElevatedButton(
+                                child: const Text(
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 56, 55, 55)),
+                                    '예약 취소'),
+                                onPressed: () {/* ... */},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 300,
@@ -284,110 +328,10 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.875,
-              height: 400,
-              padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                  color: lightColorScheme.secondaryContainer, // 배경 색
-                  border:
-                      Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                  borderRadius:
-                      const BorderRadius.all(Radius.circular(8.0)) // 곡률
-
-                  ),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "공지사항",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 30),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.375,
-                      ),
-                      const Text(
-                        "더보기",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 300,
-                    child: Column(
-                      children: getContent(),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-            MyTextInput(notifyParent: refresh),
           ],
         ),
       ]),
     );
-  }
-}
-
-class MyTextInput extends StatefulWidget {
-  const MyTextInput({super.key, required this.notifyParent});
-  final Function() notifyParent;
-
-  @override
-  MyTextInputState createState() => MyTextInputState();
-}
-
-class MyTextInputState extends State<MyTextInput> {
-  final myTitleController = TextEditingController();
-  final myTimeController = TextEditingController();
-  final myFileNameController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-          const Text('제목'),
-          TextField(
-            controller: myTitleController,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text("시간"),
-          TextField(
-            controller: myTimeController,
-          ),
-          Row(
-            children: <Widget>[
-              ElevatedButton(
-                child: const Icon(Icons.done),
-                onPressed: () {
-                  stepList.add([myTimeController.text, myTitleController.text]);
-                  widget.notifyParent();
-                },
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.0375,
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.close),
-                onPressed: () {
-                  stepList = List.empty(growable: true);
-                  widget.notifyParent();
-                },
-              ),
-            ],
-          )
-        ]));
   }
 }
 
