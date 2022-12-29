@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 100,
                     padding: const EdgeInsets.all(15.0),
                     alignment: Alignment.centerLeft,
-                    child: const Text("로그인 후 이용가능"),
+                    child: const Text("로그인 후 이용 가능"),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -109,10 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                    const Text(
-                      "더보기",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    ElevatedButton(
+                        onPressed: () => {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                        child: Text("더보기")
+                    )
                   ],
                 )),
             const Divider(
