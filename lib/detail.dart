@@ -119,7 +119,7 @@ class MyTextInputState extends State<MyTextInput> {
               ElevatedButton(
                 child: const Icon(Icons.done),
                 onPressed: () {
-                  showDialog(
+                  /*showDialog(
                     context: context,
                     barrierDismissible: false,
                     builder: (BuildContext context) {
@@ -167,7 +167,7 @@ class MyTextInputState extends State<MyTextInput> {
                         ],
                       );
                     },
-                  );
+                  );*/
                 },
               ),
               SizedBox(

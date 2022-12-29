@@ -66,17 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     "대충 공지",
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.575,
-                  ),
                   TextButton(
                       onPressed: () => {
-                        launchUrl(
-                          Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
-                        )
-                      },
-                      child: const Text("더보기")
-                  )
+                            launchUrl(
+                              Uri.parse(
+                                  'https://computer.cnu.ac.kr/computer/index.do'),
+                            )
+                          },
+                      child: Text(style: TextStyle(fontSize: 10), "더보기"))
                 ],
               )),
           const Divider(
@@ -102,27 +99,22 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       "나의 예약 현황",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 30),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.25,
-                    ),
                     TextButton(
                         onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ConfirmPage()
-                            ),
-                          )
-                        },
-                        child: const Text("더보기")
-                    )
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ConfirmPage()),
+                              )
+                            },
+                        child: const Text("더보기"))
                   ],
                 ),
                 Card(
