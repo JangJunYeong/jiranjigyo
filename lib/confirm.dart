@@ -220,7 +220,7 @@ class _DetailCardState extends State<DetailCard> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   actions: <Widget>[
-                                    SizedBox(height: 15),
+                                    const SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -235,7 +235,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -246,7 +246,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -257,7 +257,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage:
