@@ -148,37 +148,6 @@ class _DetailCardState extends State<DetailCard> {
                     ],
                   ),
                 ],
-                /*children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      
-                      Text(style: TextStyle(fontSize: 20), widget.title),
-                      Text(
-                          style: TextStyle(fontSize: 17),
-                          '---------------------------------------------------------------'),
-                      const SizedBox(height: 5.0),
-                      Text(
-                          style: TextStyle(fontSize: 17),
-                          '학번: ${widget.student.id}'),
-                      Text(
-                          style: TextStyle(fontSize: 17),
-                          '이름: ${widget.student.name}'),
-                    ],
-                  ),
-                  if (opened)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                            style: TextStyle(fontSize: 17),
-                            '테이블: ${widget.tableIndex}'),
-                        Text(
-                            style: TextStyle(fontSize: 17),
-                            '시간: ${widget.time}'),
-                      ],
-                    ),
-                ],*/
               ),
             ),
           ),
