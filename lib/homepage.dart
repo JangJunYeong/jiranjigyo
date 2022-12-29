@@ -6,6 +6,7 @@ import 'widget/loginCard.dart';
 
 import 'reservation.dart';
 import 'complaint.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 var stepList = List.empty(growable: true);
 var index = 1;
@@ -36,7 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 50,
             ),
+
             const LoginCard(),
+
             const SizedBox(
               height: 15,
             ),
@@ -67,10 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                    const Text(
-                      "더보기",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    TextButton(
+                        onPressed: () => {
+                          launchUrl(
+                            Uri.parse('https://computer.cnu.ac.kr/computer/index.do')
+                          )
+                        },
+                        child: Text("더보기")
+                    )
                   ],
                 )),
             const Divider(
