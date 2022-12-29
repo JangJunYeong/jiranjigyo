@@ -31,7 +31,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     return Scaffold(
       appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
       body: const CameraExample(),
-      bottomNavigationBar: const BottomTabBar(0),
+      bottomNavigationBar: const BottomTabBar(3),
     );
   }
 }

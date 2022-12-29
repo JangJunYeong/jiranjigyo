@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       //color: lightColorScheme.outline
                         color: Colors.transparent // 감싸는 사각형 투명색
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  borderRadius: const BorderRadius.all(Radius.circular(8.0))
               ),
               child: Column(
                 children: [
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('로그인 성공')),
+                            const SnackBar(content: Text('로그인 성공')),
                           );
                           // FirebaseFirestore.instance.collection('users').add({
                           //   'name': userCredential.user!.displayName,
