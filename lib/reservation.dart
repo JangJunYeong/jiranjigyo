@@ -216,27 +216,39 @@ class _GetTimeState extends State<GetTime> {
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,
-                    selected: _filters.contains(widget.nowDay+widget.nowTable+select),
+                    selected: _filters.contains("${widget.nowDay},${widget.nowTable},$select"),
                     onSelected: (bool value){
+                      bool sametimecheck = false;
+                      if (_filters.isNotEmpty){
+                        for (var element in _filters) {
+                          List timecheck = element.split(",");
+                          print(timecheck[2] + "/////" + select);
+                          if (timecheck[2] == select) sametimecheck = true;
+                        }
+                      }
                       setState(() {
-                        if (count >= 4){
-                          if (!value) {
-                            count--;
-                            _filters.removeWhere((String name) {
-                              return name == widget.nowDay+widget.nowTable+select;
-                            });
-                          }
+                        if (sametimecheck && value) {
+
                         } else {
-                          if (value) {
-                            if (!_filters.contains(widget.nowDay+widget.nowTable+select)) {
-                              _filters.add(widget.nowDay+widget.nowTable+select);
-                              count++;
+                          if (count >= 4) {
+                            if (!value) {
+                              count--;
+                              _filters.removeWhere((String name) {
+                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                              });
                             }
                           } else {
-                            count--;
-                            _filters.removeWhere((String name) {
-                              return name == widget.nowDay+widget.nowTable+select;
-                            });
+                            if (value) {
+                              if (!_filters.contains("${widget.nowDay},${widget.nowTable},$select")) {
+                                _filters.add("${widget.nowDay},${widget.nowTable},$select");
+                                count++;
+                              }
+                            } else {
+                              count--;
+                              _filters.removeWhere((String name) {
+                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                              });
+                            }
                           }
                         }
                       });

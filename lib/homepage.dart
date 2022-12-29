@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.575,
+                      width: MediaQuery.of(context).size.width * 0.525,
                     ),
                     TextButton(
                         onPressed: () => {
