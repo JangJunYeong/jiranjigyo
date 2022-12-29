@@ -50,7 +50,7 @@ class _LoginCardState extends State<LoginCard> {
             padding: const EdgeInsets.all(15.0),
             alignment: Alignment.centerLeft,
             child: Text(
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 (userName ?? '로그인 전${userName == null ? '' : '님'}')),
           ),
           ElevatedButton(
