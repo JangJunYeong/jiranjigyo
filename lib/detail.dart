@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
+import 'package:jiranjigyo/model/student.dart';
 
 var stepList = List.empty(growable: true);
 var mancount = 0;
@@ -15,6 +16,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  List<TextEditingController> controllers = [];
   @override
   void initState() {
     super.initState();
@@ -34,92 +36,146 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBarWidget(AppBar(), "예약 세부사항"),
       bottomNavigationBar: const BottomTabBar(0),
-      body:
-          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
-        Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
-            thickness: 1.0,
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.875,
-            height: 400,
-            padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-            alignment: Alignment.topCenter,
-            decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.black)),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 390,
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    children: getContent(),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
+        child: Container(
+          width: 370,
+          decoration: BoxDecoration(
+              color: Colors.grey, // 배경 색
+              border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
+              ),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(style: TextStyle(fontSize: 25), '  예약자 정보'),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      controllers.add(TextEditingController());
+                      setState(() {});
+                    },
                   ),
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: () {
+                      controllers.removeLast();
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              const SizedBox(
+                height: 5.0,
+              ),
+              ListTile(
+                title: Text(
+                    style: TextStyle(fontSize: 17), '이름: 김승민\n학번:201801992'),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    ),
+                    Column(
+                      children: controllers.map((controller) {
+                        return TextFormField(
+                          controller: controller,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            labelText: '학번:',
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 6,
+                          shadowColor: const Color.fromARGB(255, 255, 255, 255),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          minimumSize: const Size(150, 50),
+                          textStyle: const TextStyle(fontSize: 18)),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text(
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  '주의사항'),
+                              content: const Text(
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 90, 89, 89),
+                                      fontSize: 15),
+                                  '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, 'OK');
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Icon(Icons.check),
+                                          content: const Text(
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                              '예약이 완료되었습니다.'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context, 'OK');
+                                              },
+                                              child: const Text(
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                  'OK'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: const Text(
+                                      style: TextStyle(color: Colors.black),
+                                      'OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('확인',
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 30,
-          ),
-        ]),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: MyTextInput(notifyParent: refresh),
         ),
-      ]),
+      ),
     );
   }
 }
 
-class MyTextInput extends StatefulWidget {
-  const MyTextInput({super.key, required this.notifyParent});
-  final Function() notifyParent;
 
-  @override
-  MyTextInputState createState() => MyTextInputState();
-}
 
-class MyTextInputState extends State<MyTextInput> {
-  final myTitleController = TextEditingController();
-  final myTimeController = TextEditingController();
-  final myFileNameController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-          const Text('제목'),
-          TextField(
-            controller: myTitleController,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text("시간"),
-          TextField(
-            controller: myTimeController,
-          ),
-          Row(
-            children: <Widget>[
-              ElevatedButton(
-                child: const Icon(Icons.done),
-                onPressed: () {
-                  /*showDialog(
+        /*showDialog(
                     context: context,
                     barrierDismissible: false,
                     builder: (BuildContext context) {
@@ -168,68 +224,4 @@ class MyTextInputState extends State<MyTextInput> {
                       );
                     },
                   );*/
-                },
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.0375,
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.close),
-                onPressed: () {
-                  stepList = List.empty(growable: true);
-                  widget.notifyParent();
-                },
-              ),
-            ],
-          )
-        ]));
-  }
-}
-
-List<Widget> getContent() {
-  mancount = 1;
-  List<Widget> tiles = [];
-  if (stepList.isEmpty) {
-    tiles.add(const Text("empty"));
-  } else {
-    for (var element in stepList) {
-      tiles.add(StepTile(Step(element[0], element[1])));
-      mancount++;
-    }
-  }
-  return tiles;
-}
-
-class Step {
-  Step(this.title, this.time);
-
-  String title;
-  String time;
-}
-
-class StepTile extends StatelessWidget {
-  StepTile(this._step, {super.key});
-
-  final Step _step;
-  final ind = mancount.toString();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(_step.time),
-          leading: Text(ind),
-          subtitle: Text(
-            _step.title,
-            textAlign: TextAlign.right,
-          ),
-        ),
-        const Divider(
-          color: Colors.black,
-          thickness: 1.0,
-        ),
-      ],
-    );
-  }
-}
+        
