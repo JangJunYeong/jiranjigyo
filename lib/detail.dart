@@ -124,7 +124,7 @@ class MyTextInputState extends State<MyTextInput> {
                     barrierDismissible: false,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                             style: TextStyle(color: Colors.black, fontSize: 20),
                             '주의사항'),
                         content: const Text(
@@ -141,7 +141,7 @@ class MyTextInputState extends State<MyTextInput> {
                                 barrierDismissible: false,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Icon(Icons.check),
+                                    title: const Icon(Icons.check),
                                     content: const Text(
                                         style: TextStyle(
                                             color: Colors.black, fontSize: 20),

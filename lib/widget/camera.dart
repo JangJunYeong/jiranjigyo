@@ -56,7 +56,7 @@ class _CameraExampleState extends State<CameraExample> {
           children: [
             // SizedBox(height: 25.0),
             showImage(),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
             Row(
@@ -64,24 +64,24 @@ class _CameraExampleState extends State<CameraExample> {
               children: <Widget>[
                 // 카메라 촬영 버튼
                 FloatingActionButton(
-                  child: Icon(Icons.add_a_photo),
                   tooltip: 'pick Iamge',
                   onPressed: () {
                     getImage(ImageSource.camera);
                   },
+                  child: const Icon(Icons.add_a_photo),
                 ),
 
                 // 갤러리에서 이미지를 가져오는 버튼
                 FloatingActionButton(
-                  child: Icon(Icons.wallpaper),
                   tooltip: 'pick Iamge',
                   onPressed: () {
                     getImage(ImageSource.gallery);
                   },
+                  child: const Icon(Icons.wallpaper),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
             ElevatedButton(
@@ -100,7 +100,7 @@ class _CameraExampleState extends State<CameraExample> {
                   barrierDismissible: false,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Icon(Icons.check),
+                      title: const Icon(Icons.check),
                       content: const Text(
                           style: TextStyle(color: Colors.black, fontSize: 20),
                           '제출이 완료되었습니다.'),

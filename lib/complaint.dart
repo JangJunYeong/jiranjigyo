@@ -136,7 +136,7 @@ class _MyComplaintState extends State<MyComplaint> {
                     barrierDismissible: false,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Icon(Icons.check),
+                        title: const Icon(Icons.check),
                         content: const Text(
                             style: TextStyle(color: Colors.black, fontSize: 20),
                             '제출이 완료되었습니다.'),
