@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Uri.parse('https://computer.cnu.ac.kr/computer/index.do')
                           )
                         },
-                        child: Text("더보기")
+                        child: const Text("더보기")
                     )
                   ],
                 )),

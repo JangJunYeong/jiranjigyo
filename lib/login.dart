@@ -1,15 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-//dart firebase
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutterfire_ui/auth.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -118,7 +110,6 @@ class _LoginPageState extends State<LoginPage> {
                           _usernameController.clear();
                           _passwordController.clear();
                           Navigator.pop(context, json['name']);
-
                         },
                         child: const Text('로그인'),
                       ),

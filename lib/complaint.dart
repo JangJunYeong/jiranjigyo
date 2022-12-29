@@ -141,7 +141,6 @@ class _MyComplaintState extends State<MyComplaint> {
                     textStyle: const TextStyle(fontSize: 18)),
                 onPressed: () {
                   postList.add(textController.text);
-                  print(postList);
                   FirebaseFirestore firestore = FirebaseFirestore.instance;
                   firestore.collection('complaints').add(
                       {'complaintsType': postList[0],
