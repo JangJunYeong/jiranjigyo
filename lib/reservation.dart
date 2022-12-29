@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
@@ -28,8 +27,11 @@ Set<String> tableMap = {
 final List<String> _filters = <String>[];
 int count = 0;
 
-class ReservationPage extends StatefulWidget {
-  const ReservationPage({Key? key}) : super(key: key);
+class ReservationPage extends StatefulWidget{
+  const ReservationPage(this.id, this.name, {Key? key}) : super(key: key);
+
+  final String id;
+  final String name;
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -61,15 +63,15 @@ class _ReservationPageState extends State<ReservationPage> {
       child: Scaffold(
         appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
         body: TabBarView(
-          children: getPage(context),
+          children: getPage(context, widget.id, widget.name),
         ),
-        bottomNavigationBar: const BottomTabBar(0),
+        bottomNavigationBar: BottomTabBar(0, widget.id, widget.name),
       ),
     );
   }
 }
 
-List<Widget> getPage(BuildContext context) {
+List<Widget> getPage(BuildContext context, String id, String name) {
   List<Widget> tiles = [];
   int i = 0;
 
@@ -77,14 +79,15 @@ List<Widget> getPage(BuildContext context) {
     i++;
     tiles.add(Center(
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: getTable(i - 1, context),
-    )));
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: getTable(context, i-1, id, name),
+        )
+    ));
   }
   return tiles;
 }
 
-List<Widget> getTable(int x, BuildContext context) {
+List<Widget> getTable(BuildContext context, int x, String id, String name) {
   List<Widget> tiles = [];
 
   final int nowday = x;
@@ -107,10 +110,7 @@ List<Widget> getTable(int x, BuildContext context) {
   }
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(const Text('*하루 최대 이용 시간은 4시간 입니다.'));
-  tiles.add(const Text(
-    '*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.',
-    textAlign: TextAlign.center,
-  ));
+  tiles.add(const Text('*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.', textAlign: TextAlign.center,));
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -147,9 +147,11 @@ List<Widget> getTable(int x, BuildContext context) {
   ));
   tiles.add(const SizedBox(height: 10.0));
   tiles.add(ElevatedButton(
-      onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DetailPage()));
+      onPressed: (){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailPage(id, name)));
       },
       child: const Text(
         "다음으로",
