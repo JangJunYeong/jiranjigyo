@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text("로그인 전"),
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFE2B9FF), elevation: 5),
+                    style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                     child: const Icon(Icons.login),
                     onPressed: () {
                       Navigator.push(
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: BoxDecoration(
                     color: lightColorScheme.primaryContainer, // 배경 색
                     border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)) // 곡률
+                    borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
                 ),
                 child: Row(
                   children: [
@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                   color: lightColorScheme.secondaryContainer, // 배경 색
                   border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)) // 곡률
+                  borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
                   ),
               child: Column(
                 children: <Widget>[
@@ -152,9 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(
                     height: 300,
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
+                    child: Column(
                       children: getContent(),
                     ),
                   ),
@@ -309,9 +307,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(
                     height: 300,
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
+                    child: Column(
                       children: getContent(),
                     ),
                   ),

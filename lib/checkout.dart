@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jiranjigyo/camera.dart';
+import 'package:jiranjigyo/widget/camera.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 

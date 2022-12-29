@@ -6,6 +6,7 @@ import 'login.dart';
 import 'reservation.dart';
 import 'complaint.dart';
 import 'checkout.dart';
+import 'detail.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) => const MyHomePage(),
           '/login': (BuildContext context) => const LoginPage(),
           '/reservation': (BuildContext context) => const ReservationPage(),
+          '/reservation/detail': (BuildContext context) => const DetailPage(),
           '/complaint': (BuildContext context) => const MyComplaint(),
           '/confirm': (BuildContext context) => const ConfirmPage(),
           '/checkout': (BuildContext context) => const CheckOutPage(),
