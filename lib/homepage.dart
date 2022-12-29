@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.all(15.0),
                     alignment: Alignment.centerLeft,
                     child: const Text("로그인 후 이용 가능"),
+
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -112,9 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     TextButton(
                         onPressed: () => {
-                        launchUrl(
-                          Uri.parse('https://computer.cnu.ac.kr/computer/index.do')
-                        )
+                          launchUrl(
+                            Uri.parse('https://computer.cnu.ac.kr/computer/index.do')
+                          )
                         },
                         child: Text("더보기")
                     )
@@ -154,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.25,
                       ),
-                      Text(
+                      const Text(
                         "더보기",
                         style: TextStyle(fontSize: 15),
                       ),
@@ -172,42 +173,28 @@ class _MyHomePageState extends State<MyHomePage> {
                           ListTile(
                             title: Text(
                               style: TextStyle(fontSize: 20),
-                              '12월28일(목)(day)',
+                              '12월28일(목)',
                             ),
-                            subtitle: Column(
+                            subtitle: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(style: TextStyle(fontSize: 17), ''),
+                                Text(
+                                    style: TextStyle(fontSize: 17),
+                                    '14:00~16:00'),
+                                ElevatedButton(
+                                  child: const Text(
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 56, 55, 55)),
+                                      '인증하기'),
+                                  onPressed: () {/* ... */},
+                                ),
                               ],
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              ElevatedButton(
-                                child: const Text(
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 56, 55, 55)),
-                                    '예약 수정'),
-                                onPressed: () {/* ... */},
-                              ),
-                              ElevatedButton(
-                                child: const Text(
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 56, 55, 55)),
-                                    '예약 취소'),
-                                onPressed: () {/* ... */},
-                              ),
-                            ],
-                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 300,
-                    child: Column(
-                      children: getContent(),
                     ),
                   ),
                   const SizedBox(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
@@ -141,6 +142,11 @@ class _MyComplaintState extends State<MyComplaint> {
                 onPressed: () {
                   postList.add(textController.text);
                   print(postList);
+                  FirebaseFirestore firestore = FirebaseFirestore.instance;
+                  firestore.collection('complaints').add(
+                      {'complaintsType': postList[0],
+                        'complaintsText': postList[1],
+                      });
                   showDialog(
                     context: context,
                     barrierDismissible: false,
