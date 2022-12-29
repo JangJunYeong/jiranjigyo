@@ -222,7 +222,6 @@ class _GetTimeState extends State<GetTime> {
                       if (_filters.isNotEmpty){
                         for (var element in _filters) {
                           List timecheck = element.split(",");
-                          print(timecheck[2] + "/////" + select);
                           if (timecheck[2] == select) sametimecheck = true;
                         }
                       }
