@@ -50,8 +50,6 @@ class MyComplaint extends StatefulWidget {
 }
 
 class _MyComplaintState extends State<MyComplaint> {
-  final textController = TextEditingController();
-
   int index = 2;
   int? checkedIndex;
 
@@ -60,8 +58,13 @@ class _MyComplaintState extends State<MyComplaint> {
     super.initState();
   }
 
+  void refresh() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    final textController = TextEditingController();
     List<String> contents = [
       '질문과 답변',
       '고장 신고',
@@ -72,7 +75,6 @@ class _MyComplaintState extends State<MyComplaint> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBarWidget(AppBar(), "민원 등록"),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -129,28 +131,7 @@ class _MyComplaintState extends State<MyComplaint> {
                     minimumSize: const Size(150, 50),
                     textStyle: const TextStyle(fontSize: 18)),
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Icon(Icons.check),
-                        content: const Text(
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                            '제출이 완료되었습니다.'),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, 'OK');
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                                style: TextStyle(color: Colors.black), 'OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  Navigator.pop(context);
                 },
                 child: const Text('확인', style: TextStyle(color: Colors.black)),
               ),
