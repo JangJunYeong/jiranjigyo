@@ -11,7 +11,6 @@ getImage() async {
   );
 }
 
-
 class CameraExample extends StatefulWidget {
   const CameraExample({Key? key}) : super(key: key);
 
@@ -57,7 +56,9 @@ class _CameraExampleState extends State<CameraExample> {
           children: [
             // SizedBox(height: 25.0),
             showImage(),
-            SizedBox(height: 50.0,),
+            SizedBox(
+              height: 50.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -80,7 +81,9 @@ class _CameraExampleState extends State<CameraExample> {
                 ),
               ],
             ),
-            SizedBox(height: 50.0,),
+            SizedBox(
+              height: 50.0,
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: (RoundedRectangleBorder(
@@ -88,14 +91,31 @@ class _CameraExampleState extends State<CameraExample> {
                   elevation: 6,
                   shadowColor: const Color.fromARGB(255, 255, 255, 255),
                   backgroundColor:
-                  Theme.of(context).colorScheme.secondaryContainer,
+                      Theme.of(context).colorScheme.secondaryContainer,
                   minimumSize: const Size(400, 60),
                   textStyle: const TextStyle(fontSize: 25)),
               onPressed: () {
-                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Icon(Icons.check),
+                      content: const Text(
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          '제출이 완료되었습니다.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'OK'),
+                          child: const Text(
+                              style: TextStyle(color: Colors.black), 'OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
-              child:
-              const Text('제출하기', style: TextStyle(color: Colors.black)),
+              child: const Text('제출하기', style: TextStyle(color: Colors.black)),
             ),
           ],
         ));

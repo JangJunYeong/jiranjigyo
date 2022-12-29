@@ -90,7 +90,7 @@ class _MyComplaintState extends State<MyComplaint> {
                     shrinkWrap: true,
                     itemCount: contents.length,
                     gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
                       childAspectRatio: 2, //item 의 가로 1, 세로 2 의 비율
                       mainAxisSpacing: 20, //수평 Padding
@@ -127,14 +127,13 @@ class _MyComplaintState extends State<MyComplaint> {
                     elevation: 6,
                     shadowColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor:
-                    Theme.of(context).colorScheme.secondaryContainer,
+                        Theme.of(context).colorScheme.secondaryContainer,
                     minimumSize: const Size(150, 50),
                     textStyle: const TextStyle(fontSize: 18)),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child:
-                const Text('확인', style: TextStyle(color: Colors.black)),
+                child: const Text('확인', style: TextStyle(color: Colors.black)),
               ),
             ],
           ),
