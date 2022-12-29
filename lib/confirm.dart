@@ -150,24 +150,56 @@ class _DetailCardState extends State<DetailCard> {
                                 barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: const Text('팝업 메시지'),
+                                    title: const Text('예약취소'),
                                     content: SingleChildScrollView(
                                       child: ListBody(
                                         children: const <Widget>[
-                                          Text('Alert Dialog 테스트'),
-                                          Text('ok 버튼 클릭하세요'),
+                                          Text('예약을 취소하시겠습니까?'),
                                         ],
                                       ),
                                     ),
                                     actions: <Widget>[
                                       ElevatedButton(
-                                        child: const Text('ok'),
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'ok'),
                                         onPressed: () {
                                           Navigator.of(context).pop();
+                                          showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: const Icon(Icons.check),
+                                                content: const Text(
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20),
+                                                    '  예약이 취소되었습니다.'),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context, 'OK');
+                                                    },
+                                                    child: const Text(
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                        'OK'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
                                         },
                                       ),
                                       ElevatedButton(
-                                        child: const Text('cancel'),
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'cancel'),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -194,28 +226,44 @@ class _DetailCardState extends State<DetailCard> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage("assets/mail.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
                                         Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                "assets/kakaotalk.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
                                         Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                "assets/facebook.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
                                         Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage("assets/instar.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
