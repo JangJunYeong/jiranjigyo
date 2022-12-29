@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:jiranjigyo/theme.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 //dart firebase
 import 'package:firebase_core/firebase_core.dart';

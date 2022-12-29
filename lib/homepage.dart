@@ -44,14 +44,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: 100,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.black)),
-                    child: const Text("대충 이미지"),
+                  const SizedBox(
+                    width: 10,
                   ),
+                  const SizedBox(
+                      height: 70,
+                      width: 70,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage("profile.png"),
+                      )),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 100,
@@ -60,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text("로그인 전"),
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                     child: const Icon(Icons.login),
                     onPressed: () {
                       Navigator.push(
@@ -92,23 +94,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                     color: lightColorScheme.primaryContainer, // 배경 색
-                    border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
-                ),
+                    border: Border.all(
+                        width: 1, color: Colors.transparent), // 외곽선 투명
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(8.0)) // 곡률
+                    ),
                 child: Row(
                   children: [
-                    const Text("대충 공지",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
+                    const Text(
+                      "대충 공지",
+                      style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                    const Text("더보기",
-                      style: TextStyle(
-                          color: Colors.white
-                      ),
+                    const Text(
+                      "더보기",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ],
                 )),
@@ -128,8 +130,10 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
                   color: lightColorScheme.secondaryContainer, // 배경 색
-                  border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
+                  border:
+                      Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(8.0)) // 곡률
                   ),
               child: Column(
                 children: <Widget>[
@@ -285,7 +289,13 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black)),
+                  color: lightColorScheme.secondaryContainer, // 배경 색
+                  border:
+                      Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(8.0)) // 곡률
+
+                  ),
               child: Column(
                 children: <Widget>[
                   Row(

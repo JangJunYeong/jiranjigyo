@@ -11,7 +11,6 @@ getImage() async {
   );
 }
 
-
 class CameraExample extends StatefulWidget {
   const CameraExample({Key? key}) : super(key: key);
 
@@ -57,30 +56,34 @@ class _CameraExampleState extends State<CameraExample> {
           children: [
             // SizedBox(height: 25.0),
             showImage(),
-            SizedBox(height: 50.0,),
+            const SizedBox(
+              height: 50.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 // 카메라 촬영 버튼
                 FloatingActionButton(
-                  child: Icon(Icons.add_a_photo),
                   tooltip: 'pick Iamge',
                   onPressed: () {
                     getImage(ImageSource.camera);
                   },
+                  child: const Icon(Icons.add_a_photo),
                 ),
 
                 // 갤러리에서 이미지를 가져오는 버튼
                 FloatingActionButton(
-                  child: Icon(Icons.wallpaper),
                   tooltip: 'pick Iamge',
                   onPressed: () {
                     getImage(ImageSource.gallery);
                   },
+                  child: const Icon(Icons.wallpaper),
                 ),
               ],
             ),
-            SizedBox(height: 50.0,),
+            const SizedBox(
+              height: 50.0,
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: (RoundedRectangleBorder(
@@ -88,14 +91,33 @@ class _CameraExampleState extends State<CameraExample> {
                   elevation: 6,
                   shadowColor: const Color.fromARGB(255, 255, 255, 255),
                   backgroundColor:
-                  Theme.of(context).colorScheme.secondaryContainer,
+                      Theme.of(context).colorScheme.secondaryContainer,
                   minimumSize: const Size(400, 60),
                   textStyle: const TextStyle(fontSize: 25)),
               onPressed: () {
-                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Icon(Icons.check),
+                      content: const Text(
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          '제출이 완료되었습니다.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'OK');
+                          },
+                          child: const Text(
+                              style: TextStyle(color: Colors.black), 'OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
-              child:
-              const Text('제출하기', style: TextStyle(color: Colors.black)),
+              child: const Text('제출하기', style: TextStyle(color: Colors.black)),
             ),
           ],
         ));
