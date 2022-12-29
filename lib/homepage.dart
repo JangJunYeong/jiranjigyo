@@ -3,6 +3,7 @@ import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
 import 'widget/loginCard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'reservation.dart';
 import 'complaint.dart';
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       const BorderRadius.all(Radius.circular(8.0)) // 곡률
                   ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     "대충 공지",
@@ -67,10 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.575,
                   ),
-                  const Text(
-                    "더보기",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  TextButton(
+                      onPressed: () => {
+                        launchUrl(
+                          Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
+                        )
+                      },
+                      child: const Text("더보기")
+                  )
                 ],
               )),
           const Divider(
@@ -106,10 +112,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.25,
                     ),
-                    const Text(
-                      "더보기",
-                      style: TextStyle(fontSize: 15),
-                    ),
+                    TextButton(
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ConfirmPage()
+                            ),
+                          )
+                        },
+                        child: const Text("더보기")
+                    )
                   ],
                 ),
                 Card(
