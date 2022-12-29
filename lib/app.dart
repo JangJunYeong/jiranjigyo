@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (BuildContext context) => const MyHomePage(),
           '/login': (BuildContext context) => const LoginPage(),
-          '/reservation': (BuildContext context) => const ReservationPage(),
+          '/reservation': (BuildContext context) => const ReservationPage("", ""),
           '/reservation/detail': (BuildContext context) => const DetailPage(),
           '/complaint': (BuildContext context) => const MyComplaint(),
           '/confirm': (BuildContext context) => const ConfirmPage(),

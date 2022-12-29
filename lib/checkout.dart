@@ -7,7 +7,10 @@ import 'confirm.dart';
 import 'widget/bottomtabbar.dart';
 
 class CheckOutPage extends StatefulWidget {
-  const CheckOutPage({Key? key}) : super(key: key);
+  const CheckOutPage(this.id, this.name, {Key? key}) : super(key: key);
+
+  final String id;
+  final String name;
 
   @override
   State<CheckOutPage> createState() => _CheckOutPageState();
@@ -31,7 +34,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     return Scaffold(
       appBar: AppBarWidget(AppBar(), "반납 후 좌석 촬영"),
       body: const CameraExample(),
-      bottomNavigationBar: const BottomTabBar(3),
+      bottomNavigationBar: const BottomTabBar(3, widget.id, widget.name),
     );
   }
 }

@@ -6,8 +6,10 @@ import '../complaint.dart';
 import '../checkout.dart';
 
 class BottomTabBar extends StatefulWidget {
-  const BottomTabBar(this.nowpage, {Key? key}) : super(key: key);
+  const BottomTabBar(this.nowpage, this.id, this.name, {Key? key}) : super(key: key);
   final int nowpage;
+  final String id;
+  final String name;
 
   @override
   State<BottomTabBar> createState() => _BottomTabBarState();
