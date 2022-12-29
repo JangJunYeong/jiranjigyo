@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 100,
                     padding: const EdgeInsets.all(15.0),
                     alignment: Alignment.centerLeft,
-                    child: const Text("로그인을 해주세요."),
+                    child: const Text("로그인 후 이용가능"),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

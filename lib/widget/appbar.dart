@@ -23,6 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           IconButton(
             icon:Icon(Icons.logout),
             onPressed: () => {
+              Navigator.pop(context),
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -80,6 +81,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
               icon:Icon(Icons.logout),
               onPressed: () => {
+                Navigator.pop(context),
                 Navigator.push(
                   context,
                   MaterialPageRoute(
