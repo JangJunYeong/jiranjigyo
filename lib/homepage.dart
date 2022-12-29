@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiranjigyo/QRcertify.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
@@ -151,7 +152,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                     style: TextStyle(
                                         color: Color.fromARGB(255, 56, 55, 55)),
                                     '인증하기'),
-                                onPressed: () {/* ... */},
+                                onPressed: () {
+                                  // QRcertify 페이지로 이동
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (
+                                              context) => const QRcertifyPage()));
+                                },
                               ),
                             ],
                           ),
