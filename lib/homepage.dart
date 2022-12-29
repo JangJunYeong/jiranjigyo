@@ -45,15 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(
-                    width:10,
+                    width: 10,
                   ),
                   const SizedBox(
-                      height:70,
-                      width:70,
-                      child:CircleAvatar(
+                      height: 70,
+                      width: 70,
+                      child: CircleAvatar(
                         backgroundImage: AssetImage("profile.png"),
-                      )
-                  ),
+                      )),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 100,
@@ -293,7 +292,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: lightColorScheme.secondaryContainer, // 배경 색
                   border:
                       Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(8.0)) // 곡률
+
                   ),
               child: Column(
                 children: <Widget>[
