@@ -50,12 +50,18 @@ class MyComplaint extends StatefulWidget {
 }
 
 class _MyComplaintState extends State<MyComplaint> {
+  List postList = [];
   int index = 2;
   int? checkedIndex;
   final textController = TextEditingController();
   @override
   void initState() {
     super.initState();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    postList = [];
   }
 
   void refresh() {
@@ -103,6 +109,8 @@ class _MyComplaintState extends State<MyComplaint> {
                         onPressed: () {
                           setState(() {
                             checkedIndex = index;
+                            postList = [];
+                            postList.add((contents[index]));
                           });
                         },
                       );
@@ -131,6 +139,8 @@ class _MyComplaintState extends State<MyComplaint> {
                     minimumSize: const Size(150, 50),
                     textStyle: const TextStyle(fontSize: 18)),
                 onPressed: () {
+                  postList.add(textController.text);
+                  print(postList);
                   showDialog(
                     context: context,
                     barrierDismissible: false,

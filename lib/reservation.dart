@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'theme.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 import 'detail.dart';
