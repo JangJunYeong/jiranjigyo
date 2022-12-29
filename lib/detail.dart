@@ -36,6 +36,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBarWidget(AppBar(), "예약 세부사항"),
       bottomNavigationBar: const BottomTabBar(0),
       body: Padding(
@@ -60,6 +61,13 @@ class _DetailPageState extends State<DetailPage> {
                     icon: Icon(Icons.add),
                     onPressed: () {
                       controllers.add(TextEditingController());
+                      setState(() {});
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: () {
+                      controllers.removeLast();
                       setState(() {});
                     },
                   ),
@@ -89,6 +97,71 @@ class _DetailPageState extends State<DetailPage> {
                         );
                       }).toList(),
                     ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 6,
+                          shadowColor: const Color.fromARGB(255, 255, 255, 255),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          minimumSize: const Size(150, 50),
+                          textStyle: const TextStyle(fontSize: 18)),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text(
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                  '주의사항'),
+                              content: const Text(
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 90, 89, 89),
+                                      fontSize: 15),
+                                  '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, 'OK');
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Icon(Icons.check),
+                                          content: const Text(
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                              '예약이 완료되었습니다.'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context, 'OK');
+                                              },
+                                              child: const Text(
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                  'OK'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: const Text(
+                                      style: TextStyle(color: Colors.black),
+                                      'OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('확인',
+                          style: TextStyle(color: Colors.black)),
+                    ),
                   ],
                 ),
               ),
@@ -100,22 +173,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 }
 
-class MyTextInput extends StatefulWidget {
-  const MyTextInput({super.key, required this.notifyParent});
-  final Function() notifyParent;
 
-  @override
-  MyTextInputState createState() => MyTextInputState();
-}
-
-class MyTextInputState extends State<MyTextInput> {
-  final myTitleController = TextEditingController();
-  final myTimeController = TextEditingController();
-  final myFileNameController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
 
         /*showDialog(
                     context: context,
@@ -166,6 +224,4 @@ class MyTextInputState extends State<MyTextInput> {
                       );
                     },
                   );*/
-        );
-  }
-}
+        
