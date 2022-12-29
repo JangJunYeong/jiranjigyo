@@ -3,7 +3,7 @@ import 'package:jiranjigyo/QRcertify.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
-import 'widget/loginCard.dart';
+import 'widget/logincard.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'reservation.dart';

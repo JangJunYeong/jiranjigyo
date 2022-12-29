@@ -106,7 +106,7 @@ class _DetailPageState extends State<DetailPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           elevation: 4,
-                          shadowColor: Color.fromARGB(255, 183, 179, 179),
+                          shadowColor: const Color.fromARGB(255, 183, 179, 179),
                           backgroundColor:
                               Theme.of(context).colorScheme.secondaryContainer,
                           minimumSize: const Size(150, 50),
