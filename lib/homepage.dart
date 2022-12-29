@@ -31,13 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          ListView(scrollDirection: Axis.vertical, shrinkWrap: true, children: [
-        Column(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(
-              height: 10,
+              height: 50,
             ),
 
             const LoginCard(),
@@ -282,8 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 30,
             ),
           ],
-        ),
-      ]),
+      ),
     );
   }
 }
