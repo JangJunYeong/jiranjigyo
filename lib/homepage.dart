@@ -127,42 +127,28 @@ class _MyHomePageState extends State<MyHomePage> {
                           ListTile(
                             title: const Text(
                               style: TextStyle(fontSize: 20),
-                              '12월28일(목)(day)',
+                              '12월28일(목)',
                             ),
-                            subtitle: Column(
+                            subtitle: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(style: TextStyle(fontSize: 17), ''),
+                              children: [
+                                const Text(
+                                    style: TextStyle(fontSize: 17),
+                                    '14:00~16:00'),
+                                ElevatedButton(
+                                  child: const Text(
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 56, 55, 55)),
+                                      '인증하기'),
+                                  onPressed: () {/* ... */},
+                                ),
                               ],
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              ElevatedButton(
-                                child: const Text(
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 56, 55, 55)),
-                                    '예약 수정'),
-                                onPressed: () {/* ... */},
-                              ),
-                              ElevatedButton(
-                                child: const Text(
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 56, 55, 55)),
-                                    '예약 취소'),
-                                onPressed: () {/* ... */},
-                              ),
-                            ],
-                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 150,
-                    child: Column(
-                      children: getContent(),
                     ),
                   ),
                   const SizedBox(
