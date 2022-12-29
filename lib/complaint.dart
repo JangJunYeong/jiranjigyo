@@ -44,7 +44,10 @@ class ComplaintButton extends StatelessWidget {
 }
 
 class MyComplaint extends StatefulWidget {
-  const MyComplaint({Key? key}) : super(key: key);
+  const MyComplaint(this.id, this.name, {Key? key}) : super(key: key);
+
+  final String id;
+  final String name;
 
   @override
   State<MyComplaint> createState() => _MyComplaintState();
@@ -174,7 +177,7 @@ class _MyComplaintState extends State<MyComplaint> {
             ],
           ),
         ),
-        bottomNavigationBar: const BottomTabBar(2),
+        bottomNavigationBar: BottomTabBar(2, widget.id, widget.name),
       ),
     );
   }

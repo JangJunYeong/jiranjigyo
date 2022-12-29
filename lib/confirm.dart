@@ -6,7 +6,10 @@ import 'package:jiranjigyo/widget/appbar.dart';
 int index = 0;
 
 class ConfirmPage extends StatelessWidget {
-  const ConfirmPage({super.key});
+  const ConfirmPage(this.id, this.name, {super.key});
+
+  final String id;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class ConfirmPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomTabBar(1),
+      bottomNavigationBar: BottomTabBar(1, id, name),
     );
   }
 }
@@ -66,7 +69,7 @@ class _DetailCardState extends State<DetailCard> {
           });
         },
         borderRadius: BorderRadius.circular(10.0),
-        child: Container(
+        child: SizedBox(
           width: 370,
           child: Card(
             elevation: 0,
@@ -81,7 +84,7 @@ class _DetailCardState extends State<DetailCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          style: TextStyle(fontSize: 20), '   ' + widget.title),
+                          style: const TextStyle(fontSize: 20), '   ${widget.title}'),
                       IconButton(
                         icon: Icon(opened ? Icons.remove : Icons.add),
                         onPressed: () {
@@ -97,11 +100,11 @@ class _DetailCardState extends State<DetailCard> {
                     height: 5.0,
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       style: TextStyle(fontSize: 20),
                       'time->time',
                     ),
-                    leading: CircleAvatar(
+                    leading: const CircleAvatar(
                       backgroundImage: AssetImage("assets/table.png"),
                       maxRadius: 25,
                     ),
@@ -109,17 +112,17 @@ class _DetailCardState extends State<DetailCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                            style: TextStyle(fontSize: 17),
-                            '예약자 이름:' + widget.student.name),
+                            style: const TextStyle(fontSize: 17),
+                            '예약자 이름:${widget.student.name}'),
                         if (opened)
                           Column(
                             children: [
                               Text(
-                                  style: TextStyle(fontSize: 17),
+                                  style: const TextStyle(fontSize: 17),
                                   '테이블: ${widget.tableIndex}'),
                               Text(
-                                  style: TextStyle(fontSize: 17),
-                                  '조원:' + widget.students.toString()),
+                                  style: const TextStyle(fontSize: 17),
+                                  '조원:${widget.students}'),
                             ],
                           ),
                       ],
@@ -146,10 +149,10 @@ class _DetailCardState extends State<DetailCard> {
                               barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text('팝업 메시지'),
+                                  title: const Text('팝업 메시지'),
                                   content: SingleChildScrollView(
                                     child: ListBody(
-                                      children: <Widget>[
+                                      children: const <Widget>[
                                         Text('Alert Dialog 테스트'),
                                         Text('ok 버튼 클릭하세요'),
                                       ],
@@ -157,13 +160,13 @@ class _DetailCardState extends State<DetailCard> {
                                   ),
                                   actions: <Widget>[
                                     ElevatedButton(
-                                      child: Text('ok'),
+                                      child: const Text('ok'),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
                                     ),
                                     ElevatedButton(
-                                      child: Text('cancel'),
+                                      child: const Text('cancel'),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },

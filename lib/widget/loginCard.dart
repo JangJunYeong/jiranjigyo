@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../login.dart';
 
+String? userName;
+String? userNumber;
+
 class LoginCard extends StatefulWidget {
   const LoginCard({Key? key}) : super(key: key);
 
@@ -10,7 +13,6 @@ class LoginCard extends StatefulWidget {
 }
 
 class _LoginCardState extends State<LoginCard> {
-  String? userName;
 
   @override
   void initState() {
@@ -58,8 +60,10 @@ class _LoginCardState extends State<LoginCard> {
                 backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
             child: const Icon(Icons.login),
             onPressed: () async {
-              userName = await Navigator.push(context,
+              List userData = await Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LoginPage()));
+              userName = userData[0];
+              userNumber = userData[1];
               setState(() {});
             },
           ),
@@ -71,4 +75,11 @@ class _LoginCardState extends State<LoginCard> {
       ),
     );
   }
+}
+
+getName() {
+  return userName;
+}
+getNumber() {
+  return userNumber;
 }

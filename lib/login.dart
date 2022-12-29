@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           _usernameController.clear();
                           _passwordController.clear();
-                          Navigator.pop(context, json['name']);
+                          Navigator.pop(context, [json['name'], json['id']]);
                         },
                         child: const Text('로그인'),
                       ),

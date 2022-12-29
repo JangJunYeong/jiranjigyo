@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
@@ -29,7 +28,10 @@ final List<String> _filters = <String>[];
 int count = 0;
 
 class ReservationPage extends StatefulWidget{
-  const ReservationPage({Key? key}) : super(key: key);
+  const ReservationPage(this.id, this.name, {Key? key}) : super(key: key);
+
+  final String id;
+  final String name;
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -39,15 +41,17 @@ class _ReservationPageState extends State<ReservationPage> {
   int index = 0;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   @override
   void dispose() {
     _filters.clear();
     count = 0;
     super.dispose();
   }
+
   void refresh() {
     setState(() {});
   }
@@ -59,15 +63,15 @@ class _ReservationPageState extends State<ReservationPage> {
       child: Scaffold(
         appBar: AppBarWidget(AppBar(), "예약", hasTab: true),
         body: TabBarView(
-          children: getPage(context),
+          children: getPage(context, widget.id, widget.name),
         ),
-        bottomNavigationBar: const BottomTabBar(0),
+        bottomNavigationBar: BottomTabBar(0, widget.id, widget.name),
       ),
     );
   }
 }
 
-List<Widget> getPage(BuildContext context) {
+List<Widget> getPage(BuildContext context, String id, String name) {
   List<Widget> tiles = [];
   int i = 0;
 
@@ -76,14 +80,14 @@ List<Widget> getPage(BuildContext context) {
     tiles.add(Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: getTable(i-1, context),
+          children: getTable(context, i-1, id, name),
         )
     ));
   }
   return tiles;
 }
 
-List<Widget> getTable(int x, BuildContext context) {
+List<Widget> getTable(BuildContext context, int x, String id, String name) {
   List<Widget> tiles = [];
 
   final int nowday = x;
@@ -94,12 +98,8 @@ List<Widget> getTable(int x, BuildContext context) {
         Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-              border: Border.all(
-                  width: 1,
-                  color: Colors.black
-              )
-          ),
+          decoration:
+              BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
           height: 80,
           width: 80,
           child: Text(element),
@@ -120,11 +120,7 @@ List<Widget> getTable(int x, BuildContext context) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.cyanAccent,
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+            border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 중"),
@@ -134,11 +130,7 @@ List<Widget> getTable(int x, BuildContext context) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.grey,
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+            border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("시용 불가"),
@@ -146,12 +138,8 @@ List<Widget> getTable(int x, BuildContext context) {
       Container(
         height: 20,
         width: 20,
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+        decoration:
+            BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 가능"),
@@ -163,14 +151,12 @@ List<Widget> getTable(int x, BuildContext context) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const DetailPage()));
+                builder: (context) => DetailPage(id, name)));
       },
-      child: const Text("다음으로",
-        style: TextStyle(
-            color: Colors.black
-        ),
-      )
-  ));
+      child: const Text(
+        "다음으로",
+        style: TextStyle(color: Colors.black),
+      )));
 
   return tiles;
 }
@@ -186,11 +172,11 @@ class GetTime extends StatefulWidget {
 }
 
 class _GetTimeState extends State<GetTime> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   void refresh() {
     setState(() {});
   }
@@ -210,17 +196,17 @@ class _GetTimeState extends State<GetTime> {
                     label: Text(select),
                     shape: const ContinuousRectangleBorder(
                         side: BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
-                        )
-                    ),
+                      color: Colors.black,
+                      width: 1.0,
+                    )),
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,
-                    selected: _filters.contains("${widget.nowDay},${widget.nowTable},$select"),
-                    onSelected: (bool value){
+                    selected: _filters.contains(
+                        "${widget.nowDay},${widget.nowTable},$select"),
+                    onSelected: (bool value) {
                       bool sametimecheck = false;
-                      if (_filters.isNotEmpty){
+                      if (_filters.isNotEmpty) {
                         for (var element in _filters) {
                           List timecheck = element.split(",");
                           if (timecheck[2] == select) sametimecheck = true;
@@ -228,33 +214,35 @@ class _GetTimeState extends State<GetTime> {
                       }
                       setState(() {
                         if (sametimecheck && value) {
-
                         } else {
                           if (count >= 4) {
                             if (!value) {
                               count--;
                               _filters.removeWhere((String name) {
-                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                                return name ==
+                                    "${widget.nowDay},${widget.nowTable},$select";
                               });
                             }
                           } else {
                             if (value) {
-                              if (!_filters.contains("${widget.nowDay},${widget.nowTable},$select")) {
-                                _filters.add("${widget.nowDay},${widget.nowTable},$select");
+                              if (!_filters.contains(
+                                  "${widget.nowDay},${widget.nowTable},$select")) {
+                                _filters.add(
+                                    "${widget.nowDay},${widget.nowTable},$select");
                                 count++;
                               }
                             } else {
                               count--;
                               _filters.removeWhere((String name) {
-                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                                return name ==
+                                    "${widget.nowDay},${widget.nowTable},$select";
                               });
                             }
                           }
                         }
                       });
                     });
-              }).toList()
-          ),
+              }).toList()),
         ),
       ],
     );
