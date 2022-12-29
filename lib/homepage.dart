@@ -147,12 +147,32 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Color.fromARGB(255, 56, 55, 55)),
                                       '인증하기'),
                                   onPressed: () {
-                                    // QRcertify 페이지로 이동
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (
-                                                context) => const QRcertifyPage()));
+                                    if (getName() == null) {
+                                      showDialog(
+                                          context: context,
+                                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text('로그인을 해주세요'),
+                                              actions: <Widget>[
+                                                ElevatedButton(
+                                                  child: const Text('ok'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    } else {
+                                      // QRcertify 페이지로 이동
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (
+                                                  context) => const QRcertifyPage()));
+                                    }
                                   },
                                 ),
                               ],

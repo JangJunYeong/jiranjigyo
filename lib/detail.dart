@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
-import 'package:jiranjigyo/model/student.dart';
 
-var member = 0;
+var member = 1;
 var stepList = List.empty(growable: true);
-var mancount = 0;
 
 final List<String> _filters = <String>[];
 
@@ -29,7 +27,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void dispose() {
     _filters.clear();
-    mancount = 0;
+    member = 0;
     super.dispose();
   }
 
@@ -64,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (member == 6) controllers.add(TextEditingController());
+                      if (member < 5) controllers.add(TextEditingController());
                       member++;
                       setState(() {});
                     },
@@ -109,7 +107,7 @@ class _DetailPageState extends State<DetailPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           elevation: 4,
-                          shadowColor: Color.fromARGB(255, 183, 179, 179),
+                          shadowColor: const Color.fromARGB(255, 183, 179, 179),
                           backgroundColor:
                               Theme.of(context).colorScheme.secondaryContainer,
                           minimumSize: const Size(150, 50),
