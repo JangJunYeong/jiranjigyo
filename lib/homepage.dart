@@ -112,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.875,
+
               height: 400,
               padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               alignment: Alignment.topCenter,
