@@ -83,8 +83,12 @@ class _DetailCardState extends State<DetailCard> {
                       Text(
                           style: TextStyle(fontSize: 20), '   ' + widget.title),
                       IconButton(
-                        icon: Icon(Icons.add),
-                        onPressed: () {},
+                        icon: Icon(opened ? Icons.remove : Icons.add),
+                        onPressed: () {
+                          setState(() {
+                            opened = !opened;
+                          });
+                        },
                       ),
                     ],
                   ),
