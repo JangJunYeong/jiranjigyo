@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const ConfirmPage()),
+                                    builder: (context) => ConfirmPage(getNumber(), getName())),
                               )
                             },
                         child: const Text("더보기"))
@@ -209,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ConfirmPage()));
+                          builder: (context) => ConfirmPage(getNumber(), getName())));
                 },
                 child: const Text(
                   "예약 확인",
@@ -240,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyComplaint()));
+                          builder: (context) => MyComplaint(getNumber(), getName())));
                 },
                 child: const Text(
                   "민원",
@@ -266,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const CheckOutPage()));
+                          builder: (context) => CheckOutPage(getNumber(), getName())));
                 },
                 child: const Text(
                   "퇴실",

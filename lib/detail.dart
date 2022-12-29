@@ -9,7 +9,10 @@ var mancount = 0;
 final List<String> _filters = <String>[];
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  const DetailPage(this.id, this.name, {Key? key}) : super(key: key);
+
+  final String id;
+  final String name;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -38,7 +41,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarWidget(AppBar(), "예약 세부사항"),
-      bottomNavigationBar: const BottomTabBar(0),
+      bottomNavigationBar: BottomTabBar(0, widget.id, widget.name),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
         child: Container(
@@ -56,16 +59,16 @@ class _DetailPageState extends State<DetailPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(style: TextStyle(fontSize: 25), '  예약자 정보'),
+                  const Text(style: TextStyle(fontSize: 25), '  예약자 정보'),
                   IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () {
                       controllers.add(TextEditingController());
                       setState(() {});
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.remove),
+                    icon: const Icon(Icons.remove),
                     onPressed: () {
                       controllers.removeLast();
                       setState(() {});
@@ -78,13 +81,13 @@ class _DetailPageState extends State<DetailPage> {
                 height: 5.0,
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                     style: TextStyle(fontSize: 17), '이름: 김승민\n학번:201801992'),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     ),
                     Column(
                       children: controllers.map((controller) {

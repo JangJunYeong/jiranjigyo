@@ -39,7 +39,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         } else {
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ReservationPage()));
+              MaterialPageRoute(builder: (context) => ReservationPage(widget.id, widget.name)));
         }
         break;
       case 1:
@@ -48,7 +48,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         } else {
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ConfirmPage()));
+              MaterialPageRoute(builder: (context) => ConfirmPage(widget.id, widget.name)));
         }
         break;
       case 2:
@@ -57,7 +57,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         } else {
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MyComplaint()));
+              MaterialPageRoute(builder: (context) => MyComplaint(widget.id, widget.name)));
         }
         break;
       case 3:
@@ -66,7 +66,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         } else {
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const CheckOutPage()));
+              MaterialPageRoute(builder: (context) => CheckOutPage(widget.id, widget.name)));
         }
         break;
     }

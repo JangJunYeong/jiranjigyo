@@ -109,7 +109,7 @@ List<Widget> getTable(BuildContext context, int x, String id, String name) {
     ));
   }
   tiles.add(const SizedBox(height: 5.0));
-  tiles.add(Text('*하루 최대 이용 시간은 4시간 입니다./$id$name/'));
+  tiles.add(const Text('*하루 최대 이용 시간은 4시간 입니다.'));
   tiles.add(const Text('*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.', textAlign: TextAlign.center,));
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(Row(
@@ -151,7 +151,7 @@ List<Widget> getTable(BuildContext context, int x, String id, String name) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const DetailPage()));
+                builder: (context) => DetailPage(id, name)));
       },
       child: const Text(
         "다음으로",
