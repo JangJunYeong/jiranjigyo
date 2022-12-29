@@ -47,7 +47,7 @@ class _DetailPageState extends State<DetailPage> {
         child: Container(
           width: 370,
           decoration: BoxDecoration(
-              color: Colors.grey, // 배경 색
+              color: Theme.of(context).colorScheme.secondaryContainer, // 배경 색
               border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
               borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
               ),
@@ -87,7 +87,7 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      padding: EdgeInsets.all(10),
                     ),
                     Column(
                       children: controllers.map((controller) {
@@ -100,10 +100,13 @@ class _DetailPageState extends State<DetailPage> {
                         );
                       }).toList(),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.all(10),
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          elevation: 6,
-                          shadowColor: const Color.fromARGB(255, 255, 255, 255),
+                          elevation: 4,
+                          shadowColor: const Color.fromARGB(255, 183, 179, 179),
                           backgroundColor:
                               Theme.of(context).colorScheme.secondaryContainer,
                           minimumSize: const Size(150, 50),
@@ -137,11 +140,13 @@ class _DetailPageState extends State<DetailPage> {
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20),
-                                              '예약이 완료되었습니다.'),
+                                              '  예약이 완료되었습니다.'),
                                           actions: <Widget>[
                                             TextButton(
                                               onPressed: () {
                                                 Navigator.pop(context, 'OK');
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
                                               },
                                               child: const Text(
                                                   style: TextStyle(
@@ -157,6 +162,14 @@ class _DetailPageState extends State<DetailPage> {
                                       style: TextStyle(color: Colors.black),
                                       'OK'),
                                 ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, 'CANCLE');
+                                  },
+                                  child: const Text(
+                                      style: TextStyle(color: Colors.black),
+                                      'CANCLE'),
+                                ),
                               ],
                             );
                           },
@@ -164,6 +177,9 @@ class _DetailPageState extends State<DetailPage> {
                       },
                       child: const Text('확인',
                           style: TextStyle(color: Colors.black)),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(5),
                     ),
                   ],
                 ),

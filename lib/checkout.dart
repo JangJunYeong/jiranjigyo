@@ -3,9 +3,6 @@ import 'package:jiranjigyo/widget/camera.dart';
 import './widget/bottomtabbar.dart';
 import './widget/appbar.dart';
 
-import 'confirm.dart';
-import 'widget/bottomtabbar.dart';
-
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage(this.id, this.name, {Key? key}) : super(key: key);
 

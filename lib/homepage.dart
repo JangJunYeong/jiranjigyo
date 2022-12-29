@@ -3,7 +3,7 @@ import 'package:jiranjigyo/QRcertify.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
-import 'widget/loginCard.dart';
+import 'widget/logincard.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'reservation.dart';
@@ -184,10 +184,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: lightColorScheme.primaryContainer,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ReservationPage(getNumber(), getName())));
+                  if (getName() == null) {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('로그인을 해주세요'),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                child: const Text('ok'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                    );
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ReservationPage(getNumber(), getName())));
+                  }
                 },
                 child: const Text(
                   "예약",
@@ -210,10 +230,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: lightColorScheme.primaryContainer,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ConfirmPage(getNumber(), getName())));
+                  if (getName() == null) {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('로그인을 해주세요'),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                child: const Text('ok'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                    );
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ConfirmPage(getNumber(), getName())));
+                  }
                 },
                 child: const Text(
                   "예약 확인",
@@ -241,10 +281,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: lightColorScheme.primaryContainer,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyComplaint(getNumber(), getName())));
+                  if (getName() == null) {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('로그인을 해주세요'),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                child: const Text('ok'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                    );
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyComplaint(getNumber(), getName())));
+                  }
                 },
                 child: const Text(
                   "민원",
@@ -267,10 +327,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: lightColorScheme.primaryContainer,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CheckOutPage(getNumber(), getName())));
+                  if (getName() == null) {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('로그인을 해주세요'),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                child: const Text('ok'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                    );
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CheckOutPage(getNumber(), getName())));
+                  }
                 },
                 child: const Text(
                   "퇴실",
