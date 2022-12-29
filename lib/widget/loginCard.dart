@@ -49,17 +49,17 @@ class _LoginCardState extends State<LoginCard> {
             height: 100,
             padding: const EdgeInsets.all(15.0),
             alignment: Alignment.centerLeft,
-            child: Text((userName ?? '로그인 전${userName == null ? '' : '님'}')),
+            child: Text(
+                style: TextStyle(fontSize: 20),
+                (userName ?? '로그인 전${userName == null ? '' : '님'}')),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
             child: const Icon(Icons.login),
             onPressed: () async {
-              userName = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const LoginPage()));
+              userName = await Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
               setState(() {});
             },
           ),
