@@ -28,7 +28,7 @@ Set<String> tableMap = {
 final List<String> _filters = <String>[];
 int count = 0;
 
-class ReservationPage extends StatefulWidget{
+class ReservationPage extends StatefulWidget {
   const ReservationPage({Key? key}) : super(key: key);
 
   @override
@@ -39,15 +39,17 @@ class _ReservationPageState extends State<ReservationPage> {
   int index = 0;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   @override
   void dispose() {
     _filters.clear();
     count = 0;
     super.dispose();
   }
+
   void refresh() {
     setState(() {});
   }
@@ -75,10 +77,9 @@ List<Widget> getPage(BuildContext context) {
     i++;
     tiles.add(Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: getTable(i-1, context),
-        )
-    ));
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: getTable(i - 1, context),
+    )));
   }
   return tiles;
 }
@@ -94,12 +95,8 @@ List<Widget> getTable(int x, BuildContext context) {
         Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-              border: Border.all(
-                  width: 1,
-                  color: Colors.black
-              )
-          ),
+          decoration:
+              BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
           height: 80,
           width: 80,
           child: Text(element),
@@ -110,7 +107,10 @@ List<Widget> getTable(int x, BuildContext context) {
   }
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(const Text('*하루 최대 이용 시간은 4시간 입니다.'));
-  tiles.add(const Text('*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.', textAlign: TextAlign.center,));
+  tiles.add(const Text(
+    '*사용 완료 시 예약이 비어 있을 경우\n1시간 연장이 가능 합니다.',
+    textAlign: TextAlign.center,
+  ));
   tiles.add(const SizedBox(height: 5.0));
   tiles.add(Row(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -120,11 +120,7 @@ List<Widget> getTable(int x, BuildContext context) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.cyanAccent,
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+            border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 중"),
@@ -134,11 +130,7 @@ List<Widget> getTable(int x, BuildContext context) {
         width: 20,
         decoration: BoxDecoration(
             color: Colors.grey,
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+            border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("시용 불가"),
@@ -146,12 +138,8 @@ List<Widget> getTable(int x, BuildContext context) {
       Container(
         height: 20,
         width: 20,
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1,
-                color: Colors.black
-            )
-        ),
+        decoration:
+            BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 가능"),
@@ -159,21 +147,14 @@ List<Widget> getTable(int x, BuildContext context) {
   ));
   tiles.add(const SizedBox(height: 10.0));
   tiles.add(ElevatedButton(
-      onPressed: (){
-        FirebaseFirestore.instance.collection('reservations').add({
-          'name':
-        });
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const DetailPage()));
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DetailPage()));
       },
-      child: const Text("다음으로",
-        style: TextStyle(
-            color: Colors.black
-        ),
-      )
-  ));
+      child: const Text(
+        "다음으로",
+        style: TextStyle(color: Colors.black),
+      )));
 
   return tiles;
 }
@@ -189,11 +170,11 @@ class GetTime extends StatefulWidget {
 }
 
 class _GetTimeState extends State<GetTime> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   void refresh() {
     setState(() {});
   }
@@ -213,17 +194,17 @@ class _GetTimeState extends State<GetTime> {
                     label: Text(select),
                     shape: const ContinuousRectangleBorder(
                         side: BorderSide(
-                          color: Colors.black,
-                          width: 1.0,
-                        )
-                    ),
+                      color: Colors.black,
+                      width: 1.0,
+                    )),
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,
-                    selected: _filters.contains("${widget.nowDay},${widget.nowTable},$select"),
-                    onSelected: (bool value){
+                    selected: _filters.contains(
+                        "${widget.nowDay},${widget.nowTable},$select"),
+                    onSelected: (bool value) {
                       bool sametimecheck = false;
-                      if (_filters.isNotEmpty){
+                      if (_filters.isNotEmpty) {
                         for (var element in _filters) {
                           List timecheck = element.split(",");
                           if (timecheck[2] == select) sametimecheck = true;
@@ -231,33 +212,35 @@ class _GetTimeState extends State<GetTime> {
                       }
                       setState(() {
                         if (sametimecheck && value) {
-
                         } else {
                           if (count >= 4) {
                             if (!value) {
                               count--;
                               _filters.removeWhere((String name) {
-                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                                return name ==
+                                    "${widget.nowDay},${widget.nowTable},$select";
                               });
                             }
                           } else {
                             if (value) {
-                              if (!_filters.contains("${widget.nowDay},${widget.nowTable},$select")) {
-                                _filters.add("${widget.nowDay},${widget.nowTable},$select");
+                              if (!_filters.contains(
+                                  "${widget.nowDay},${widget.nowTable},$select")) {
+                                _filters.add(
+                                    "${widget.nowDay},${widget.nowTable},$select");
                                 count++;
                               }
                             } else {
                               count--;
                               _filters.removeWhere((String name) {
-                                return name == "${widget.nowDay},${widget.nowTable},$select";
+                                return name ==
+                                    "${widget.nowDay},${widget.nowTable},$select";
                               });
                             }
                           }
                         }
                       });
                     });
-              }).toList()
-          ),
+              }).toList()),
         ),
       ],
     );
