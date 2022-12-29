@@ -3,6 +3,7 @@ import './widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
 import 'package:jiranjigyo/model/student.dart';
 
+var member = 0;
 var stepList = List.empty(growable: true);
 var mancount = 0;
 
@@ -63,7 +64,8 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      controllers.add(TextEditingController());
+                      if (member == 6) controllers.add(TextEditingController());
+                      member++;
                       setState(() {});
                     },
                   ),
@@ -71,6 +73,7 @@ class _DetailPageState extends State<DetailPage> {
                     icon: const Icon(Icons.remove),
                     onPressed: () {
                       controllers.removeLast();
+                      member--;
                       setState(() {});
                     },
                   ),
@@ -106,7 +109,7 @@ class _DetailPageState extends State<DetailPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           elevation: 4,
-                          shadowColor: const Color.fromARGB(255, 183, 179, 179),
+                          shadowColor: Color.fromARGB(255, 183, 179, 179),
                           backgroundColor:
                               Theme.of(context).colorScheme.secondaryContainer,
                           minimumSize: const Size(150, 50),

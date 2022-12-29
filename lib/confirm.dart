@@ -84,7 +84,8 @@ class _DetailCardState extends State<DetailCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          style: const TextStyle(fontSize: 20), '   ${widget.title}'),
+                          style: const TextStyle(fontSize: 20),
+                          '   ${widget.title}'),
                       IconButton(
                         icon: Icon(opened ? Icons.remove : Icons.add),
                         onPressed: () {
@@ -139,44 +140,42 @@ class _DetailCardState extends State<DetailCard> {
                         onPressed: () {/* ... */},
                       ),
                       ElevatedButton(
-                        child: const Text(
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 56, 55, 55)),
-                            '예약 취소'),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('팝업 메시지'),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: const <Widget>[
-                                        Text('Alert Dialog 테스트'),
-                                        Text('ok 버튼 클릭하세요'),
-                                      ],
+                          child: const Text(
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 56, 55, 55)),
+                              '예약 취소'),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('팝업 메시지'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: const <Widget>[
+                                          Text('Alert Dialog 테스트'),
+                                          Text('ok 버튼 클릭하세요'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  actions: <Widget>[
-                                    ElevatedButton(
-                                      child: const Text('ok'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    ElevatedButton(
-                                      child: const Text('cancel'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              }
-                          );
-                        }
-                        ),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        child: const Text('ok'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      ElevatedButton(
+                                        child: const Text('cancel'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          }),
                       ElevatedButton(
                         child: const Text(
                             style: TextStyle(
@@ -184,53 +183,49 @@ class _DetailCardState extends State<DetailCard> {
                             '일정 공유'),
                         onPressed: () {
                           showDialog(
-                            context: context,
-                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('팝업 메시지'),
-                                content: SingleChildScrollView(
-                                  child: ListBody(
-                                    children: <Widget>[
-                                      Text('Alert Dialog 테스트'),
-                                      Text('ok 버튼 클릭하세요'),
-                                    ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        child: Icon(Icons.edit),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                              ),
+                              context: context,
+                              barrierDismissible: true, // 바깥 영역 터치시 닫을지 여부
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  actions: <Widget>[
+                                    SizedBox(height: 15),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
                                         ElevatedButton(
                                           child: Icon(Icons.edit),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
+                                        Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: Icon(Icons.edit),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
+                                        Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: Icon(Icons.edit),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                    ],
-                                  ),
-
-                                ],
-                              );
-                            }
-                        );},
+                                        Padding(padding: EdgeInsets.all(3)),
+                                        ElevatedButton(
+                                          child: Icon(Icons.edit),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
                       ),
                     ],
                   ),
