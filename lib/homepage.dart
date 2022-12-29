@@ -62,16 +62,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    "대충 공지",
+                    "공지사항",
                     style: TextStyle(color: Colors.white),
                   ),
-                  IconButton(onPressed: () => {
+                  IconButton(
+
+                  onPressed: () => {
                     launchUrl(
                       Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
                     )
-                  }, icon: const Icon(Icons.add))
+                  },
+                      icon: const Icon(Icons.add))
                 ],
               )),
           const Divider(
