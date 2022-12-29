@@ -70,7 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       "대충 공지",
                       style: TextStyle(color: Colors.white),
                     ),
-                    IconButton(onPressed: () => {
+                    IconButton(
+                        padding: new EdgeInsets.all(0.0),
+                        onPressed: () => {
                       launchUrl(
                         Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
                       )
