@@ -19,6 +19,8 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void initState(){
@@ -30,8 +32,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _usernameController = TextEditingController();
-    final _passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBarWidget(AppBar(), "로그인"),
       body: SafeArea(
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: Column(
                 children: [
-                  TextField(
+                  TextFormField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       filled: true,
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 5.0),
-                  TextField(
+                  TextFormField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
                       filled: true,
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                           minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
                           textStyle: const TextStyle(fontSize: 20),
                           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                            
+
     ),
                         onPressed: () async {
                           UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -97,6 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                             password: _passwordController.text,
                           );
 
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(userCredential.user == null ? '로그인 실패' : '로그인 성공')),
+                          );
                           // FirebaseFirestore.instance.collection('users').add({
                           //   'name': userCredential.user!.displayName,
                           //   'email': _usernameController.text,
