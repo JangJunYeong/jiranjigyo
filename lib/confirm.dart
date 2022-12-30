@@ -20,22 +20,22 @@ class ConfirmPage extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         alignment: Alignment.topCenter,
         child: FutureBuilder<DocumentSnapshot>(
-          future: FirebaseFirestore.instance
-              .collection('reservations')
-              .doc('za51kNMu5I05rm2ncfk7').get(),
-          builder: (context, snapshot) {
-            // alpak@o.cnu.ac.kr
-            if (snapshot.data?.data() == null) return Container();
-            var json = snapshot.data!.data()! as Map<String, dynamic>;
+            future: FirebaseFirestore.instance
+                .collection('reservations')
+                .doc('za51kNMu5I05rm2ncfk7')
+                .get(),
+            builder: (context, snapshot) {
+              // alpak@o.cnu.ac.kr
+              if (snapshot.data?.data() == null) return Container();
+              var json = snapshot.data!.data()! as Map<String, dynamic>;
 
-            return DetailCard(
-              title: json['day'],
-              student: Student(id: id, name: name),
-              table: json['table'],
-              time: json['time'].join(', '),
-            );
-          }
-        ),
+              return DetailCard(
+                title: json['day'],
+                student: Student(id: id, name: name),
+                table: json['table'],
+                time: json['time'].join(', '),
+              );
+            }),
       ),
       bottomNavigationBar: BottomTabBar(1, id, name),
     );
@@ -127,6 +127,7 @@ class _DetailCardState extends State<DetailCard> {
                             '예약자 이름:${widget.student.name}'),
                         if (opened)
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                   style: const TextStyle(fontSize: 17),
@@ -245,7 +246,8 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -256,7 +258,8 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -267,7 +270,8 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage:
