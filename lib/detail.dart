@@ -62,10 +62,12 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (member < 5) {
+                      if (member < 6) {
                         controllers.add(TextEditingController());
                         member++;
+                        const SizedBox(height: 5.0);
                       }
+
                       setState(() {});
                     },
                   ),
@@ -117,7 +119,7 @@ class _DetailPageState extends State<DetailPage> {
                           minimumSize: const Size(150, 50),
                           textStyle: const TextStyle(fontSize: 18)),
                       onPressed: () {
-                        if (member == 0){
+                        if (member == 0) {
                           showDialog(
                               context: context,
                               barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
@@ -133,8 +135,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ],
                                 );
-                              }
-                          );
+                              });
                         } else {
                           showDialog(
                             context: context,
@@ -216,56 +217,3 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
-
-
-
-        /*showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text(
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                            '주의사항'),
-                        content: const Text(
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 90, 89, 89),
-                                fontSize: 15),
-                            '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, 'OK');
-                              showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Icon(Icons.check),
-                                    content: const Text(
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 20),
-                                        '예약이 완료되었습니다.'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context, 'OK');
-                                        },
-                                        child: const Text(
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                            'OK'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            child: const Text(
-                                style: TextStyle(color: Colors.black), 'OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );*/
-        
