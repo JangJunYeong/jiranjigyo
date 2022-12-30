@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/model/student.dart';
 import './widget/bottomtabbar.dart';
@@ -15,16 +16,25 @@ class ConfirmPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(AppBar(), "예약확인"),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(18),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: DetailCard(
-            title: '2022.12.28(목)',
-            student: Student(id: '201801992', name: '김승민'),
-            tableIndex: 3,
-            time: DateTime.now(),
-          ),
+        alignment: Alignment.topCenter,
+        child: FutureBuilder<DocumentSnapshot>(
+          future: FirebaseFirestore.instance
+              .collection('reservations')
+              .doc('za51kNMu5I05rm2ncfk7').get(),
+          builder: (context, snapshot) {
+            // alpak@o.cnu.ac.kr
+            if (snapshot.data?.data() == null) return Container();
+            var json = snapshot.data!.data()! as Map<String, dynamic>;
+
+            return DetailCard(
+              title: json['day'],
+              student: Student(id: id, name: name),
+              table: json['table'],
+              time: json['time'].join(', '),
+            );
+          }
         ),
       ),
       bottomNavigationBar: BottomTabBar(1, id, name),
@@ -37,15 +47,15 @@ class DetailCard extends StatefulWidget {
     super.key,
     required this.title,
     required this.student,
-    required this.tableIndex,
+    required this.table,
     required this.time,
     this.students,
   });
 
   final String title;
   final Student student;
-  final int tableIndex;
-  final DateTime time;
+  final String table;
+  final String time;
   final List<Student>? students;
 
   @override
@@ -120,7 +130,7 @@ class _DetailCardState extends State<DetailCard> {
                             children: [
                               Text(
                                   style: const TextStyle(fontSize: 17),
-                                  '테이블: ${widget.tableIndex}'),
+                                  '테이블: ${widget.table}'),
                               Text(
                                   style: const TextStyle(fontSize: 17),
                                   '조원:${widget.students}'),
@@ -220,7 +230,7 @@ class _DetailCardState extends State<DetailCard> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   actions: <Widget>[
-                                    SizedBox(height: 15),
+                                    const SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -235,7 +245,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -246,7 +256,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -257,7 +267,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Padding(padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage:
