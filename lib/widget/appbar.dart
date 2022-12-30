@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jiranjigyo/login.dart';
-import 'package:jiranjigyo/widget/logincard.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppBarWidget(this.appBar, this.pagename, {Key? key, this.hasTab = false})

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jiranjigyo/QRcertify.dart';
 import 'package:jiranjigyo/checkout.dart';
 import 'package:jiranjigyo/confirm.dart';
 import 'theme.dart';
 import 'widget/logincard.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'reservation.dart';
 import 'complaint.dart';
+import './widget/detailcard.dart';
+import './model/student.dart';
 
 var stepList = List.empty(growable: true);
 var index = 1;
@@ -32,383 +34,432 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: [Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              height: 10,
-            ),
-            const LoginCard(),
-            const SizedBox(
-              height: 5,
-            ),
-            const Divider(
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-              thickness: 1.0,
-            ),
-            Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 30,
-                padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                    color: lightColorScheme.primaryContainer, // 배경 색
-                    border:
-                    Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(8.0)) // 곡률
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "대충 공지",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    IconButton(
-                        padding: const EdgeInsets.all(0.0),
-                        onPressed: () => {
-                      launchUrl(
-                        Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
-                      )
-                    }, icon: const Icon(Icons.add))
-                  ],
-                )),
-            const Divider(
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-              thickness: 1.0,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.875,
-              height: 400,
-              padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                  color: lightColorScheme.secondaryContainer, // 배경 색
-                  border:
-                  Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          children: [Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 10,
               ),
-              child: Column(
-                children: <Widget>[
-                  Row(
+              const LoginCard(),
+              const SizedBox(
+                height: 5,
+              ),
+              const Divider(
+                indent: 20,
+                endIndent: 20,
+                color: Colors.black,
+                thickness: 1.0,
+              ),
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 30,
+                  padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                      color: lightColorScheme.primaryContainer, // 배경 색
+                      border:
+                      Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(8.0)) // 곡률
+                  ),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "나의 예약 현황",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 30),
+                        "대충 공지",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      TextButton(
+                      IconButton(
+                          padding: const EdgeInsets.all(0.0),
                           onPressed: () => {
-                            if (getName() == null) {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text('로그인을 해주세요'),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                          child: const Text('ok'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  }
-                              )
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ConfirmPage(getNumber(), getName())),
-                              )
-                            }
-                          },
-                          child: const Text("더보기"))
+                            launchUrl(
+                              Uri.parse('https://computer.cnu.ac.kr/computer/index.do'),
+                            )
+                          }, icon: const Icon(Icons.add))
                     ],
-                  ),
-                  Card(
-                    elevation: 3,
-                    color: Theme.of(context).colorScheme.secondaryContainer,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ListTile(
-                            title: const Text(
-                              style: TextStyle(fontSize: 20),
-                              '12월28일(목)',
-                            ),
-                            subtitle: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                    style: TextStyle(fontSize: 17),
-                                    '14:00~16:00'),
-                                ElevatedButton(
-                                  child: const Text(
-                                      style: TextStyle(
-                                          color: Color.fromARGB(255, 56, 55, 55)),
-                                      '인증하기'),
-                                  onPressed: () {
-                                    if (getName() == null) {
-                                      showDialog(
-                                          context: context,
-                                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: const Text('로그인을 해주세요'),
-                                              actions: <Widget>[
-                                                ElevatedButton(
-                                                  child: const Text('ok'),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                              ],
-                                            );
-                                          }
+                  )),
+              const Divider(
+                indent: 20,
+                endIndent: 20,
+                color: Colors.black,
+                thickness: 1.0,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.875,
+                height: 400,
+                padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                alignment: Alignment.topCenter,
+                decoration: BoxDecoration(
+                    color: lightColorScheme.secondaryContainer, // 배경 색
+                    border:
+                    Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
+                    borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "나의 예약 현황",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 30),
+                        ),
+                        TextButton(
+                            onPressed: () => {
+                              if (getName() == null) {
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('로그인을 해주세요'),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                            child: const Text('ok'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
                                       );
-                                    } else {
-                                      // QRcertify 페이지로 이동
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (
-                                                  context) => const QRcertifyPage()));
                                     }
-                                  },
-                                ),
-                              ],
+                                )
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ConfirmPage(getNumber(), getName())),
+                                )
+                              }
+                            },
+                            child: const Text("더보기"))
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(18),
+                      alignment: Alignment.topCenter,
+                      child: FutureBuilder<QuerySnapshot>(
+                          future: FirebaseFirestore.instance
+                              .collection('reservations').get(),
+                          builder: (context, snapshot) {
+                            if (getName() == null){
+                              return const Text("로그인 전 입니다.");
+                            } else {
+                              var docs = snapshot.data?.docs;
+                              List<Widget> temp = [];
+                              var count = 0;
+
+                              if (docs == null) return Container();
+                              for (var element in docs) {
+                                if (count == 2) break;
+                                count++;
+                                Map<String, dynamic> json = element.data() as Map<String, dynamic> ?? {};
+                                temp.add(DetailCard(
+                                  homepage: true,
+                                  title: json['day'],
+                                  student: Student(id: getNumber(), name: getName()),
+                                  table: json['table'],
+                                  time: json['time'].join(', '),
+                                ));
+                              }
+                              return ListView(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                children: temp,
+                              );
+                            }
+                          }
+                      ),
+                    ),
+                    /*
+                    Card(
+                      elevation: 3,
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: const Text(
+                                style: TextStyle(fontSize: 20),
+                                '12월28일(목)',
+                              ),
+                              subtitle: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                      style: TextStyle(fontSize: 17),
+                                      '14:00~16:00'),
+                                  ElevatedButton(
+                                    child: const Text(
+                                        style: TextStyle(
+                                            color: Color.fromARGB(255, 56, 55, 55)),
+                                        '인증하기'),
+                                    onPressed: () {
+                                      if (getName() == null) {
+                                        showDialog(
+                                            context: context,
+                                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: const Text('로그인을 해주세요'),
+                                                actions: <Widget>[
+                                                  ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                                    child: const Text('ok'),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            }
+                                        );
+                                      } else {
+                                        // QRcertify 페이지로 이동
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (
+                                                    context) => const QRcertifyPage()));
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                    ),*/
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.grey,
+                      elevation: 6,
+                      shape: (RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0))),
+                      minimumSize:
+                      Size(MediaQuery.of(context).size.width * 0.375, 60),
+                      backgroundColor: lightColorScheme.primaryContainer,
+                    ),
+                    onPressed: () {
+                      if (getName() == null) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('로그인을 해주세요'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                    child: const Text('ok'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ReservationPage(getNumber(), getName())));
+                      }
+                    },
+                    child: const Text(
+                      "예약",
+                      style: TextStyle(
+                        fontSize: 25,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.125,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.grey,
+                      elevation: 6,
+                      shape: (RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0))),
+                      minimumSize:
+                      Size(MediaQuery.of(context).size.width * 0.375, 60),
+                      backgroundColor: lightColorScheme.primaryContainer,
+                    ),
+                    onPressed: () {
+                      if (getName() == null) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('로그인을 해주세요'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                    child: const Text('ok'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ConfirmPage(getNumber(), getName())));
+                      }
+                    },
+                    child: const Text(
+                      "예약 확인",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.grey,
-                    elevation: 6,
-                    shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0))),
-                    minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
-                    backgroundColor: lightColorScheme.primaryContainer,
-                  ),
-                  onPressed: () {
-                    if (getName() == null) {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('로그인을 해주세요'),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                  child: const Text('ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          }
-                      );
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReservationPage(getNumber(), getName())));
-                    }
-                  },
-                  child: const Text(
-                    "예약",
-                    style: TextStyle(
-                      fontSize: 25,
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.grey,
+                      elevation: 6,
+                      shape: (RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0))),
+                      minimumSize:
+                      Size(MediaQuery.of(context).size.width * 0.375, 60),
+                      backgroundColor: lightColorScheme.primaryContainer,
+                    ),
+                    onPressed: () {
+                      if (getName() == null) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('로그인을 해주세요'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                    child: const Text('ok'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyComplaint(getNumber(), getName())));
+                      }
+                    },
+                    child: const Text(
+                      "민원",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.125,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.grey,
-                    elevation: 6,
-                    shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0))),
-                    minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
-                    backgroundColor: lightColorScheme.primaryContainer,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.125,
                   ),
-                  onPressed: () {
-                    if (getName() == null) {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('로그인을 해주세요'),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                  child: const Text('ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          }
-                      );
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ConfirmPage(getNumber(), getName())));
-                    }
-                  },
-                  child: const Text(
-                    "예약 확인",
-                    style: TextStyle(
-                      fontSize: 25,
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.grey,
+                      elevation: 6,
+                      shape: (RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0))),
+                      minimumSize:
+                      Size(MediaQuery.of(context).size.width * 0.375, 60),
+                      backgroundColor: lightColorScheme.primaryContainer,
+                    ),
+                    onPressed: () {
+                      if (getName() == null) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('로그인을 해주세요'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
+                                    child: const Text('ok'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckOutPage(getNumber(), getName())));
+                      }
+                    },
+                    child: const Text(
+                      "퇴실",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.grey,
-                    elevation: 6,
-                    shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0))),
-                    minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
-                    backgroundColor: lightColorScheme.primaryContainer,
-                  ),
-                  onPressed: () {
-                    if (getName() == null) {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('로그인을 해주세요'),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                  child: const Text('ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          }
-                      );
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyComplaint(getNumber(), getName())));
-                    }
-                  },
-                  child: const Text(
-                    "민원",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.125,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.grey,
-                    elevation: 6,
-                    shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0))),
-                    minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.375, 60),
-                    backgroundColor: lightColorScheme.primaryContainer,
-                  ),
-                  onPressed: () {
-                    if (getName() == null) {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('로그인을 해주세요'),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                  child: const Text('ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          }
-                      );
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CheckOutPage(getNumber(), getName())));
-                    }
-                  },
-                  child: const Text(
-                    "퇴실",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
           ],
-        ),
-        ],
-      )
+        )
     );
   }
 }
