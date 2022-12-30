@@ -28,6 +28,15 @@ class _LoginCardState extends State<LoginCard> {
     setState(() {});
   }
 
+  setName(String? inp) {
+    userName = inp;
+    refresh();
+  }
+  setNumber(String? inp) {
+    userNumber = inp;
+    refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -58,12 +67,19 @@ class _LoginCardState extends State<LoginCard> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
-            child: const Icon(Icons.login),
+            child: userName != null ? const Icon(Icons.logout) : const Icon(Icons.login),
             onPressed: () async {
-              List userData = await Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
-              userName = userData[0];
-              userNumber = userData[1];
+              if (userName != null) {
+                userName = null;
+                userNumber = null;
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+              } else {
+                List userData = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+                userName = userData[0];
+                userNumber = userData[1];
+              }
               setState(() {});
             },
           ),
