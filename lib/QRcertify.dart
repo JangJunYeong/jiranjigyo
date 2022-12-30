@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import './widget/appbar.dart';
+<<<<<<< HEAD
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'dart:async';
+=======
+
+import 'confirm.dart';
+>>>>>>> upstream/main
 
 class QRcertifyPage extends StatefulWidget {
   const QRcertifyPage({Key? key}) : super(key: key);

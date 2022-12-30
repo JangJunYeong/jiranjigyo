@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
 
+UserCredential? userCredential;
+
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key}) : super(key: key);
 
@@ -71,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
                   OverflowBar(
                     alignment: MainAxisAlignment.end,
                     children: <Widget>[
-
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: (RoundedRectangleBorder(
@@ -81,16 +82,15 @@ class _LoginPageState extends State<LoginPage> {
                           minimumSize: Size(MediaQuery.of(context).size.width * 0.875, 60),
                           textStyle: const TextStyle(fontSize: 20),
                           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-
-    ),
+                        ),
                         onPressed: () async {
-                          UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                             email: _usernameController.text,
                             password: _passwordController.text,
                           );
 
-                          if (userCredential.user == null) return;
-                          var data = await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).get();
+                          if (userCredential?.user == null) return;
+                          var data = await FirebaseFirestore.instance.collection('users').doc(userCredential!.user!.uid).get();
                           var json = data.data();
                           if (json == null) return;
 

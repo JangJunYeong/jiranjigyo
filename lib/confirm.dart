@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:jiranjigyo/model/student.dart';
 import './widget/bottomtabbar.dart';
@@ -15,17 +16,26 @@ class ConfirmPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(AppBar(), "예약확인"),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(18),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: DetailCard(
-            title: '2022.12.28(목)',
-            student: Student(id: '201801992', name: '김승민'),
-            tableIndex: 3,
-            time: DateTime.now(),
-          ),
-        ),
+        alignment: Alignment.topCenter,
+        child: FutureBuilder<DocumentSnapshot>(
+            future: FirebaseFirestore.instance
+                .collection('reservations')
+                .doc('za51kNMu5I05rm2ncfk7')
+                .get(),
+            builder: (context, snapshot) {
+              // alpak@o.cnu.ac.kr
+              if (snapshot.data?.data() == null) return Container();
+              var json = snapshot.data!.data()! as Map<String, dynamic>;
+
+              return DetailCard(
+                title: json['day'],
+                student: Student(id: id, name: name),
+                table: json['table'],
+                time: json['time'].join(', '),
+              );
+            }),
       ),
       bottomNavigationBar: BottomTabBar(1, id, name),
     );
@@ -37,15 +47,15 @@ class DetailCard extends StatefulWidget {
     super.key,
     required this.title,
     required this.student,
-    required this.tableIndex,
+    required this.table,
     required this.time,
     this.students,
   });
 
   final String title;
   final Student student;
-  final int tableIndex;
-  final DateTime time;
+  final String table;
+  final String time;
   final List<Student>? students;
 
   @override
@@ -84,7 +94,8 @@ class _DetailCardState extends State<DetailCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          style: const TextStyle(fontSize: 20), '   ${widget.title}'),
+                          style: const TextStyle(fontSize: 20),
+                          '   ${widget.title}'),
                       IconButton(
                         icon: Icon(opened ? Icons.remove : Icons.add),
                         onPressed: () {
@@ -116,10 +127,11 @@ class _DetailCardState extends State<DetailCard> {
                             '예약자 이름:${widget.student.name}'),
                         if (opened)
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                   style: const TextStyle(fontSize: 17),
-                                  '테이블: ${widget.tableIndex}'),
+                                  '테이블: ${widget.table}'),
                               Text(
                                   style: const TextStyle(fontSize: 17),
                                   '조원:${widget.students}'),
@@ -139,44 +151,74 @@ class _DetailCardState extends State<DetailCard> {
                         onPressed: () {/* ... */},
                       ),
                       ElevatedButton(
-                        child: const Text(
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 56, 55, 55)),
-                            '예약 취소'),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('팝업 메시지'),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: const <Widget>[
-                                        Text('Alert Dialog 테스트'),
-                                        Text('ok 버튼 클릭하세요'),
-                                      ],
+                          child: const Text(
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 56, 55, 55)),
+                              '예약 취소'),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('예약취소'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: const <Widget>[
+                                          Text('예약을 취소하시겠습니까?'),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  actions: <Widget>[
-                                    ElevatedButton(
-                                      child: const Text('ok'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    ElevatedButton(
-                                      child: const Text('cancel'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              }
-                          );
-                        }
-                        ),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'ok'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: const Icon(Icons.check),
+                                                content: const Text(
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20),
+                                                    '  예약이 취소되었습니다.'),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context, 'OK');
+                                                    },
+                                                    child: const Text(
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                        'OK'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      ElevatedButton(
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'cancel'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          }),
                       ElevatedButton(
                         child: const Text(
                             style: TextStyle(
@@ -184,53 +226,68 @@ class _DetailCardState extends State<DetailCard> {
                             '일정 공유'),
                         onPressed: () {
                           showDialog(
-                            context: context,
-                            barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('팝업 메시지'),
-                                content: SingleChildScrollView(
-                                  child: ListBody(
-                                    children: <Widget>[
-                                      Text('Alert Dialog 테스트'),
-                                      Text('ok 버튼 클릭하세요'),
-                                    ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        child: Icon(Icons.edit),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                              ),
+                              context: context,
+                              barrierDismissible: true, // 바깥 영역 터치시 닫을지 여부
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  actions: <Widget>[
+                                    const SizedBox(height: 15),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage("assets/mail.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                "assets/kakaotalk.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
                                         ElevatedButton(
-                                          child: Icon(Icons.edit),
+                                          child: const CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                "assets/facebook.png"),
+                                            maxRadius: 15,
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                    ],
-                                  ),
-
-                                ],
-                              );
-                            }
-                        );},
+                                        const Padding(
+                                            padding: EdgeInsets.all(3)),
+                                        ElevatedButton(
+                                          child: const CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage("assets/instar.png"),
+                                            maxRadius: 15,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
                       ),
                     ],
                   ),
