@@ -99,7 +99,7 @@ List<Widget> getTable(BuildContext context, int x, String id, String name) {
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10.0),
           decoration:
-              BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
+          BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
           height: 80,
           width: 80,
           child: Text(element),
@@ -139,7 +139,7 @@ List<Widget> getTable(BuildContext context, int x, String id, String name) {
         height: 20,
         width: 20,
         decoration:
-            BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
+        BoxDecoration(border: Border.all(width: 1, color: Colors.black)),
       ),
       const SizedBox(width: 5.0),
       const Text("선택 가능"),
@@ -151,7 +151,7 @@ List<Widget> getTable(BuildContext context, int x, String id, String name) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DetailPage(id, name)));
+                builder: (context) => DetailPage(id, name, _filters)));
       },
       child: const Text(
         "다음으로",
@@ -196,9 +196,9 @@ class _GetTimeState extends State<GetTime> {
                     label: Text(select),
                     shape: const ContinuousRectangleBorder(
                         side: BorderSide(
-                      color: Colors.black,
-                      width: 1.0,
-                    )),
+                          color: Colors.black,
+                          width: 1.0,
+                        )),
                     backgroundColor: Colors.white,
                     disabledColor: Colors.grey,
                     selectedColor: Colors.cyanAccent,

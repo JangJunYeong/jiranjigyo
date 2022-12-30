@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import './widget/bottomtabbar.dart';
 import 'package:jiranjigyo/widget/appbar.dart';
@@ -8,8 +9,9 @@ var stepList = List.empty(growable: true);
 final List<String> _filters = <String>[];
 
 class DetailPage extends StatefulWidget {
-  const DetailPage(this.id, this.name, {Key? key}) : super(key: key);
+  const DetailPage(this.id, this.name, this.getfilters, {Key? key}) : super(key: key);
 
+  final List<String> getfilters;
   final String id;
   final String name;
 
@@ -49,7 +51,7 @@ class _DetailPageState extends State<DetailPage> {
               color: Theme.of(context).colorScheme.secondaryContainer, // 배경 색
               border: Border.all(width: 1, color: Colors.transparent), // 외곽선 투명
               borderRadius: const BorderRadius.all(Radius.circular(8.0)) // 곡률
-              ),
+          ),
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +64,10 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (member < 6) {
+                      if (member < 5) {
                         controllers.add(TextEditingController());
                         member++;
-                        const SizedBox(height: 5.0);
                       }
-
                       setState(() {});
                     },
                   ),
@@ -88,8 +88,10 @@ class _DetailPageState extends State<DetailPage> {
                 height: 5.0,
               ),
               ListTile(
-                title: const Text(
-                    style: TextStyle(fontSize: 17), '이름: 김승민\n학번:201801992'),
+                title: Text(
+                  '이름: ${widget.name}\n학번: ${widget.id}',
+                  style: TextStyle(fontSize: 17),
+                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -115,11 +117,20 @@ class _DetailPageState extends State<DetailPage> {
                           elevation: 4,
                           shadowColor: const Color.fromARGB(255, 183, 179, 179),
                           backgroundColor:
-                              Theme.of(context).colorScheme.secondaryContainer,
+                          Theme.of(context).colorScheme.secondaryContainer,
                           minimumSize: const Size(150, 50),
                           textStyle: const TextStyle(fontSize: 18)),
                       onPressed: () {
-                        if (member == 0) {
+                        List<String> splited = widget.getfilters[0].split(',');
+
+                        DateTime day = DateTime.now().add(
+                          Duration(days: int.parse(splited[0])),
+                        );
+                        String table = splited[1];
+                        List<String?> time = widget.getfilters.map((filter) {
+                          return filter.split(',')[2];
+                        }).toList();
+                        if (member == 0){
                           showDialog(
                               context: context,
                               barrierDismissible: false, // 바깥 영역 터치시 닫을지 여부
@@ -135,7 +146,8 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ],
                                 );
-                              });
+                              }
+                          );
                         } else {
                           showDialog(
                             context: context,
@@ -155,6 +167,7 @@ class _DetailPageState extends State<DetailPage> {
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context, 'OK');
+                                      print(widget.getfilters);
                                       showDialog(
                                         context: context,
                                         barrierDismissible: false,
@@ -182,6 +195,13 @@ class _DetailPageState extends State<DetailPage> {
                                           );
                                         },
                                       );
+
+                                      FirebaseFirestore.instance.collection('reservations').add({
+                                        'day': '${day.year}. ${day.month}. ${day.day} (${day.weekday})',
+                                        'table': table,
+                                        'time': time,
+                                        'teamMate': controllers.map((cont) => cont.text).toList(),
+                                      });
                                     },
                                     child: const Text(
                                         style: TextStyle(color: Colors.black),
@@ -189,11 +209,11 @@ class _DetailPageState extends State<DetailPage> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.pop(context, 'CANCLE');
+                                      Navigator.pop(context, 'CANCEL');
                                     },
                                     child: const Text(
                                         style: TextStyle(color: Colors.black),
-                                        'CANCLE'),
+                                        'CANCEL'),
                                   ),
                                 ],
                               );
@@ -217,3 +237,55 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
+
+
+
+/*showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text(
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            '주의사항'),
+                        content: const Text(
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 90, 89, 89),
+                                fontSize: 15),
+                            '사용시작 시간 이후 30분 내로 QR인증을 해주시지 않으면 예약 취소 및 패널티가 부과될수 있습니다.'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, 'OK');
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Icon(Icons.check),
+                                    content: const Text(
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 20),
+                                        '예약이 완료되었습니다.'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context, 'OK');
+                                        },
+                                        child: const Text(
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                            'OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text(
+                                style: TextStyle(color: Colors.black), 'OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );*/
