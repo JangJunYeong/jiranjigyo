@@ -119,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     return AlertDialog(
                                       title: const Text('로그인을 해주세요'),
                                       actions: <Widget>[
-                                        ElevatedButton(
+                                        ElevatedButton(style: ElevatedButton.styleFrom(
+                                            backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                           child: const Text('ok'),
                                           onPressed: () {
                                             Navigator.of(context).pop();
@@ -176,6 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               title: const Text('로그인을 해주세요'),
                                               actions: <Widget>[
                                                 ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                                   child: const Text('ok'),
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
@@ -234,6 +237,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               title: const Text('로그인을 해주세요'),
                               actions: <Widget>[
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                   child: const Text('ok'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
@@ -280,6 +285,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               title: const Text('로그인을 해주세요'),
                               actions: <Widget>[
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                   child: const Text('ok'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
@@ -331,6 +338,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               title: const Text('로그인을 해주세요'),
                               actions: <Widget>[
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                   child: const Text('ok'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
@@ -377,6 +386,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               title: const Text('로그인을 해주세요'),
                               actions: <Widget>[
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFE2B9FF), elevation: 5),
                                   child: const Text('ok'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
