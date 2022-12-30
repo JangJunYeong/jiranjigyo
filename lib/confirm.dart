@@ -19,23 +19,26 @@ class ConfirmPage extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(18),
         alignment: Alignment.topCenter,
-        child: FutureBuilder<DocumentSnapshot>(
+        child: FutureBuilder<QuerySnapshot>(
             future: FirebaseFirestore.instance
-                .collection('reservations')
-                .doc('za51kNMu5I05rm2ncfk7')
-                .get(),
+                .collection('reservations').get(),
             builder: (context, snapshot) {
-              // alpak@o.cnu.ac.kr
-              if (snapshot.data?.data() == null) return Container();
-              var json = snapshot.data!.data()! as Map<String, dynamic>;
+              var docs = snapshot.data?.docs;
 
-              return DetailCard(
-                title: json['day'],
-                student: Student(id: id, name: name),
-                table: json['table'],
-                time: json['time'].join(', '),
+              if (docs == null) return Container();
+              return ListView(
+                children: docs.map((doc) {
+                  Map<String, dynamic> json = doc.data() as Map<String, dynamic> ?? {};
+                  return DetailCard(
+                    title: json['day'],
+                    student: Student(id: id, name: name),
+                    table: json['table'],
+                    time: json['time'].join(', '),
+                  );
+                }).toList(),
               );
-            }),
+            }
+        ),
       ),
       bottomNavigationBar: BottomTabBar(1, id, name),
     );
@@ -111,10 +114,9 @@ class _DetailCardState extends State<DetailCard> {
                     height: 5.0,
                   ),
                   ListTile(
-                    title: const Text(
-                      style: TextStyle(fontSize: 20),
-                      'time->time',
-                    ),
+                    title: Text(
+                        style: const TextStyle(fontSize: 17),
+                        '${widget.time}'),
                     leading: const CircleAvatar(
                       backgroundImage: AssetImage("assets/table.png"),
                       maxRadius: 25,
@@ -127,7 +129,6 @@ class _DetailCardState extends State<DetailCard> {
                             '예약자 이름:${widget.student.name}'),
                         if (opened)
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                   style: const TextStyle(fontSize: 17),
@@ -173,7 +174,7 @@ class _DetailCardState extends State<DetailCard> {
                                       ElevatedButton(
                                         child: const Text(
                                             style:
-                                                TextStyle(color: Colors.black),
+                                            TextStyle(color: Colors.black),
                                             'ok'),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -197,7 +198,7 @@ class _DetailCardState extends State<DetailCard> {
                                                     child: const Text(
                                                         style: TextStyle(
                                                             color:
-                                                                Colors.black),
+                                                            Colors.black),
                                                         'OK'),
                                                   ),
                                                 ],
@@ -209,7 +210,7 @@ class _DetailCardState extends State<DetailCard> {
                                       ElevatedButton(
                                         child: const Text(
                                             style:
-                                                TextStyle(color: Colors.black),
+                                            TextStyle(color: Colors.black),
                                             'cancel'),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -234,20 +235,19 @@ class _DetailCardState extends State<DetailCard> {
                                     const SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                       children: [
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage:
-                                                AssetImage("assets/mail.png"),
+                                            AssetImage("assets/mail.png"),
                                             maxRadius: 15,
                                           ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(
-                                            padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -258,8 +258,7 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(
-                                            padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage: AssetImage(
@@ -270,12 +269,11 @@ class _DetailCardState extends State<DetailCard> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        const Padding(
-                                            padding: EdgeInsets.all(3)),
+                                        const Padding(padding: EdgeInsets.all(3)),
                                         ElevatedButton(
                                           child: const CircleAvatar(
                                             backgroundImage:
-                                                AssetImage("assets/instar.png"),
+                                            AssetImage("assets/instar.png"),
                                             maxRadius: 15,
                                           ),
                                           onPressed: () {
