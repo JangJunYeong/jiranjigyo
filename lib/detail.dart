@@ -64,7 +64,8 @@ class _DetailPageState extends State<DetailPage> {
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (member == 6) controllers.add(TextEditingController());
+                      // if (member == 6)
+                      controllers.add(TextEditingController());
                       member++;
                       setState(() {});
                     },
